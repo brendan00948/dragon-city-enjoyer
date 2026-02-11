@@ -1,0 +1,2914 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,   initial-scale=1.0">
+    <title>Dragon City Enjoyer - Dragon Orb Store</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-firestore-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-database-compat.js"></script>
+    <style>
+        * {
+            margin:   0;
+            padding:   0;
+            box-sizing:   border-box;
+            font-family:   'Segoe UI',   Tahoma,   Geneva,   Verdana,   sans-serif;
+        }
+
+        :root {
+            --primary:   #8A2BE2;
+            --primary-dark:   #6A1B9A;
+            --secondary:   #FF4500;
+            --accent:   #FFD700;
+            --dark:   #1a1a2e;
+            --darker:   #0d0d1a;
+            --light:   #f8f9fa;
+            --card-bg:   rgba(26,   26,   46,   0.8);
+            --card-border:   rgba(138,   43,   226,   0.3);
+            --admin-bg:   rgba(106,   27,   154,   0.2);
+        }
+
+        body {
+            background:   linear-gradient(135deg,   var(--darker),   var(--dark));
+            color:   var(--light);
+            min-height:   100vh;
+            background-attachment:   fixed;
+            position:   relative;
+            overflow-x:   hidden;
+            background-image:   url('https://images.ctfassets.net/7qho9llfhoio/h6vaDIoAQXSNwOTKhIeMq/d98adf9538e2c221a37d1dce00edb421/splash_mobile__4_.jpg?w=1560&h=&fm=avif&q=75');
+            background-size:   cover;
+            background-position:   center;
+            background-blend-mode:   multiply;
+            background-color:   rgba(0,   0,   0,   0.7);
+        }
+
+        body::before {
+            content:   "";
+            position:   fixed;
+            top:   0;
+            left:   0;
+            width:   100%;
+            height:   100%;
+            background:   
+                radial-gradient(circle at 10% 20%,   rgba(138,   43,   226,   0.1) 0%,   transparent 25%),   
+                radial-gradient(circle at 90% 80%,   rgba(255,   69,   0,   0.1) 0%,   transparent 25%);
+            background-size:   cover;
+            z-index:   -1;
+            animation:   backgroundMove 30s linear infinite;
+        }
+
+        @keyframes backgroundMove {
+            0% { transform:   translate(0,   0); }
+            25% { transform:   translate(-20px,   -10px); }
+            50% { transform:   translate(0,   -20px); }
+            75% { transform:   translate(20px,   -10px); }
+            100% { transform:   translate(0,   0); }
+        }
+
+        .container {
+            max-width:   1200px;
+            margin:   0 auto;
+            padding:   0 20px;
+        }
+
+        header {
+            display:   flex;
+            justify-content:   space-between;
+            align-items:   center;
+            padding:   20px 0;
+            border-bottom:   1px solid rgba(138,   43,   226,   0.3);
+            margin-bottom:   30px;
+            flex-wrap:   wrap;
+        }
+
+        .logo {
+            display:   flex;
+            align-items:   center;
+            gap:   15px;
+        }
+
+        .logo i {
+            font-size:   2.8rem;
+            color:   var(--accent);
+            text-shadow:   0 0 15px rgba(255,   215,   0,   0.7);
+            animation:   pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform:   scale(1); }
+            50% { transform:   scale(1.1); }
+            100% { transform:   scale(1); }
+        }
+
+        .logo h1 {
+            font-size:   2.5rem;
+            background:   linear-gradient(to right,   var(--accent),   var(--secondary));
+            -webkit-background-clip:   text;
+            background-clip:   text;
+            color:   transparent;
+            text-shadow:   0 0 10px rgba(255,   69,   0,   0.3);
+            letter-spacing:   1px;
+        }
+
+        nav ul {
+            display:   flex;
+            list-style:   none;
+            gap:   25px;
+            flex-wrap:   wrap;
+        }
+
+        nav a {
+            color:   var(--light);
+            text-decoration:   none;
+            font-size:   1.1rem;
+            font-weight:   500;
+            padding:   10px 20px;
+            border-radius:   30px;
+            transition:   all 0.3s ease;
+            position:   relative;
+            overflow:   hidden;
+        }
+
+        nav a::before {
+            content:   "";
+            position:   absolute;
+            top:   0;
+            left:   0;
+            width:   100%;
+            height:   100%;
+            background:   linear-gradient(90deg,   var(--primary),   var(--secondary));
+            z-index:   -1;
+            border-radius:   30px;
+            transform:   scaleX(0);
+            transform-origin:   right;
+            transition:   transform 0.4s ease;
+        }
+
+        nav a:hover::before,   nav a.active::before {
+            transform:   scaleX(1);
+            transform-origin:   left;
+        }
+
+        nav a:hover,   nav a.active {
+            color:   white;
+        }
+
+        .auth-buttons {
+            display:   flex;
+            gap:   15px;
+            align-items:   center;
+            flex-wrap:   wrap;
+        }
+
+        .btn {
+            padding:   12px 28px;
+            border-radius:   30px;
+            font-weight:   600;
+            cursor:   pointer;
+            transition:   all 0.3s ease;
+            border:   none;
+            font-size:   1rem;
+            position:   relative;
+            overflow:   hidden;
+            z-index:   1;
+        }
+
+        .btn-login {
+            background:   transparent;
+            color:   var(--light);
+            border:   2px solid var(--primary);
+        }
+
+        .btn-signup {
+            background:   linear-gradient(90deg,   var(--primary),   var(--secondary));
+            color:   white;
+            box-shadow:   0 5px 15px rgba(138,   43,   226,   0.4);
+        }
+
+        .btn::before {
+            content:   "";
+            position:   absolute;
+            top:   0;
+            left:   0;
+            width:   100%;
+            height:   100%;
+            background:   rgba(255,   255,   255,   0.1);
+            z-index:   -1;
+            transform:   scaleX(0);
+            transform-origin:   right;
+            transition:   transform 0.4s ease;
+        }
+
+        .btn:hover::before {
+            transform:   scaleX(1);
+            transform-origin:   left;
+        }
+
+        .btn:active {
+            transform:   translateY(2px);
+        }
+
+        .btn-login:hover {
+            background:   rgba(138,   43,   226,   0.2);
+        }
+
+        .btn-signup:hover {
+            background:   linear-gradient(90deg,   var(--primary-dark),   var(--secondary));
+            box-shadow:   0 7px 20px rgba(138,   43,   226,   0.5);
+        }
+
+        .page {
+            display:   none;
+            animation:   fadeIn 0.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity:   0; transform:   translateY(20px); }
+            to { opacity:   1; transform:   translateY(0); }
+        }
+
+        .active-page {
+            display:   block;
+        }
+
+        /* Main Page Styles */
+        .hero {
+            text-align:   center;
+            padding:   80px 20px;
+            margin-bottom:   40px;
+            position:   relative;
+            border-radius:   20px;
+            overflow:   hidden;
+            background:   rgba(0,   0,   0,   0.3);
+            border:   1px solid rgba(138,   43,   226,   0.3);
+            box-shadow:   0 10px 30px rgba(0,   0,   0,   0.3);
+            backdrop-filter:   blur(10px);
+        }
+
+        .hero::before {
+            content:   "";
+            position:   absolute;
+            top:   0;
+            left:   0;
+            width:   100%;
+            height:   100%;
+            background:   
+                radial-gradient(circle at 20% 30%,   rgba(138,   43,   226,   0.1) 0%,   transparent 30%),   
+                radial-gradient(circle at 80% 70%,   rgba(255,   69,   0,   0.1) 0%,   transparent 30%);
+            z-index:   -1;
+        }
+
+        .hero h2 {
+            font-size:   3.8rem;
+            margin-bottom:   25px;
+            background:   linear-gradient(to right,   var(--accent),   var(--secondary));
+            -webkit-background-clip:   text;
+            background-clip:   text;
+            color:   transparent;
+            text-shadow:   0 0 15px rgba(255,   69,   0,   0.3);
+        }
+
+        .hero p {
+            font-size:   1.4rem;
+            max-width:   850px;
+            margin:   0 auto 40px;
+            line-height:   1.7;
+            color:   #e0e0e0;
+        }
+
+        .features {
+            display:   grid;
+            grid-template-columns:   repeat(auto-fit,   minmax(320px,   1fr));
+            gap:   30px;
+            margin-bottom:   60px;
+        }
+
+        .feature-card {
+            background:   var(--card-bg);
+            border-radius:   15px;
+            padding:   35px;
+            text-align:   center;
+            transition:   all 0.4s ease;
+            border:   1px solid var(--card-border);
+            position:   relative;
+            overflow:   hidden;
+            box-shadow:   0 8px 20px rgba(0,   0,   0,   0.2);
+            backdrop-filter:   blur(5px);
+        }
+
+        .feature-card::before {
+            content:   "";
+            position:   absolute;
+            top:   0;
+            left:   0;
+            width:   100%;
+            height:   5px;
+            background:   linear-gradient(90deg,   var(--primary),   var(--secondary));
+        }
+
+        .feature-card:hover {
+            transform:   translateY(-10px);
+            background:   rgba(0,   0,   0,   0.5);
+            border-color:   rgba(138,   43,   226,   0.6);
+            box-shadow:   0 15px 30px rgba(0,   0,   0,   0.3);
+        }
+
+        .feature-card .item-image {
+            width:   100px;
+            height:   100px;
+            margin:   0 auto 25px;
+            border-radius:   50%;
+            background:   rgba(138,   43,   226,   0.2);
+            display:   flex;
+            align-items:   center;
+            justify-content:   center;
+            border:   2px solid rgba(138,   43,   226,   0.4);
+            overflow:   hidden;
+            box-shadow:   0 0 20px rgba(138,   43,   226,   0.3);
+        }
+
+        .feature-card .item-image img {
+            width:   100%;
+            height:   100%;
+            object-fit:   cover;
+        }
+
+        .feature-card h3 {
+            font-size:   1.9rem;
+            margin-bottom:   20px;
+            color:   var(--accent);
+        }
+
+        .feature-card p {
+            font-size:   1.15rem;
+            line-height:   1.7;
+            color:   #d0d0d0;
+        }
+
+        /* Login Page Styles */
+        .login-container {
+            max-width:   550px;
+            margin:   60px auto;
+            background:   var(--card-bg);
+            border-radius:   20px;
+            padding:   50px;
+            border:   1px solid var(--card-border);
+            box-shadow:   0 15px 40px rgba(0,   0,   0,   0.4);
+            position:   relative;
+            overflow:   hidden;
+            backdrop-filter:   blur(10px);
+        }
+
+        .login-container::before {
+            content:   "";
+            position:   absolute;
+            top:   0;
+            left:   0;
+            width:   100%;
+            height:   5px;
+            background:   linear-gradient(90deg,   var(--primary),   var(--secondary));
+        }
+
+        .login-container h2 {
+            text-align:   center;
+            font-size:   2.8rem;
+            margin-bottom:   35px;
+            color:   var(--accent);
+            text-shadow:   0 0 10px rgba(255,   215,   0,   0.3);
+        }
+
+        .form-group {
+            margin-bottom:   30px;
+        }
+
+        .form-group label {
+            display:   block;
+            margin-bottom:   10px;
+            font-size:   1.2rem;
+            color:   #e0e0e0;
+        }
+
+        .form-group input {
+            width:   100%;
+            padding:   16px;
+            border-radius:   12px;
+            border:   2px solid rgba(138,   43,   226,   0.4);
+            background:   rgba(0,   0,   0,   0.4);
+            color:   white;
+            font-size:   1.1rem;
+            transition:   all 0.3s ease;
+        }
+
+        .form-group input:focus {
+            outline:   none;
+            border-color:   var(--primary);
+            box-shadow:   0 0 15px rgba(138,   43,   226,   0.5);
+        }
+
+        .remember-forgot {
+            display:   flex;
+            justify-content:   space-between;
+            align-items:   center;
+            margin-bottom:   30px;
+            flex-wrap:   wrap;
+            gap:   10px;
+        }
+
+        .remember {
+            display:   flex;
+            align-items:   center;
+            gap:   10px;
+        }
+
+        .remember input {
+            width:   20px;
+            height:   20px;
+        }
+
+        .forgot-password {
+            color:   var(--accent);
+            text-decoration:   none;
+            font-weight:   500;
+        }
+
+        .forgot-password:hover {
+            text-decoration:   underline;
+        }
+
+        .login-btn {
+            width:   100%;
+            padding:   16px;
+            background:   linear-gradient(90deg,   var(--primary),   var(--secondary));
+            color:   white;
+            border:   none;
+            border-radius:   12px;
+            font-size:   1.25rem;
+            font-weight:   600;
+            cursor:   pointer;
+            transition:   all 0.3s ease;
+            box-shadow:   0 5px 15px rgba(138,   43,   226,   0.4);
+        }
+
+        .login-btn:hover {
+            background:   linear-gradient(90deg,   var(--primary-dark),   var(--secondary));
+            transform:   translateY(-3px);
+            box-shadow:   0 8px 20px rgba(138,   43,   226,   0.5);
+        }
+
+        .signup-link {
+            text-align:   center;
+            margin-top:   30px;
+            font-size:   1.15rem;
+        }
+
+        .signup-link a {
+            color:   var(--accent);
+            text-decoration:   none;
+            font-weight:   600;
+        }
+
+        .signup-link a:hover {
+            text-decoration:   underline;
+        }
+
+        /* Shop Styles */
+        .shop-container {
+            max-width:   1100px;
+            margin:   40px auto;
+        }
+
+        .balance-section {
+            background:   var(--card-bg);
+            border-radius:   20px;
+            padding:   35px;
+            margin-bottom:   40px;
+            text-align:   center;
+            border:   1px solid var(--card-border);
+            box-shadow:   0 10px 30px rgba(0,   0,   0,   0.3);
+            backdrop-filter:   blur(10px);
+        }
+
+        .balance-section h2 {
+            font-size:   2.3rem;
+            margin-bottom:   20px;
+            color:   var(--accent);
+        }
+
+        .balance {
+            font-size:   3rem;
+            font-weight:   700;
+            color:   var(--accent);
+            text-shadow:   0 0 15px rgba(255,   215,   0,   0.5);
+            display:   flex;
+            align-items:   center;
+            justify-content:   center;
+            gap:   15px;
+        }
+
+        .shop-items {
+            display:   grid;
+            grid-template-columns:   repeat(auto-fill,   minmax(280px,   1fr));
+            gap:   30px;
+        }
+
+        .shop-item {
+            background:   var(--card-bg);
+            border-radius:   20px;
+            padding:   30px;
+            text-align:   center;
+            transition:   all 0.4s ease;
+            border:   1px solid var(--card-border);
+            position:   relative;
+            overflow:   hidden;
+            box-shadow:   0 8px 20px rgba(0,   0,   0,   0.2);
+            backdrop-filter:   blur(5px);
+        }
+
+        .shop-item::before {
+            content:   "";
+            position:   absolute;
+            top:   0;
+            left:   0;
+            width:   100%;
+            height:   5px;
+            background:   linear-gradient(90deg,   var(--primary),   var(--secondary));
+            transform:   scaleX(0);
+            transform-origin:   left;
+            transition:   transform 0.4s ease;
+        }
+
+        .shop-item:hover {
+            transform:   translateY(-10px);
+            border-color:   rgba(138,   43,   226,   0.6);
+            box-shadow:   0 15px 30px rgba(0,   0,   0,   0.3);
+        }
+
+        .shop-item:hover::before {
+            transform:   scaleX(1);
+        }
+
+        .item-image {
+            width:   130px;
+            height:   130px;
+            margin:   0 auto 25px;
+            border-radius:   50%;
+            background:   rgba(138,   43,   226,   0.2);
+            display:   flex;
+            align-items:   center;
+            justify-content:   center;
+            font-size:   3.5rem;
+            color:   var(--accent);
+            text-shadow:   0 0 15px rgba(255,   215,   0,   0.5);
+            border:   2px solid rgba(138,   43,   226,   0.4);
+            overflow:   hidden;
+            box-shadow:   0 0 20px rgba(138,   43,   226,   0.3);
+        }
+
+        .item-image img {
+            width:   100%;
+            height:   100%;
+            object-fit:   cover;
+        }
+
+        .item-name {
+            font-size:   1.7rem;
+            margin-bottom:   15px;
+            color:   var(--accent);
+        }
+
+        .item-price {
+            font-size:   1.5rem;
+            font-weight:   600;
+            margin-bottom:   25px;
+            color:   var(--accent);
+            display:   flex;
+            align-items:   center;
+            justify-content:   center;
+            gap:   10px;
+        }
+
+        .buy-btn {
+            padding:   12px 30px;
+            background:   linear-gradient(90deg,   var(--primary),   var(--secondary));
+            color:   white;
+            border:   none;
+            border-radius:   30px;
+            font-weight:   600;
+            cursor:   pointer;
+            transition:   all 0.3s ease;
+            box-shadow:   0 5px 15px rgba(138,   43,   226,   0.4);
+        }
+
+        .buy-btn:hover {
+            background:   linear-gradient(90deg,   var(--primary-dark),   var(--secondary));
+            transform:   scale(1.05);
+            box-shadow:   0 7px 20px rgba(138,   43,   226,   0.5);
+        }
+
+        /* Orders Section */
+        .orders-section {
+            margin-top:   40px;
+        }
+
+        .orders-section h3 {
+            color:   var(--accent);
+            margin-bottom:   20px;
+            font-size:   1.8rem;
+        }
+
+        .orders-container {
+            display:   grid;
+            grid-template-columns:   repeat(auto-fill,   minmax(300px,   1fr));
+            gap:   20px;
+        }
+
+        .order-card {
+            background:   rgba(0,   0,   0,   0.4);
+            border-radius:   15px;
+            padding:   20px;
+            border:   1px solid var(--card-border);
+            backdrop-filter:   blur(5px);
+        }
+
+        .order-header {
+            display:   flex;
+            justify-content:   space-between;
+            margin-bottom:   15px;
+            padding-bottom:   10px;
+            border-bottom:   1px solid var(--card-border);
+        }
+
+        .order-id {
+            font-weight:   bold;
+            color:   var(--accent);
+        }
+
+        .order-date {
+            color:   #aaa;
+            font-size:   0.9rem;
+        }
+
+        .order-item {
+            margin-bottom:   10px;
+            display:   flex;
+            justify-content:   space-between;
+        }
+
+        .order-total {
+            margin-top:   15px;
+            padding-top:   10px;
+            border-top:   1px solid var(--card-border);
+            font-weight:   bold;
+            color:   var(--accent);
+        }
+
+        .order-status {
+            padding:   5px 10px;
+            border-radius:   20px;
+            font-size:   0.9rem;
+            font-weight:   bold;
+            text-align:   center;
+            margin-top:   10px;
+        }
+
+        .status-submitted {
+            background:   #1e90ff;
+            color:   white;
+        }
+
+        .status-progress {
+            background:   #ffa500;
+            color:   white;
+        }
+
+        .status-completed {
+            background:   #32cd32;
+            color:   white;
+        }
+
+        .status-refunded {
+            background:   #ff4500;
+            color:   white;
+        }
+
+        .status-select {
+            width:   100%;
+            padding:   8px;
+            border-radius:   5px;
+            background:   rgba(0,   0,   0,   0.3);
+            color:   white;
+            border:   1px solid var(--card-border);
+        }
+
+        /* Admin Panel Styles */
+        .admin-panel {
+            background:   var(--admin-bg);
+            border-radius:   20px;
+            padding:   30px;
+            margin-top:   40px;
+            border:   1px solid var(--card-border);
+            box-shadow:   0 10px 30px rgba(0,   0,   0,   0.3);
+            backdrop-filter:   blur(10px);
+        }
+
+        .admin-panel h2 {
+            color:   var(--accent);
+            margin-bottom:   25px;
+            font-size:   2.2rem;
+            text-align:   center;
+        }
+
+        .admin-controls {
+            display:   grid;
+            grid-template-columns:   repeat(auto-fit,   minmax(300px,   1fr));
+            gap:   25px;
+            margin-bottom:   30px;
+        }
+
+        .admin-card {
+            background:   rgba(0,   0,   0,   0.4);
+            border-radius:   15px;
+            padding:   25px;
+            border:   1px solid var(--card-border);
+        }
+
+        .admin-card h3 {
+            color:   var(--accent);
+            margin-bottom:   15px;
+            font-size:   1.6rem;
+        }
+
+        .form-group input,   .form-group select {
+            width:   100%;
+            padding:   12px;
+            border-radius:   8px;
+            border:   1px solid rgba(138,   43,   226,   0.4);
+            background:   rgba(0,   0,   0,   0.3);
+            color:   white;
+            font-size:   1rem;
+            margin-bottom:   15px;
+        }
+
+        .admin-btn {
+            width:   100%;
+            padding:   12px;
+            background:   linear-gradient(90deg,   var(--primary),   var(--secondary));
+            color:   white;
+            border:   none;
+            border-radius:   8px;
+            font-weight:   600;
+            cursor:   pointer;
+            transition:   all 0.3s ease;
+            margin-top:   10px;
+        }
+
+        .admin-btn:hover {
+            background:   linear-gradient(90deg,   var(--primary-dark),   var(--secondary));
+            transform:   translateY(-2px);
+        }
+
+        .orders-table {
+            width:   100%;
+            border-collapse:   collapse;
+            margin-top:   20px;
+            background:   rgba(0,   0,   0,   0.3);
+            border-radius:   10px;
+            overflow:   hidden;
+        }
+
+        .orders-table th,   .orders-table td {
+            padding:   15px;
+            text-align:   left;
+            border-bottom:   1px solid var(--card-border);
+        }
+
+        .orders-table th {
+            background:   rgba(106,   27,   154,   0.5);
+            color:   var(--accent);
+        }
+
+        .orders-table tr:last-child td {
+            border-bottom:   none;
+        }
+
+        .orders-table tr:hover {
+            background:   rgba(138,   43,   226,   0.1);
+        }
+
+        footer {
+            text-align:   center;
+            padding:   40px 0;
+            margin-top:   60px;
+            border-top:   1px solid var(--card-border);
+        }
+
+        footer p {
+            font-size:   1.1rem;
+            color:   #aaa;
+        }
+
+        .notification {
+            position:   fixed;
+            top:   25px;
+            right:   25px;
+            padding:   20px 30px;
+            border-radius:   10px;
+            background:   var(--primary);
+            color:   white;
+            font-weight:   600;
+            box-shadow:   0 10px 25px rgba(0,   0,   0,   0.3);
+            transform:   translateX(200%);
+            transition:   transform 0.4s ease;
+            z-index:   1000;
+            display:   flex;
+            align-items:   center;
+            gap:   15px;
+        }
+
+        .notification.show {
+            transform:   translateX(0);
+        }
+
+        .user-info-display {
+            display:   flex;
+            align-items:   center;
+            gap:   15px;
+            background:   rgba(0,   0,   0,   0.4);
+            padding:   10px 20px;
+            border-radius:   30px;
+            border:   1px solid var(--card-border);
+        }
+
+        .user-info-display span {
+            font-weight:   600;
+            color:   var(--accent);
+        }
+
+        /* Default item image */
+        .default-item-image {
+            background:   linear-gradient(135deg,   #8A2BE2,   #FF4500);
+            display:   flex;
+            align-items:   center;
+            justify-content:   center;
+            color:   white;
+            font-size:   2rem;
+        }
+
+        /* EBucks Styles */
+        .ebucks-section {
+            background:   var(--card-bg);
+            border-radius:   20px;
+            padding:   35px;
+            margin-bottom:   40px;
+            text-align:   center;
+            border:   1px solid var(--card-border);
+            box-shadow:   0 10px 30px rgba(0,   0,   0,   0.3);
+            backdrop-filter:   blur(10px);
+        }
+
+        .ebucks-section h2 {
+            font-size:   2.3rem;
+            margin-bottom:   20px;
+            color:   var(--accent);
+        }
+
+        .ebucks {
+            font-size:   3rem;
+            font-weight:   700;
+            color:   var(--accent);
+            text-shadow:   0 0 15px rgba(255,   215,   0,   0.5);
+            display:   flex;
+            align-items:   center;
+            justify-content:   center;
+            gap:   15px;
+        }
+
+        /* Responsive Design */
+        @media (max-width:   992px) {
+            .hero h2 {
+                font-size:   3rem;
+            }
+            
+            .hero p {
+                font-size:   1.2rem;
+            }
+            
+            .features {
+                grid-template-columns:   repeat(auto-fit,   minmax(280px,   1fr));
+            }
+        }
+
+        @media (max-width:   768px) {
+            header {
+                flex-direction:   column;
+                gap:   20px;
+            }
+            
+            nav ul {
+                flex-wrap:   wrap;
+                justify-content:   center;
+            }
+            
+            .hero {
+                padding:   60px 20px;
+            }
+            
+            .hero h2 {
+                font-size:   2.5rem;
+            }
+            
+            .hero p {
+                font-size:   1.1rem;
+            }
+            
+            .login-container {
+                padding:   30px 20px;
+                margin:   40px auto;
+            }
+            
+            .login-container h2 {
+                font-size:   2.2rem;
+            }
+        }
+
+        @media (max-width:   576px) {
+            .logo h1 {
+                font-size:   2rem;
+            }
+            
+            .logo i {
+                font-size:   2.2rem;
+            }
+            
+            .hero h2 {
+                font-size:   2rem;
+            }
+            
+            .hero p {
+                font-size:   1rem;
+            }
+            
+            .balance {
+                font-size:   2.2rem;
+            }
+            
+            .shop-items {
+                grid-template-columns:   1fr;
+            }
+            
+            .remember-forgot {
+                flex-direction:   column;
+                align-items:   flex-start;
+            }
+        }
+
+        /* Dragon Animation */
+        .dragon-animation {
+            position:   absolute;
+            top:   20%;
+            right:   10%;
+            font-size:   5rem;
+            color:   var(--accent);
+            animation:   fly 15s infinite linear;
+            z-index:   -1;
+            opacity:   0.3;
+        }
+
+        @keyframes fly {
+            0% { transform:   translateX(0) translateY(0) rotate(0deg); }
+            25% { transform:   translateX(-100px) translateY(-50px) rotate(10deg); }
+            50% { transform:   translateX(-200px) translateY(0) rotate(0deg); }
+            75% { transform:   translateX(-100px) translateY(50px) rotate(-10deg); }
+            100% { transform:   translateX(0) translateY(0) rotate(0deg); }
+        }
+
+        /* Fire Animation */
+        .fire {
+            position:   absolute;
+            bottom:   0;
+            left:   0;
+            width:   100%;
+            height:   100px;
+            background:   linear-gradient(to top,   rgba(255,   69,   0,   0.7),   transparent);
+            z-index:   -1;
+            opacity:   0.5;
+        }
+
+        /* Glowing Dragon */
+        .glowing-dragon {
+            position:   absolute;
+            top:   10%;
+            left:   5%;
+            font-size:   8rem;
+            color:   var(--accent);
+            text-shadow:   0 0 30px var(--accent),   0 0 60px var(--secondary);
+            animation:   glow 3s infinite alternate;
+            z-index:   -1;
+            opacity:   0.2;
+        }
+
+        @keyframes glow {
+            0% { text-shadow:   0 0 30px var(--accent),   0 0 60px var(--secondary); }
+            100% { text-shadow:   0 0 50px var(--accent),   0 0 100px var(--secondary); }
+        }
+
+        /* Loading Spinner */
+        .spinner {
+            display:   none;
+            position:   fixed;
+            top:   50%;
+            left:   50%;
+            transform:   translate(-50%,   -50%);
+            z-index:   9999;
+        }
+
+        .spinner-border {
+            display:   inline-block;
+            width:   3rem;
+            height:   3rem;
+            vertical-align:   text-bottom;
+            border:   0.25em solid currentColor;
+            border-right-color:   transparent;
+            border-radius:   50%;
+            animation:   spinner-border 0.75s linear infinite;
+        }
+
+        @keyframes spinner-border {
+            to { transform:   rotate(360deg); }
+        }
+
+        /* User Management */
+        .user-management {
+            margin-top:   30px;
+        }
+
+        .user-list {
+            max-height:   400px;
+            overflow-y:   auto;
+            margin-top:   20px;
+        }
+
+        .user-item {
+            display:   flex;
+            justify-content:   space-between;
+            align-items:   center;
+            padding:   15px;
+            background:   rgba(0,   0,   0,   0.3);
+            border-radius:   10px;
+            margin-bottom:   10px;
+            border:   1px solid var(--card-border);
+        }
+
+        .user-info {
+            flex:   1;
+        }
+
+        .user-actions {
+            display:   flex;
+            gap:   10px;
+        }
+
+        .ban-btn {
+            background:   #ff3b30;
+            color:   white;
+            border:   none;
+            padding:   8px 15px;
+            border-radius:   5px;
+            cursor:   pointer;
+        }
+
+        .unban-btn {
+            background:   #32cd32;
+            color:   white;
+            border:   none;
+            padding:   8px 15px;
+            border-radius:   5px;
+            cursor:   pointer;
+        }
+
+        .role-badge {
+            padding:   3px 8px;
+            border-radius:   10px;
+            font-size:   0.8rem;
+            font-weight:   bold;
+            margin-left:   10px;
+        }
+
+        .role-owner {
+            background:   #9400d3;
+            color:   white;
+        }
+
+        .role-admin {
+            background:   #ff4500;
+            color:   white;
+        }
+
+        .role-elite {
+            background:   #1e90ff;
+            color:   white;
+        }
+
+        .role-premium {
+            background:   #32cd32;
+            color:   white;
+        }
+
+        .role-moderator {
+            background:   #ffa500;
+            color:   white;
+        }
+        
+        .role-staff {
+            background:   #8a2be2;
+            color:   white;
+        }
+        
+        .role-member {
+            background:   #4682b4;
+            color:   white;
+        }
+        
+        /* Admin Management */
+        .admin-management {
+            margin-top:   30px;
+        }
+        
+        .admin-list {
+            max-height:   300px;
+            overflow-y:   auto;
+            margin-top:   20px;
+        }
+        
+        .admin-item {
+            display:   flex;
+            justify-content:   space-between;
+            align-items:   center;
+            padding:   15px;
+            background:   rgba(0,   0,   0,   0.3);
+            border-radius:   10px;
+            margin-bottom:   10px;
+            border:   1px solid var(--card-border);
+        }
+        
+        .admin-actions {
+            display:   flex;
+            gap:   10px;
+        }
+        
+        .remove-admin-btn {
+            background:   #ff3b30;
+            color:   white;
+            border:   none;
+            padding:   8px 15px;
+            border-radius:   5px;
+            cursor:   pointer;
+        }
+        
+        .add-admin-form {
+            background:   rgba(0,   0,   0,   0.4);
+            border-radius:   15px;
+            padding:   25px;
+            border:   1px solid var(--card-border);
+            margin-top:   30px;
+        }
+        
+        .add-admin-form h3 {
+            color:   var(--accent);
+            margin-bottom:   15px;
+            font-size:   1.6rem;
+        }
+        
+        /* Role Management Styles */
+        .role-management {
+            margin-top:   30px;
+        }
+        
+        .role-form {
+            background:   rgba(0,   0,   0,   0.4);
+            border-radius:   15px;
+            padding:   25px;
+            border:   1px solid var(--card-border);
+            margin-top:   20px;
+        }
+        
+        .role-form h3 {
+            color:   var(--accent);
+            margin-bottom:   15px;
+            font-size:   1.6rem;
+        }
+        
+        .role-select {
+            width:   100%;
+            padding:   12px;
+            border-radius:   8px;
+            border:   1px solid rgba(138,   43,   226,   0.4);
+            background:   rgba(0,   0,   0,   0.3);
+            color:   white;
+            font-size:   1rem;
+            margin-bottom:   15px;
+        }
+        
+        /* Category Styles */
+        .category-filter {
+            display:   flex;
+            justify-content:   center;
+            flex-wrap:   wrap;
+            gap:   10px;
+            margin-bottom:   30px;
+        }
+        
+        .category-btn {
+            padding:   10px 20px;
+            background:   rgba(138,   43,   226,   0.2);
+            color:   var(--light);
+            border:   1px solid var(--card-border);
+            border-radius:   30px;
+            cursor:   pointer;
+            transition:   all 0.3s ease;
+        }
+        
+        .category-btn.active,   .category-btn:hover {
+            background:   linear-gradient(90deg,   var(--primary),   var(--secondary));
+            color:   white;
+        }
+        
+        /* Page Selector Grouping */
+        .page-selector-group {
+            display:   flex;
+            flex-wrap:   wrap;
+            gap:   15px;
+            margin-bottom:   20px;
+            padding:   15px;
+            background:   rgba(0,   0,   0,   0.3);
+            border-radius:   15px;
+            border:   1px solid var(--card-border);
+        }
+        
+        .page-selector-group h3 {
+            color:   var(--accent);
+            width:   100%;
+            margin-bottom:   10px;
+        }
+        
+        .item-category {
+            font-size:   0.9rem;
+            color:   #aaa;
+            margin-top:   5px;
+            text-transform:   uppercase;
+            letter-spacing:   1px;
+        }
+        
+        /* Category Management */
+        .category-management {
+            margin-top:   30px;
+        }
+        
+        .category-form {
+            background:   rgba(0,   0,   0,   0.4);
+            border-radius:   15px;
+            padding:   25px;
+            border:   1px solid var(--card-border);
+            margin-top:   20px;
+        }
+        
+        .category-form h3 {
+            color:   var(--accent);
+            margin-bottom:   15px;
+            font-size:   1.6rem;
+        }
+        
+        .category-item {
+            display:   flex;
+            align-items:   center;
+            gap:   15px;
+            padding:   10px;
+            background:   rgba(0,   0,   0,   0.3);
+            border-radius:   10px;
+            margin-bottom:   10px;
+        }
+        
+        .category-item img {
+            width:   50px;
+            height:   50px;
+            border-radius:   50%;
+            object-fit:   cover;
+        }
+        
+        .category-item input {
+            flex:   1;
+            padding:   8px;
+            border-radius:   5px;
+            border:   1px solid rgba(138,   43,   226,   0.4);
+            background:   rgba(0,   0,   0,   0.3);
+            color:   white;
+        }
+        
+        .category-item button {
+            padding:   8px 15px;
+            background:   #ff3b30;
+            color:   white;
+            border:   none;
+            border-radius:   5px;
+            cursor:   pointer;
+        }
+        
+        /* Login Info */
+        .login-info {
+            font-size:   0.9rem;
+            color:   #aaa;
+            margin-top:   5px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Decorative Elements -->
+    <div class="dragon-animation">
+        <i class="fas fa-dragon"></i>
+    </div>
+    <div class="glowing-dragon">
+        <i class="fas fa-dragon"></i>
+    </div>
+    <div class="fire"></div>
+
+    <!-- Loading Spinner -->
+    <div class="spinner" id="loadingSpinner">
+        <div class="spinner-border text-primary" role="status">
+            <span class="sr-only">Loading...</span>
+        </div>
+    </div>
+
+    <div class="container">
+        <header>
+            <div class="logo">
+                <i class="fas fa-dragon"></i>
+                <h1>Dragon City</h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#" class="nav-link active" data-page="main">Home</a></li>
+                    <li><a href="#" class="nav-link" data-page="login" id="loginLink">Login</a></li>
+                    <li><a href="#" class="nav-link" data-page="shop" id="shopLink" style="display:   none;">Shop</a></li>
+                    <li><a href="#" class="nav-link" data-page="orders" id="ordersLink" style="display:   none;">Orders</a></li>
+                    <li><a href="#" class="nav-link" data-page="admin" id="adminLink" style="display:   none;">Admin</a></li>
+                </ul>
+            </nav>
+            <div class="auth-buttons">
+                <button class="btn btn-login" id="loginBtn">Login</button>
+                <button class="btn btn-signup" id="signupBtn">Sign Up</button>
+                <div class="user-info-display" id="userInfo" style="display:   none;">
+                    <span id="userEmail"></span>
+                    <span id="userRole" class="role-badge"></span>
+                    <button class="btn btn-login" id="logoutBtn">Logout</button>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Page -->
+        <div id="main-page" class="page active-page">
+            <div class="hero">
+                <h2>Welcome to Dragon City Enjoyer</h2>
+                <p>Your ultimate destination for all things Dragon City! Connect with fellow dragon trainers,   discover new strategies,   and enhance your gameplay experience.</p>
+                <button class="btn btn-signup" id="heroSignupBtn">Join Our Community</button>
+            </div>
+
+            <div class="features">
+                <div class="feature-card">
+                    <div class="item-image">
+                        <img src="https://i.imgur.com/5X4X5X5.png" alt="Dragon Breeding">
+                    </div>
+                    <h3>Dragon Breeding</h3>
+                    <p>Learn the secrets of breeding rare and powerful dragons. Our expert guides will help you create the ultimate dragon collection.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="item-image">
+                        <img src="https://i.imgur.com/6Y6Y6Y6.png" alt="Arena Battles">
+                    </div>
+                    <h3>Arena Battles</h3>
+                    <p>Master combat strategies and dominate the arena. Discover the best dragon combinations for victory.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="item-image">
+                        <img src="https://i.imgur.com/7Z7Z7Z7.png" alt="Resource Management">
+                    </div>
+                    <h3>Resource Management</h3>
+                    <p>Optimize your resource production and maximize your island's potential with our proven strategies.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Login Page -->
+        <div id="login-page" class="page">
+            <div class="login-container">
+                <h2>Dragon City Login</h2>
+                <form id="loginForm">
+                    <div class="form-group">
+                        <label for="loginEmail">Email</label>
+                        <input type="email" id="loginEmail" placeholder="Enter your email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="loginPassword">Password</label>
+                        <input type="password" id="loginPassword" placeholder="Enter your password" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="loginKey">Key/Password</label>
+                        <input type="password" id="loginKey" placeholder="Enter your key" required>
+                    </div>
+                    <div class="remember-forgot">
+                        <div class="remember">
+                            <input type="checkbox" id="remember">
+                            <label for="remember">Remember me</label>
+                        </div>
+                        <a href="#" class="forgot-password">Forgot Password?</a>
+                    </div>
+                    <button type="submit" class="login-btn">Login to Your Account</button>
+                </form>
+                <div class="signup-link">
+                    <p>Don't have an account? <a href="#" id="showSignup">Sign Up</a></p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Signup Page -->
+        <div id="signup-page" class="page">
+            <div class="login-container">
+                <h2>Create Account</h2>
+                <form id="signupForm">
+                    <div class="form-group">
+                        <label for="signupUsername">Username</label>
+                        <input type="text" id="signupUsername" placeholder="Choose a username" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="signupEmail">Email</label>
+                        <input type="email" id="signupEmail" placeholder="Enter your email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="signupPassword">Password</label>
+                        <input type="password" id="signupPassword" placeholder="Create a password" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="signupKey">Key/Password</label>
+                        <input type="password" id="signupKey" placeholder="Create a key" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="confirmPassword">Confirm Password</label>
+                        <input type="password" id="confirmPassword" placeholder="Confirm your password" required>
+                    </div>
+                    <button type="submit" class="login-btn">Create Account</button>
+                </form>
+                <div class="signup-link">
+                    <p>Already have an account? <a href="#" id="showLogin">Login</a></p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Shop Page -->
+        <div id="shop-page" class="page">
+            <div class="shop-container">
+                <div class="balance-section">
+                    <h2>Your Balance</h2>
+                    <div class="balance" id="userBalance">$0.00 <i class="fas fa-dollar-sign"></i></div>
+                </div>
+                
+                <div class="ebucks-section">
+                    <h2>Your EBucks</h2>
+                    <div class="ebucks" id="userEBucks">0 <i class="fas fa-medal"></i></div>
+                </div>
+                
+                <div class="category-filter" id="categoryFilter">
+                    <button class="category-btn active" data-category="all">All Items</button>
+                    <button class="category-btn" data-category="dragon">Dragons</button>
+                    <button class="category-btn" data-category="food">Food</button>
+                    <button class="category-btn" data-category="habitat">Habitats</button>
+                    <button class="category-btn" data-category="decor">Decorations</button>
+                </div>
+                
+                <div class="shop-items" id="shopItemsContainer">
+                    <!-- Shop items will be loaded here -->
+                </div>
+            </div>
+        </div>
+
+        <!-- Orders Page -->
+        <div id="orders-page" class="page">
+            <div class="shop-container">
+                <h2>Your Orders</h2>
+                <div class="orders-container" id="userOrdersContainer">
+                    <!-- User orders will be loaded here -->
+                </div>
+            </div>
+        </div>
+
+        <!-- Admin Page -->
+        <div id="admin-page" class="page">
+            <div class="shop-container">
+                <h2>Admin Panel</h2>
+                
+                <!-- Page Selector Grouping Container -->
+                <div class="page-selector-group">
+                    <h3>Page Management</h3>
+                    <button class="admin-btn" id="addItemPageBtn">Add Item</button>
+                    <button class="admin-btn" id="updateItemPageBtn">Update Item</button>
+                    <button class="admin-btn" id="deleteItemPageBtn">Delete Item</button>
+                    <button class="admin-btn" id="manageCategoriesBtn">Manage Categories</button>
+                </div>
+                
+                <!-- Role Management Section -->
+                <div class="admin-panel role-management">
+                    <h2>Role Management</h2>
+                    <div class="role-form">
+                        <h3>Change User Role</h3>
+                        <div class="form-group">
+                            <select id="userSelect" class="role-select">
+                                <option value="">Select User</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <select id="roleSelect" class="role-select">
+                                <option value="">Select Role</option>
+                                <option value="Owner">Owner</option>
+                                <option value="Admin">Admin</option>
+                                <option value="Moderator">Moderator</option>
+                                <option value="Staff">Staff</option>
+                                <option value="Elite">Elite</option>
+                                <option value="Premium">Premium</option>
+                                <option value="Member">Member</option>
+                            </select>
+                        </div>
+                        <button class="admin-btn" id="changeRoleBtn">Change Role</button>
+                    </div>
+                </div>
+                
+                <div class="admin-panel">
+                    <h2>Manage Shop Items</h2>
+                    
+                    <div class="admin-controls">
+                        <div class="admin-card" id="addItemCard">
+                            <h3>Add New Item</h3>
+                            <div class="form-group">
+                                <input type="text" id="itemName" placeholder="Item Name">
+                            </div>
+                            <div class="form-group">
+                                <input type="number" id="itemPrice" placeholder="Price" step="0.01">
+                            </div>
+                            <div class="form-group">
+                                <select id="itemCategory" class="role-select">
+                                    <option value="">Select Category</option>
+                                    <option value="dragon">Dragons</option>
+                                    <option value="food">Food</option>
+                                    <option value="habitat">Habitats</option>
+                                    <option value="decor">Decorations</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <input type="text" id="itemImage" placeholder="Image URL (optional)">
+                            </div>
+                            <button class="admin-btn" id="addItemBtn">Add Item</button>
+                        </div>
+                        
+                        <div class="admin-card" id="updateItemCard" style="display:   none;">
+                            <h3>Update Item</h3>
+                            <div class="form-group">
+                                <select id="updateItemId">
+                                    <option value="">Select Item</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <input type="text" id="updateItemName" placeholder="New Name">
+                            </div>
+                            <div class="form-group">
+                                <input type="number" id="updateItemPrice" placeholder="New Price" step="0.01">
+                            </div>
+                            <div class="form-group">
+                                <select id="updateItemCategory" class="role-select">
+                                    <option value="">Select Category</option>
+                                    <option value="dragon">Dragons</option>
+                                    <option value="food">Food</option>
+                                    <option value="habitat">Habitats</option>
+                                    <option value="decor">Decorations</option>
+                                </select>
+                            </div>
+                            <button class="admin-btn" id="updateItemBtn">Update Item</button>
+                        </div>
+                        
+                        <div class="admin-card" id="deleteItemCard" style="display:   none;">
+                            <h3>Delete Item</h3>
+                            <div class="form-group">
+                                <select id="deleteItemId">
+                                    <option value="">Select Item</option>
+                                </select>
+                            </div>
+                            <button class="admin-btn" id="deleteItemBtn">Delete Item</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Category Management Section -->
+                <div class="admin-panel category-management" id="categoryManagementCard" style="display:   none;">
+                    <h2>Manage Categories</h2>
+                    <div class="category-form">
+                        <h3>Edit Categories</h3>
+                        <div id="categoriesContainer">
+                            <!-- Categories will be loaded here -->
+                        </div>
+                        <button class="admin-btn" id="addCategoryBtn">Add New Category</button>
+                    </div>
+                </div>
+                
+                <div class="admin-panel">
+                    <h2>Manage Orders</h2>
+                    <div class="orders-container" id="adminOrdersContainer">
+                        <!-- Orders table will be loaded here -->
+                    </div>
+                </div>
+                
+                <div class="admin-panel user-management">
+                    <h2>User Management</h2>
+                    <div class="user-list" id="userList">
+                        <!-- User list will be loaded here -->
+                    </div>
+                </div>
+                
+                <div class="admin-panel admin-management">
+                    <h2>Admin Management</h2>
+                    <div class="add-admin-form">
+                        <h3>Add New Admin</h3>
+                        <div class="form-group">
+                            <input type="email" id="newAdminEmail" placeholder="Admin Email">
+                        </div>
+                        <button class="admin-btn" id="addAdminBtn">Add Admin</button>
+                    </div>
+                    
+                    <div class="admin-list" id="adminList">
+                        <!-- Admin list will be loaded here -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="notification" id="notification">
+        <i class="fas fa-info-circle"></i>
+        <span>Notification</span>
+    </div>
+
+    <footer>
+        <div class="container">
+            <p>© 2023 Dragon City Enjoyer. All rights reserved. This site is not affiliated with Social Point or any of its partners.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Initialize Firebase
+        const firebaseConfig = {
+            apiKey:   "AIzaSyC8VsAM7drgTfqHohgKFK-asuSMhAU0fS0",     
+            authDomain:   "dragon-city-enjoyer.firebaseapp.com",     
+            databaseURL:   "https://dragon-city-enjoyer-default-rtdb.firebaseio.com/",     
+            projectId:   "dragon-city-enjoyer",     
+            storageBucket:   "dragon-city-enjoyer.firebasestorage.app",     
+            messagingSenderId:   "146535472297",     
+            appId:   "1:  146535472297:  web:  961d91a902f03b6d93ddb8",     
+            measurementId:   "G-RDJ43CLWZ5"
+        };
+
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+        const db = firebase.firestore();
+        const rtdb = firebase.database();
+        const auth = firebase.auth();
+
+        // DOM Elements
+        const pages = document.querySelectorAll('.page');
+        const navLinks = document.querySelectorAll('.nav-link');
+        const loginBtn = document.getElementById('loginBtn');
+        const signupBtn = document.getElementById('signupBtn');
+        const logoutBtn = document.getElementById('logoutBtn');
+        const showSignup = document.getElementById('showSignup');
+        const showLogin = document.getElementById('showLogin');
+        const userInfo = document.getElementById('userInfo');
+        const userEmail = document.getElementById('userEmail');
+        const userRole = document.getElementById('userRole');
+        const shopLink = document.getElementById('shopLink');
+        const ordersLink = document.getElementById('ordersLink');
+        const adminLink = document.getElementById('adminLink');
+        const loginLink = document.getElementById('loginLink');
+        const notification = document.getElementById('notification');
+        const loadingSpinner = document.getElementById('loadingSpinner');
+
+        // Main page buttons
+        const heroSignupBtn = document.getElementById('heroSignupBtn');
+
+        // Form Elements
+        const loginForm = document.getElementById('loginForm');
+        const signupForm = document.getElementById('signupForm');
+        const shopItemsContainer = document.getElementById('shopItemsContainer');
+        const userOrdersContainer = document.getElementById('userOrdersContainer');
+        const adminOrdersContainer = document.getElementById('adminOrdersContainer');
+        const userList = document.getElementById('userList');
+
+        // Admin Elements
+        const addItemBtn = document.getElementById('addItemBtn');
+        const updateItemBtn = document.getElementById('updateItemBtn');
+        const deleteItemBtn = document.getElementById('deleteItemBtn');
+        const updateItemId = document.getElementById('updateItemId');
+        const deleteItemId = document.getElementById('deleteItemId');
+        
+        // Admin Management Elements
+        const addAdminBtn = document.getElementById('addAdminBtn');
+        const newAdminEmail = document.getElementById('newAdminEmail');
+        const adminList = document.getElementById('adminList');
+        
+        // Role Management Elements
+        const userSelect = document.getElementById('userSelect');
+        const roleSelect = document.getElementById('roleSelect');
+        const changeRoleBtn = document.getElementById('changeRoleBtn');
+        
+        // Page Selector Elements
+        const addItemPageBtn = document.getElementById('addItemPageBtn');
+        const updateItemPageBtn = document.getElementById('updateItemPageBtn');
+        const deleteItemPageBtn = document.getElementById('deleteItemPageBtn');
+        const manageCategoriesBtn = document.getElementById('manageCategoriesBtn');
+        const addItemCard = document.getElementById('addItemCard');
+        const updateItemCard = document.getElementById('updateItemCard');
+        const deleteItemCard = document.getElementById('deleteItemCard');
+        const categoryManagementCard = document.getElementById('categoryManagementCard');
+        
+        // Category Filter Elements
+        const categoryFilter = document.getElementById('categoryFilter');
+        const categoryBtns = document.querySelectorAll('.category-btn');
+        const categoriesContainer = document.getElementById('categoriesContainer');
+        const addCategoryBtn = document.getElementById('addCategoryBtn');
+
+        // Current user
+        let currentUser = null;
+        let userRoleData = null;
+        let activeCategory = 'all';
+        
+        // Default owner email
+        const OWNER_EMAIL = "chonhouliu@gmail.com";
+
+        // Show notification
+        function showNotification(message,   isError = false) {
+            const icon = notification.querySelector('i');
+            const text = notification.querySelector('span');
+            
+            text.textContent = message;
+            notification.style.background = isError ? '#ff3b30' :   'var(--primary)';
+            icon.className = isError ? 'fas fa-exclamation-circle' :   'fas fa-check-circle';
+            
+            notification.classList.add('show');
+            
+            setTimeout(() => {
+                notification.classList.remove('show');
+            },   3000);
+        }
+
+        // Show loading spinner
+        function showLoading() {
+            loadingSpinner.style.display = 'block';
+        }
+
+        // Hide loading spinner
+        function hideLoading() {
+            loadingSpinner.style.display = 'none';
+        }
+
+        // Show page
+        function showPage(pageId) {
+            pages.forEach(page => page.classList.remove('active-page'));
+            document.getElementById(`${pageId}-page`).classList.add('active-page');
+            
+            // Update active nav link
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('data-page') === pageId) {
+                    link.classList.add('active');
+                }
+            });
+        }
+
+        // Generate unique 17-digit user ID
+        function generateUserId() {
+            let userId = '';
+            for (let i = 0; i < 17; i++) {
+                userId += Math.floor(Math.random() * 10);
+            }
+            return userId;
+        }
+
+        // Firebase Authentication Functions
+        function login(email,   password,   key) {
+            showLoading();
+            return auth.signInWithEmailAndPassword(email,   password)
+                .then((userCredential) => {
+                    // Check key/password in RTDB
+                    return rtdb.ref('users/' + userCredential.user.uid).once('value')
+                        .then((snapshot) => {
+                            const userData = snapshot.val();
+                            if (userData && userData.key === key) {
+                                // Update last login time
+                                return rtdb.ref('users/' + userCredential.user.uid).update({
+                                    lastLogin:   firebase.database.ServerValue.TIMESTAMP
+                                }).then(() => {
+                                    hideLoading();
+                                    showNotification('Login successful!');
+                                    return userCredential.user;
+                                });
+                            } else {
+                                hideLoading();
+                                showNotification('Invalid key/password!',   true);
+                                throw new Error('Invalid key');
+                            }
+                        });
+                })
+                .catch((error) => {
+                    hideLoading();
+                    showNotification('Login failed:   ' + error.message,   true);
+                    throw error;
+                });
+        }
+
+        function signup(username,   email,   password,   key) {
+            showLoading();
+            return auth.createUserWithEmailAndPassword(email,   password)
+                .then((userCredential) => {
+                    const userId = generateUserId();
+                    const userRef = rtdb.ref('users/' + userCredential.user.uid);
+                    
+                    // Save user data to RTDB
+                    return userRef.set({
+                        userId:   userId,  
+                        username:   username,  
+                        email:   email,  
+                        key:   key,  
+                        role:   'Member',  
+                        balance:   1000,   // Default balance in cents ($10.00)
+                        ebucks:   0,  
+                        banned:   false, 
+                        createdAt:   firebase.database.ServerValue.TIMESTAMP, 
+                        lastLogin:   firebase.database.ServerValue.TIMESTAMP
+                    });
+                })
+                .then(() => {
+                    hideLoading();
+                    showNotification('Account created successfully!');
+                    return true;
+                })
+                .catch((error) => {
+                    hideLoading();
+                    showNotification('Signup failed:   ' + error.message,   true);
+                    throw error;
+                });
+        }
+
+        function logout() {
+            showLoading();
+            return auth.signOut()
+                .then(() => {
+                    hideLoading();
+                    showNotification('You have been logged out');
+                })
+                .catch((error) => {
+                    hideLoading();
+                    showNotification('Logout failed:   ' + error.message,   true);
+                    throw error;
+                });
+        }
+
+        // Firestore Functions
+        function loadUserBalance(userId) {
+            showLoading();
+            const userRef = db.collection('users').doc(userId);
+            return userRef.get()
+                .then((doc) => {
+                    hideLoading();
+                    if (doc.exists) {
+                        const userData = doc.data();
+                        document.getElementById('userBalance').innerHTML = `${(userData.balance / 100).toFixed(2)} <i class="fas fa-dollar-sign"></i>`;
+                        return userData.balance;
+                    } else {
+                        console.log("No such document!");
+                        return 0;
+                    }
+                })
+                .catch((error) => {
+                    hideLoading();
+                    console.log("Error getting document:   ",   error);
+                    return 0;
+                });
+        }
+
+        function loadUserEBucks(userId) {
+            showLoading();
+            const userRef = db.collection('users').doc(userId);
+            return userRef.get()
+                .then((doc) => {
+                    hideLoading();
+                    if (doc.exists) {
+                        const userData = doc.data();
+                        document.getElementById('userEBucks').innerHTML = `${userData.ebucks} <i class="fas fa-medal"></i>`;
+                        return userData.ebucks;
+                    } else {
+                        console.log("No such document!");
+                        return 0;
+                    }
+                })
+                .catch((error) => {
+                    hideLoading();
+                    console.log("Error getting document:   ",   error);
+                    return 0;
+                });
+        }
+
+        function loadUserOrders(userId) {
+            showLoading();
+            const ordersQuery = db.collection('orders')
+                .where('userId',   '==',   userId)
+                .orderBy('timestamp',   'desc');
+            
+            return ordersQuery.get()
+                .then((querySnapshot) => {
+                    hideLoading();
+                    userOrdersContainer.innerHTML = '';
+                    
+                    if (querySnapshot.empty) {
+                        userOrdersContainer.innerHTML = '<p>No orders found.</p>';
+                        return;
+                    }
+                    
+                    querySnapshot.forEach((doc) => {
+                        const order = doc.data();
+                        const orderElement = document.createElement('div');
+                        orderElement.className = 'order-card';
+                        orderElement.innerHTML = `
+                            <div class="order-header">
+                                <div class="order-id">Order ID:   ${order.id}</div>
+                                <div class="order-date">${new Date(order.timestamp.toDate()).toLocaleString()}</div>
+                            </div>
+                            <div class="order-item">
+                                <span>${order.itemName}</span>
+                                <span>${order.itemPrice.toFixed(2)}</span>
+                            </div>
+                            <div class="order-total">Total:   ${order.itemPrice.toFixed(2)}</div>
+                            <div class="order-status status-${order.status.toLowerCase().replace(' ',   '-')}">${order.status}</div>
+                        `;
+                        userOrdersContainer.appendChild(orderElement);
+                    });
+                })
+                .catch((error) => {
+                    hideLoading();
+                    console.log("Error getting orders:   ",   error);
+                    showNotification('Error loading orders',   true);
+                });
+        }
+
+        function loadShopItemsWithCategories() {
+            showLoading();
+            return db.collection('shopItems').get()
+                .then((querySnapshot) => {
+                    hideLoading();
+                    shopItemsContainer.innerHTML = '';
+                    
+                    // Update admin dropdowns
+                    updateItemId.innerHTML = '<option value="">Select Item</option>';
+                    deleteItemId.innerHTML = '<option value="">Select Item</option>';
+                    
+                    querySnapshot.forEach((doc) => {
+                        const item = doc.data();
+                        const itemElement = document.createElement('div');
+                        itemElement.className = 'shop-item';
+                        itemElement.setAttribute('data-category',   item.category || 'other');
+                        
+                        const imageHtml = item.image 
+                            ? `<img src="${item.image}" alt="${item.name}">` 
+                            :   `<div class="default-item-image"><i class="fas fa-dragon"></i></div>`;
+                        
+                        itemElement.innerHTML = `
+                            <div class="item-image">
+                                ${imageHtml}
+                            </div>
+                            <h3 class="item-name">${item.name}</h3>
+                            <div class="item-price">${item.price.toFixed(2)} <i class="fas fa-dollar-sign"></i></div>
+                            <div class="item-category">${item.category || 'Other'}</div>
+                            <button class="buy-btn" data-id="${doc.id}">Buy Now</button>
+                        `;
+                        shopItemsContainer.appendChild(itemElement);
+                        
+                        // Add to admin dropdowns
+                        const option = document.createElement('option');
+                        option.value = doc.id;
+                        option.textContent = `${item.name} (${item.category || 'Other'})`;
+                        updateItemId.appendChild(option.cloneNode(true));
+                        deleteItemId.appendChild(option.cloneNode(true));
+                    });
+                    
+                    // Add event listeners to buy buttons
+                    document.querySelectorAll('.buy-btn').forEach(button => {
+                        button.addEventListener('click',   (e) => {
+                            buyItem(e.target.getAttribute('data-id'));
+                        });
+                    });
+                    
+                    // Apply current category filter
+                    filterItemsByCategory(activeCategory);
+                })
+                .catch((error) => {
+                    hideLoading();
+                    console.log("Error getting shop items:   ",   error);
+                    showNotification('Error loading shop items',   true);
+                });
+        }
+
+        function filterItemsByCategory(category) {
+            const items = document.querySelectorAll('.shop-item');
+            items.forEach(item => {
+                if (category === 'all') {
+                    item.style.display = 'block';
+                } else {
+                    const itemCategory = item.getAttribute('data-category');
+                    item.style.display = itemCategory === category ? 'block' :   'none';
+                }
+            });
+        }
+
+        function buyItem(itemId) {
+            if (!currentUser) {
+                showNotification('Please log in to purchase items',   true);
+                return;
+            }
+            
+            showLoading();
+            const itemRef = db.collection('shopItems').doc(itemId);
+            itemRef.get()
+                .then((docSnap) => {
+                    if (!docSnap.exists) {
+                        hideLoading();
+                        showNotification('Item not found',   true);
+                        return;
+                    }
+                    
+                    const item = docSnap.data();
+                    const itemPriceInCents = item.price * 100;
+                    
+                    return db.runTransaction((transaction) => {
+                        const userRef = db.collection('users').doc(currentUser.uid);
+                        
+                        return transaction.get(userRef).then((userDoc) => {
+                            if (!userDoc.exists) {
+                                throw "User document does not exist!";
+                            }
+                            
+                            const userData = userDoc.data();
+                            if (userData.balance < itemPriceInCents) {
+                                throw "Not enough balance!";
+                            }
+                            
+                            // Deduct price from balance and award EBucks
+                            const ebucksAward = Math.floor(item.price);
+                            transaction.update(userRef,   {
+                                balance:   userData.balance - itemPriceInCents,      
+                                ebucks:   userData.ebucks + ebucksAward
+                            });
+                            
+                            // Create order
+                            const newOrderRef = db.collection('orders').doc();
+                            const newOrder = {
+                                id:   newOrderRef.id,      
+                                userId:   currentUser.uid,      
+                                userEmail:   currentUser.email,      
+                                itemId:   itemId,      
+                                itemName:   item.name,      
+                                itemPrice:   item.price,      
+                                status:   'Submitted',      
+                                timestamp:   firebase.firestore.FieldValue.serverTimestamp()
+                            };
+                            
+                            transaction.set(newOrderRef,   newOrder);
+                            return ebucksAward;
+                        });
+                    });
+                })
+                .then((ebucksAward) => {
+                    hideLoading();
+                    showNotification(`You bought ${item.name} for ${item.price.toFixed(2)}! Order placed.`);
+                    loadUserBalance(currentUser.uid);
+                    loadUserEBucks(currentUser.uid);
+                    loadUserOrders(currentUser.uid);
+                })
+                .catch((error) => {
+                    hideLoading();
+                    if (error === "Not enough balance!") {
+                        showNotification('Not enough balance!',   true);
+                    } else {
+                        console.log("Error buying item:   ",   error);
+                        showNotification('Error processing purchase',   true);
+                    }
+                });
+        }
+
+        // Admin Functions
+        function addItemWithCategory() {
+            const name = document.getElementById('itemName').value;
+            const price = parseFloat(document.getElementById('itemPrice').value);
+            const image = document.getElementById('itemImage').value;
+            const category = document.getElementById('itemCategory').value;
+            
+            if (!name || isNaN(price) || !category) {
+                showNotification('Please fill in all required fields',   true);
+                return;
+            }
+            
+            showLoading();
+            const newItemRef = db.collection('shopItems').doc();
+            const newItem = {
+                name:   name,      
+                price:   price,      
+                image:   image || null,   
+                category:   category
+            };
+            
+            newItemRef.set(newItem)
+                .then(() => {
+                    hideLoading();
+                    showNotification('Item added successfully!');
+                    document.getElementById('itemName').value = '';
+                    document.getElementById('itemPrice').value = '';
+                    document.getElementById('itemImage').value = '';
+                    document.getElementById('itemCategory').value = '';
+                    loadShopItemsWithCategories();
+                })
+                .catch((error) => {
+                    hideLoading();
+                    showNotification('Error adding item:   ' + error.message,   true);
+                });
+        }
+
+        function updateItemWithCategory() {
+            const itemId = updateItemId.value;
+            const name = document.getElementById('updateItemName').value;
+            const price = parseFloat(document.getElementById('updateItemPrice').value);
+            const category = document.getElementById('updateItemCategory').value;
+            
+            if (!itemId) {
+                showNotification('Please select an item to update',   true);
+                return;
+            }
+            
+            if (!name && isNaN(price) && !category) {
+                showNotification('Please provide at least one field to update',   true);
+                return;
+            }
+            
+            showLoading();
+            const itemRef = db.collection('shopItems').doc(itemId);
+            const updateData = {};
+            
+            if (name) updateData.name = name;
+            if (!isNaN(price)) updateData.price = price;
+            if (category) updateData.category = category;
+            
+            itemRef.update(updateData)
+                .then(() => {
+                    hideLoading();
+                    showNotification('Item updated successfully!');
+                    document.getElementById('updateItemName').value = '';
+                    document.getElementById('updateItemPrice').value = '';
+                    document.getElementById('updateItemCategory').value = '';
+                    loadShopItemsWithCategories();
+                })
+                .catch((error) => {
+                    hideLoading();
+                    showNotification('Error updating item:   ' + error.message,   true);
+                });
+        }
+
+        function deleteItem() {
+            const itemId = deleteItemId.value;
+            
+            if (!itemId) {
+                showNotification('Please select an item to delete',   true);
+                return;
+            }
+            
+            showLoading();
+            const itemRef = db.collection('shopItems').doc(itemId);
+            
+            itemRef.delete()
+                .then(() => {
+                    hideLoading();
+                    showNotification('Item deleted successfully!');
+                    loadShopItemsWithCategories();
+                })
+                .catch((error) => {
+                    hideLoading();
+                    showNotification('Error deleting item:   ' + error.message,   true);
+                });
+        }
+
+        function loadAdminOrders() {
+            if (currentUser.email !== OWNER_EMAIL) {
+                showNotification('Access denied',   true);
+                return;
+            }
+            
+            showLoading();
+            const ordersQuery = db.collection('orders')
+                .orderBy('timestamp',   'desc');
+            
+            return ordersQuery.get()
+                .then((querySnapshot) => {
+                    hideLoading();
+                    adminOrdersContainer.innerHTML = '';
+                    
+                    if (querySnapshot.empty) {
+                        adminOrdersContainer.innerHTML = '<p>No orders found.</p>';
+                        return;
+                    }
+                    
+                    let tableHtml = `
+                        <table class="orders-table">
+                            <thead>
+                                <tr>
+                                    <th>Order ID</th>
+                                    <th>User</th>
+                                    <th>Item</th>
+                                    <th>Price</th>
+                                    <th>Date</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                    `;
+                    
+                    querySnapshot.forEach((doc) => {
+                        const order = doc.data();
+                        tableHtml += `
+                            <tr>
+                                <td>${order.id}</td>
+                                <td>${order.userEmail}</td>
+                                <td>${order.itemName}</td>
+                                <td>${order.itemPrice.toFixed(2)}</td>
+                                <td>${new Date(order.timestamp.toDate()).toLocaleString()}</td>
+                                <td>
+                                    <select class="status-select" data-id="${doc.id}">
+                                        <option value="Submitted" ${order.status === 'Submitted' ? 'selected' :   ''}>Submitted</option>
+                                        <option value="In Progress" ${order.status === 'In Progress' ? 'selected' :   ''}>In Progress</option>
+                                        <option value="Completed" ${order.status === 'Completed' ? 'selected' :   ''}>Completed</option>
+                                        <option value="Refunded" ${order.status === 'Refunded' ? 'selected' :   ''}>Refunded</option>
+                                    </select>
+                                </td>
+                            </tr>
+                        `;
+                    });
+                    
+                    tableHtml += `
+                            </tbody>
+                        </table>
+                    `;
+                    
+                    adminOrdersContainer.innerHTML = tableHtml;
+                    
+                    // Add event listeners to status selects
+                    document.querySelectorAll('.status-select').forEach(select => {
+                        select.addEventListener('change',   (e) => {
+                            updateOrderStatus(e.target.getAttribute('data-id'),   e.target.value);
+                        });
+                    });
+                })
+                .catch((error) => {
+                    hideLoading();
+                    console.log("Error getting orders:   ",   error);
+                    showNotification('Error loading orders',   true);
+                });
+        }
+
+        function updateOrderStatus(orderId,   status) {
+            showLoading();
+            const orderRef = db.collection('orders').doc(orderId);
+            
+            orderRef.update({ status:   status })
+                .then(() => {
+                    hideLoading();
+                    showNotification('Order status updated!');
+                })
+                .catch((error) => {
+                    hideLoading();
+                    showNotification('Error updating order status:   ' + error.message,   true);
+                });
+        }
+
+        // User Management Functions
+        function loadUsers() {
+            if (currentUser.email !== OWNER_EMAIL) {
+                showNotification('Access denied',   true);
+                return;
+            }
+            
+            showLoading();
+            return rtdb.ref('users').once('value')
+                .then((snapshot) => {
+                    hideLoading();
+                    userList.innerHTML = '';
+                    
+                    if (!snapshot.exists()) {
+                        userList.innerHTML = '<p>No users found.</p>';
+                        return;
+                    }
+                    
+                    snapshot.forEach((childSnapshot) => {
+                        const userId = childSnapshot.key;
+                        const user = childSnapshot.val();
+                        const createdAt = user.createdAt ? new Date(user.createdAt).toLocaleString() :  'N/A';
+                        const lastLogin = user.lastLogin ? new Date(user.lastLogin).toLocaleString() :  'N/A';
+                        
+                        const userElement = document.createElement('div');
+                        userElement.className = 'user-item';
+                        userElement.innerHTML = `
+                            <div class="user-info">
+                                <div><strong>Username:   </strong> ${user.username}</div>
+                                <div><strong>Email:   </strong> ${user.email}</div>
+                                <div><strong>User ID:   </strong> ${user.userId}</div>
+                                <div><strong>Balance:   </strong> ${(user.balance / 100).toFixed(2)}</div>
+                                <div><strong>EBucks:   </strong> ${user.ebucks}</div>
+                                <div><strong>Role:   </strong> 
+                                    <span class="role-badge role-${user.role.toLowerCase()}">${user.role}</span>
+                                </div>
+                                <div><strong>Created:   </strong> <span class="login-info">${createdAt}</span></div>
+                                <div><strong>Last Login:   </strong> <span class="login-info">${lastLogin}</span></div>
+                                <div><strong>Banned:   </strong> ${user.banned ? 'Yes' :   'No'}</div>
+                            </div>
+                            <div class="user-actions">
+                                ${user.banned ? 
+                                    `<button class="unban-btn" data-id="${userId}">Unban</button>` :      
+                                    `<button class="ban-btn" data-id="${userId}">Ban</button>`}
+                            </div>
+                        `;
+                        userList.appendChild(userElement);
+                    });
+                    
+                    // Add event listeners to ban/unban buttons
+                    document.querySelectorAll('.ban-btn').forEach(button => {
+                        button.addEventListener('click',   (e) => {
+                            banUser(e.target.getAttribute('data-id'));
+                        });
+                    });
+                    
+                    document.querySelectorAll('.unban-btn').forEach(button => {
+                        button.addEventListener('click',   (e) => {
+                            unbanUser(e.target.getAttribute('data-id'));
+                        });
+                    });
+                })
+                .catch((error) => {
+                    hideLoading();
+                    console.log("Error getting users:   ",   error);
+                    showNotification('Error loading users',   true);
+                });
+        }
+
+        function banUser(userId) {
+            showLoading();
+            const userRef = rtdb.ref('users/' + userId);
+            
+            userRef.update({ banned:   true })
+                .then(() => {
+                    hideLoading();
+                    showNotification('User banned successfully!');
+                    loadUsers();
+                })
+                .catch((error) => {
+                    hideLoading();
+                    showNotification('Error banning user:   ' + error.message,   true);
+                });
+        }
+
+        function unbanUser(userId) {
+            showLoading();
+            const userRef = rtdb.ref('users/' + userId);
+            
+            userRef.update({ banned:   false })
+                .then(() => {
+                    hideLoading();
+                    showNotification('User unbanned successfully!');
+                    loadUsers();
+                })
+                .catch((error) => {
+                    hideLoading();
+                    showNotification('Error unbanning user:   ' + error.message,   true);
+                });
+        }
+
+        // Admin Management Functions
+        function loadAdmins() {
+            if (currentUser.email !== OWNER_EMAIL) {
+                showNotification('Access denied',   true);
+                return;
+            }
+            
+            showLoading();
+            return db.collection('admins').get()
+                .then((querySnapshot) => {
+                    hideLoading();
+                    adminList.innerHTML = '';
+                    
+                    if (querySnapshot.empty) {
+                        adminList.innerHTML = '<p>No admins found.</p>';
+                        return;
+                    }
+                    
+                    querySnapshot.forEach((doc) => {
+                        const admin = doc.data();
+                        const adminElement = document.createElement('div');
+                        adminElement.className = 'admin-item';
+                        adminElement.innerHTML = `
+                            <div class="admin-info">
+                                <div><strong>Email:   </strong> ${admin.email}</div>
+                                <div><strong>Role:   </strong> 
+                                    <span class="role-badge role-${admin.role.toLowerCase()}">${admin.role}</span>
+                                </div>
+                            </div>
+                            <div class="admin-actions">
+                                ${admin.email !== OWNER_EMAIL ? 
+                                    `<button class="remove-admin-btn" data-id="${doc.id}">Remove</button>` :      
+                                    `<span class="role-badge role-owner">Owner</span>`}
+                            </div>
+                        `;
+                        adminList.appendChild(adminElement);
+                    });
+                    
+                    // Add event listeners to remove buttons
+                    document.querySelectorAll('.remove-admin-btn').forEach(button => {
+                        button.addEventListener('click',   (e) => {
+                            removeAdmin(e.target.getAttribute('data-id'));
+                        });
+                    });
+                })
+                .catch((error) => {
+                    hideLoading();
+                    console.log("Error getting admins:   ",   error);
+                    showNotification('Error loading admins',   true);
+                });
+        }
+        
+        function addAdmin() {
+            const email = newAdminEmail.value.trim();
+            
+            if (!email) {
+                showNotification('Please enter an email',   true);
+                return;
+            }
+            
+            // Check if user exists in users collection
+            db.collection('users').where('email',   '==',   email).get()
+                .then((querySnapshot) => {
+                    if (querySnapshot.empty) {
+                        showNotification('User not found. Please ask them to sign up first.',   true);
+                        return;
+                    }
+                    
+                    // Check if already admin
+                    return db.collection('admins').where('email',   '==',   email).get()
+                        .then((adminSnapshot) => {
+                            if (!adminSnapshot.empty) {
+                                showNotification('User is already an admin',   true);
+                                return;
+                            }
+                            
+                            // Add as admin
+                            return db.collection('admins').add({
+                                email:   email,     
+                                role:   'Admin',     
+                                addedBy:   currentUser.email,     
+                                timestamp:   firebase.firestore.FieldValue.serverTimestamp()
+                            });
+                        });
+                })
+                .then(() => {
+                    showNotification('Admin added successfully!');
+                    newAdminEmail.value = '';
+                    loadAdmins();
+                })
+                .catch((error) => {
+                    console.log("Error adding admin:   ",   error);
+                    showNotification('Error adding admin:   ' + error.message,   true);
+                });
+        }
+        
+        function removeAdmin(adminId) {
+            showLoading();
+            db.collection('admins').doc(adminId).delete()
+                .then(() => {
+                    hideLoading();
+                    showNotification('Admin removed successfully!');
+                    loadAdmins();
+                })
+                .catch((error) => {
+                    hideLoading();
+                    console.log("Error removing admin:   ",   error);
+                    showNotification('Error removing admin:   ' + error.message,   true);
+                });
+        }
+        
+        // Role Management Functions
+        function loadUsersForRoleManagement() {
+            if (currentUser.email !== OWNER_EMAIL) {
+                showNotification('Access denied',   true);
+                return;
+            }
+            
+            showLoading();
+            return rtdb.ref('users').once('value')
+                .then((snapshot) => {
+                    hideLoading();
+                    userSelect.innerHTML = '<option value="">Select User</option>';
+                    
+                    if (!snapshot.exists()) {
+                        return;
+                    }
+                    
+                    snapshot.forEach((childSnapshot) => {
+                        const userId = childSnapshot.key;
+                        const user = childSnapshot.val();
+                        const option = document.createElement('option');
+                        option.value = userId;
+                        option.textContent = `${user.username} (${user.email}) - ${user.role}`;
+                        userSelect.appendChild(option);
+                    });
+                })
+                .catch((error) => {
+                    hideLoading();
+                    console.log("Error getting users:   ",   error);
+                    showNotification('Error loading users',   true);
+                });
+        }
+        
+        function changeUserRole() {
+            const userId = userSelect.value;
+            const newRole = roleSelect.value;
+            
+            if (!userId || !newRole) {
+                showNotification('Please select both user and role',   true);
+                return;
+            }
+            
+            showLoading();
+            const userRef = rtdb.ref('users/' + userId);
+            
+            userRef.update({ role:   newRole })
+                .then(() => {
+                    hideLoading();
+                    showNotification('User role updated successfully!');
+                    loadUsersForRoleManagement();
+                    loadUsers(); // Refresh user list in user management
+                })
+                .catch((error) => {
+                    hideLoading();
+                    showNotification('Error updating user role:   ' + error.message,   true);
+                });
+        }
+        
+        // Page Selector Functions
+        function showAdminCard(cardToShow) {
+            addItemCard.style.display = 'none';
+            updateItemCard.style.display = 'none';
+            deleteItemCard.style.display = 'none';
+            categoryManagementCard.style.display = 'none';
+            
+            if (cardToShow === 'add') {
+                addItemCard.style.display = 'block';
+            } else if (cardToShow === 'update') {
+                updateItemCard.style.display = 'block';
+            } else if (cardToShow === 'delete') {
+                deleteItemCard.style.display = 'block';
+            } else if (cardToShow === 'categories') {
+                categoryManagementCard.style.display = 'block';
+                loadCategories();
+            }
+        }
+        
+        // Category Management Functions
+        function loadCategories() {
+            if (currentUser.email !== OWNER_EMAIL) {
+                showNotification('Access denied',   true);
+                return;
+            }
+            
+            showLoading();
+            return rtdb.ref('categories').once('value')
+                .then((snapshot) => {
+                    hideLoading();
+                    categoriesContainer.innerHTML = '';
+                    
+                    if (!snapshot.exists()) {
+                        categoriesContainer.innerHTML = '<p>No categories found.</p>';
+                        return;
+                    }
+                    
+                    snapshot.forEach((childSnapshot) => {
+                        const categoryId = childSnapshot.key;
+                        const category = childSnapshot.val();
+                        const categoryElement = document.createElement('div');
+                        categoryElement.className = 'category-item';
+                        categoryElement.innerHTML = `
+                            <img src="${category.image || 'https://via.placeholder.com/50'}" alt="${category.name}">
+                            <input type="text" value="${category.name}" data-id="${categoryId}" class="category-name-input">
+                            <input type="text" value="${category.image || ''}" data-id="${categoryId}" class="category-image-input" placeholder="Image URL">
+                            <button class="delete-category-btn" data-id="${categoryId}">Delete</button>
+                        `;
+                        categoriesContainer.appendChild(categoryElement);
+                    });
+                    
+                    // Add event listeners for category updates
+                    document.querySelectorAll('.category-name-input,   .category-image-input').forEach(input => {
+                        input.addEventListener('change',   (e) => {
+                            updateCategory(e.target.getAttribute('data-id'),   e.target.value,   e.target.classList.contains('category-image-input'));
+                        });
+                    });
+                    
+                    // Add event listeners for category deletions
+                    document.querySelectorAll('.delete-category-btn').forEach(button => {
+                        button.addEventListener('click',   (e) => {
+                            deleteCategory(e.target.getAttribute('data-id'));
+                        });
+                    });
+                })
+                .catch((error) => {
+                    hideLoading();
+                    console.log("Error getting categories:   ",   error);
+                    showNotification('Error loading categories',   true);
+                });
+        }
+        
+        function updateCategory(categoryId,   value,   isImage) {
+            if (currentUser.email !== OWNER_EMAIL) {
+                showNotification('Access denied',   true);
+                return;
+            }
+            
+            showLoading();
+            const categoryRef = rtdb.ref('categories/' + categoryId);
+            const updateData = isImage ? { image:   value } :   { name:   value };
+            
+            categoryRef.update(updateData)
+                .then(() => {
+                    hideLoading();
+                    showNotification('Category updated successfully!');
+                    loadCategories();
+                })
+                .catch((error) => {
+                    hideLoading();
+                    showNotification('Error updating category:   ' + error.message,   true);
+                });
+        }
+        
+        function deleteCategory(categoryId) {
+            if (currentUser.email !== OWNER_EMAIL) {
+                showNotification('Access denied',   true);
+                return;
+            }
+            
+            if (!confirm('Are you sure you want to delete this category?')) {
+                return;
+            }
+            
+            showLoading();
+            const categoryRef = rtdb.ref('categories/' + categoryId);
+            
+            categoryRef.remove()
+                .then(() => {
+                    hideLoading();
+                    showNotification('Category deleted successfully!');
+                    loadCategories();
+                })
+                .catch((error) => {
+                    hideLoading();
+                    showNotification('Error deleting category:   ' + error.message,   true);
+                });
+        }
+        
+        function addNewCategory() {
+            if (currentUser.email !== OWNER_EMAIL) {
+                showNotification('Access denied',   true);
+                return;
+            }
+            
+            showLoading();
+            const newCategoryRef = rtdb.ref('categories').push();
+            const newCategory = {
+                name:   'New Category',  
+                image:   'https://via.placeholder.com/50'
+            };
+            
+            newCategoryRef.set(newCategory)
+                .then(() => {
+                    hideLoading();
+                    showNotification('Category added successfully!');
+                    loadCategories();
+                })
+                .catch((error) => {
+                    hideLoading();
+                    showNotification('Error adding category:   ' + error.message,   true);
+                });
+        }
+        
+        // Check if user is admin or owner
+        function checkAdminStatus(user) {
+            // Check if owner
+            if (user.email === OWNER_EMAIL) {
+                userRoleData = 'Owner';
+                userRole.textContent = 'Owner';
+                userRole.className = 'role-badge role-owner';
+                adminLink.style.display = 'block';
+                return Promise.resolve();
+            }
+            
+            // Check if admin in admins collection
+            return db.collection('admins')
+                .where('email',   '==',   user.email)
+                .get()
+                .then((querySnapshot) => {
+                    if (!querySnapshot.empty) {
+                        userRoleData = 'Admin';
+                        userRole.textContent = 'Admin';
+                        userRole.className = 'role-badge role-admin';
+                        adminLink.style.display = 'block';
+                    } else {
+                        // Check regular user role
+                        const userRef = rtdb.ref('users/' + user.uid);
+                        return userRef.once('value').then((snapshot) => {
+                            if (snapshot.exists()) {
+                                const userData = snapshot.val();
+                                userRoleData = userData.role || 'User';
+                                userRole.textContent = userRoleData;
+                                userRole.className = `role-badge role-${userRoleData.toLowerCase()}`;
+                                
+                                // Check if user is admin or owner
+                                const isAdmin = userRoleData === 'Admin' || userRoleData === 'Owner';
+                                adminLink.style.display = isAdmin ? 'block' :   'none';
+                            }
+                        });
+                    }
+                });
+        }
+
+        // Authentication state observer
+        auth.onAuthStateChanged((user) => {
+            if (user) {
+                currentUser = user;
+                userEmail.textContent = user.email;
+                userInfo.style.display = 'flex';
+                loginBtn.style.display = 'none';
+                signupBtn.style.display = 'none';
+                loginLink.style.display = 'none';
+                
+                // Check admin status
+                checkAdminStatus(user)
+                    .then(() => {
+                        shopLink.style.display = 'block';
+                        ordersLink.style.display = 'block';
+                        
+                        // Load user data
+                        loadUserBalance(user.uid);
+                        loadUserEBucks(user.uid);
+                        loadUserOrders(user.uid);
+                        
+                        // Load shop items
+                        loadShopItemsWithCategories();
+                        
+                        showPage('main');
+                    });
+            } else {
+                currentUser = null;
+                userRoleData = null;
+                userInfo.style.display = 'none';
+                loginBtn.style.display = 'block';
+                signupBtn.style.display = 'block';
+                loginLink.style.display = 'block';
+                shopLink.style.display = 'none';
+                ordersLink.style.display = 'none';
+                adminLink.style.display = 'none';
+                showPage('main');
+            }
+        });
+
+        // Navigation
+        navLinks.forEach(link => {
+            link.addEventListener('click',   (e) => {
+                e.preventDefault();
+                const page = link.getAttribute('data-page');
+                
+                if (page === 'shop' || page === 'orders') {
+                    showPage(currentUser ? page :   'login');
+                } else if (page === 'admin') {
+                    if (userRoleData === 'Admin' || userRoleData === 'Owner' || currentUser.email === OWNER_EMAIL) {
+                        showPage('admin');
+                        loadAdminOrders();
+                        loadUsers();
+                        loadAdmins();
+                        loadUsersForRoleManagement(); // Load users for role management
+                    } else {
+                        showNotification('Access denied',   true);
+                        showPage('main');
+                    }
+                } else {
+                    showPage(page);
+                }
+            });
+        });
+
+        // Login button
+        loginBtn.addEventListener('click',   () => showPage('login'));
+
+        // Signup button
+        signupBtn.addEventListener('click',   () => showPage('signup'));
+
+        // Show signup from login
+        showSignup.addEventListener('click',   (e) => {
+            e.preventDefault();
+            showPage('signup');
+        });
+
+        // Show login from signup
+        showLogin.addEventListener('click',   (e) => {
+            e.preventDefault();
+            showPage('login');
+        });
+
+        // Logout
+        logoutBtn.addEventListener('click',   logout);
+
+        // Login form submission
+        loginForm.addEventListener('submit',   (e) => {
+            e.preventDefault();
+            const email = document.getElementById('loginEmail').value;
+            const password = document.getElementById('loginPassword').value;
+            const key = document.getElementById('loginKey').value;
+            
+            login(email,   password,   key)
+                .then((user) => {
+                    showPage('main');
+                })
+                .catch((error) => {
+                    // Error handled in login function
+                });
+        });
+
+        // Signup form submission
+        signupForm.addEventListener('submit',   (e) => {
+            e.preventDefault();
+            const username = document.getElementById('signupUsername').value;
+            const email = document.getElementById('signupEmail').value;
+            const password = document.getElementById('signupPassword').value;
+            const key = document.getElementById('signupKey').value;
+            const confirmPassword = document.getElementById('confirmPassword').value;
+            
+            if (password !== confirmPassword) {
+                showNotification('Passwords do not match!',   true);
+                return;
+            }
+            
+            signup(username,   email,   password,   key)
+                .then(() => {
+                    showPage('main');
+                })
+                .catch((error) => {
+                    // Error handled in signup function
+                });
+        });
+
+        // Admin event listeners
+        addItemBtn.addEventListener('click',   addItemWithCategory);
+        updateItemBtn.addEventListener('click',   updateItemWithCategory);
+        deleteItemBtn.addEventListener('click',   deleteItem);
+        addAdminBtn.addEventListener('click',   addAdmin);
+        
+        // Role Management event listeners
+        changeRoleBtn.addEventListener('click',   changeUserRole);
+        
+        // Page Selector event listeners
+        addItemPageBtn.addEventListener('click',   () => showAdminCard('add'));
+        updateItemPageBtn.addEventListener('click',   () => showAdminCard('update'));
+        deleteItemPageBtn.addEventListener('click',   () => showAdminCard('delete'));
+        manageCategoriesBtn.addEventListener('click',   () => showAdminCard('categories'));
+        
+        // Category Management event listeners
+        addCategoryBtn.addEventListener('click',   addNewCategory);
+        
+        // Category Filter event listeners
+        categoryBtns.forEach(btn => {
+            btn.addEventListener('click',   () => {
+                categoryBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                activeCategory = btn.getAttribute('data-category');
+                filterItemsByCategory(activeCategory);
+            });
+        });
+
+        // Initialize the page
+        loadShopItemsWithCategories();
+        showPage('main');
+    </script>
+</body>
+</html>
