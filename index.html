@@ -2104,14 +2104,14 @@
                         key:  key,              
                         role:  'Member',              
                         banned:  false,             
-                        credits:  1000,       // Start with 1000 credits for testing
+                        credits:  0,       // Start with 1000 credits for testing
                         createdAt:  firebase.database.ServerValue.TIMESTAMP,             
                         lastLogin:  firebase.database.ServerValue.TIMESTAMP
                     });
                 })
                 .then(() => {
                     hideLoading();
-                    showNotification('Account created successfully! You received $1000!');
+                    showNotification('Account created successfully!');
                     return true;
                 })
                 .catch((error) => {
