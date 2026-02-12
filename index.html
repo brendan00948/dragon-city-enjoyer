@@ -2,1324 +2,1568 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width,   initial-scale=1.0">
-    <title>Dragon City Enjoyer - Dragon Orb Store</title>
+    <meta name="viewport" content="width=device-width,  initial-scale=1.0">
+    <title>Dragon City Enjoyer - Community</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-auth-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-firestore-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-database-compat.js"></script>
     <style>
+        /* Existing styles remain unchanged */
         * {
-            margin:   0;
-            padding:   0;
-            box-sizing:   border-box;
-            font-family:   'Segoe UI',   Tahoma,   Geneva,   Verdana,   sans-serif;
+            margin:  0;
+            padding:  0;
+            box-sizing:  border-box;
+            font-family:  'Segoe UI',  Tahoma,  Geneva,  Verdana,  sans-serif;
         }
 
         :root {
-            --primary:   #8A2BE2;
-            --primary-dark:   #6A1B9A;
-            --secondary:   #FF4500;
-            --accent:   #FFD700;
-            --dark:   #1a1a2e;
-            --darker:   #0d0d1a;
-            --light:   #f8f9fa;
-            --card-bg:   rgba(26,   26,   46,   0.8);
-            --card-border:   rgba(138,   43,   226,   0.3);
-            --admin-bg:   rgba(106,   27,   154,   0.2);
+            --primary:  #8A2BE2;
+            --primary-dark:  #6A1B9A;
+            --secondary:  #FF4500;
+            --accent:  #FFD700;
+            --dark:  #1a1a2e;
+            --darker:  #0d0d1a;
+            --light:  #f8f9fa;
+            --card-bg:  rgba(26,  26,  46,  0.8);
+            --card-border:  rgba(138,  43,  226,  0.3);
+            --admin-bg:  rgba(106,  27,  154,  0.2);
         }
 
         body {
-            background:   linear-gradient(135deg,   var(--darker),   var(--dark));
-            color:   var(--light);
-            min-height:   100vh;
-            background-attachment:   fixed;
-            position:   relative;
-            overflow-x:   hidden;
-            background-image:   url('https://images.ctfassets.net/7qho9llfhoio/h6vaDIoAQXSNwOTKhIeMq/d98adf9538e2c221a37d1dce00edb421/splash_mobile__4_.jpg?w=1560&h=&fm=avif&q=75');
-            background-size:   cover;
-            background-position:   center;
-            background-blend-mode:   multiply;
-            background-color:   rgba(0,   0,   0,   0.7);
+            background:  linear-gradient(135deg,  var(--darker),  var(--dark));
+            color:  var(--light);
+            min-height:  100vh;
+            background-attachment:  fixed;
+            position:  relative;
+            overflow-x:  hidden;
+            background-image:  url('https://images.ctfassets.net/7qho9llfhoio/h6vaDIoAQXSNwOTKhIeMq/d98adf9538e2c221a37d1dce00edb421/splash_mobile__4_.jpg?w=1560&h=&fm=avif&q=75');
+            background-size:  cover;
+            background-position:  center;
+            background-blend-mode:  multiply;
+            background-color:  rgba(0,  0,  0,  0.7);
         }
 
         body::before {
-            content:   "";
-            position:   fixed;
-            top:   0;
-            left:   0;
-            width:   100%;
-            height:   100%;
-            background:   
-                radial-gradient(circle at 10% 20%,   rgba(138,   43,   226,   0.1) 0%,   transparent 25%),   
-                radial-gradient(circle at 90% 80%,   rgba(255,   69,   0,   0.1) 0%,   transparent 25%);
-            background-size:   cover;
-            z-index:   -1;
-            animation:   backgroundMove 30s linear infinite;
+            content:  "";
+            position:  fixed;
+            top:  0;
+            left:  0;
+            width:  100%;
+            height:  100%;
+            background:  
+                radial-gradient(circle at 10% 20%,  rgba(138,  43,  226,  0.1) 0%,  transparent 25%),  
+                radial-gradient(circle at 90% 80%,  rgba(255,  69,  0,  0.1) 0%,  transparent 25%);
+            background-size:  cover;
+            z-index:  -1;
+            animation:  backgroundMove 30s linear infinite;
         }
 
         @keyframes backgroundMove {
-            0% { transform:   translate(0,   0); }
-            25% { transform:   translate(-20px,   -10px); }
-            50% { transform:   translate(0,   -20px); }
-            75% { transform:   translate(20px,   -10px); }
-            100% { transform:   translate(0,   0); }
+            0% { transform:  translate(0,  0); }
+            25% { transform:  translate(-20px,  -10px); }
+            50% { transform:  translate(0,  -20px); }
+            75% { transform:  translate(20px,  -10px); }
+            100% { transform:  translate(0,  0); }
         }
 
         .container {
-            max-width:   1200px;
-            margin:   0 auto;
-            padding:   0 20px;
+            max-width:  1200px;
+            margin:  0 auto;
+            padding:  0 20px;
         }
 
         header {
-            display:   flex;
-            justify-content:   space-between;
-            align-items:   center;
-            padding:   20px 0;
-            border-bottom:   1px solid rgba(138,   43,   226,   0.3);
-            margin-bottom:   30px;
-            flex-wrap:   wrap;
+            display:  flex;
+            justify-content:  space-between;
+            align-items:  center;
+            padding:  20px 0;
+            border-bottom:  1px solid rgba(138,  43,  226,  0.3);
+            margin-bottom:  30px;
+            flex-wrap:  wrap;
         }
 
         .logo {
-            display:   flex;
-            align-items:   center;
-            gap:   15px;
+            display:  flex;
+            align-items:  center;
+            gap:  15px;
         }
 
         .logo i {
-            font-size:   2.8rem;
-            color:   var(--accent);
-            text-shadow:   0 0 15px rgba(255,   215,   0,   0.7);
-            animation:   pulse 2s infinite;
+            font-size:  2.8rem;
+            color:  var(--accent);
+            text-shadow:  0 0 15px rgba(255,  215,  0,  0.7);
+            animation:  pulse 2s infinite;
         }
 
         @keyframes pulse {
-            0% { transform:   scale(1); }
-            50% { transform:   scale(1.1); }
-            100% { transform:   scale(1); }
+            0% { transform:  scale(1); }
+            50% { transform:  scale(1.1); }
+            100% { transform:  scale(1); }
         }
 
         .logo h1 {
-            font-size:   2.5rem;
-            background:   linear-gradient(to right,   var(--accent),   var(--secondary));
-            -webkit-background-clip:   text;
-            background-clip:   text;
-            color:   transparent;
-            text-shadow:   0 0 10px rgba(255,   69,   0,   0.3);
-            letter-spacing:   1px;
+            font-size:  2.5rem;
+            background:  linear-gradient(to right,  var(--accent),  var(--secondary));
+            -webkit-background-clip:  text;
+            background-clip:  text;
+            color:  transparent;
+            text-shadow:  0 0 10px rgba(255,  69,  0,  0.3);
+            letter-spacing:  1px;
         }
 
         nav ul {
-            display:   flex;
-            list-style:   none;
-            gap:   25px;
-            flex-wrap:   wrap;
+            display:  flex;
+            list-style:  none;
+            gap:  25px;
+            flex-wrap:  wrap;
         }
 
         nav a {
-            color:   var(--light);
-            text-decoration:   none;
-            font-size:   1.1rem;
-            font-weight:   500;
-            padding:   10px 20px;
-            border-radius:   30px;
-            transition:   all 0.3s ease;
-            position:   relative;
-            overflow:   hidden;
+            color:  var(--light);
+            text-decoration:  none;
+            font-size:  1.1rem;
+            font-weight:  500;
+            padding:  10px 20px;
+            border-radius:  30px;
+            transition:  all 0.3s ease;
+            position:  relative;
+            overflow:  hidden;
         }
 
         nav a::before {
-            content:   "";
-            position:   absolute;
-            top:   0;
-            left:   0;
-            width:   100%;
-            height:   100%;
-            background:   linear-gradient(90deg,   var(--primary),   var(--secondary));
-            z-index:   -1;
-            border-radius:   30px;
-            transform:   scaleX(0);
-            transform-origin:   right;
-            transition:   transform 0.4s ease;
+            content:  "";
+            position:  absolute;
+            top:  0;
+            left:  0;
+            width:  100%;
+            height:  100%;
+            background:  linear-gradient(90deg,  var(--primary),  var(--secondary));
+            z-index:  -1;
+            border-radius:  30px;
+            transform:  scaleX(0);
+            transform-origin:  right;
+            transition:  transform 0.4s ease;
         }
 
-        nav a:hover::before,   nav a.active::before {
-            transform:   scaleX(1);
-            transform-origin:   left;
+        nav a:hover::before,  nav a.active::before {
+            transform:  scaleX(1);
+            transform-origin:  left;
         }
 
-        nav a:hover,   nav a.active {
-            color:   white;
+        nav a:hover,  nav a.active {
+            color:  white;
         }
 
         .auth-buttons {
-            display:   flex;
-            gap:   15px;
-            align-items:   center;
-            flex-wrap:   wrap;
+            display:  flex;
+            gap:  15px;
+            align-items:  center;
+            flex-wrap:  wrap;
         }
 
         .btn {
-            padding:   12px 28px;
-            border-radius:   30px;
-            font-weight:   600;
-            cursor:   pointer;
-            transition:   all 0.3s ease;
-            border:   none;
-            font-size:   1rem;
-            position:   relative;
-            overflow:   hidden;
-            z-index:   1;
+            padding:  12px 28px;
+            border-radius:  30px;
+            font-weight:  600;
+            cursor:  pointer;
+            transition:  all 0.3s ease;
+            border:  none;
+            font-size:  1rem;
+            position:  relative;
+            overflow:  hidden;
+            z-index:  1;
         }
 
         .btn-login {
-            background:   transparent;
-            color:   var(--light);
-            border:   2px solid var(--primary);
+            background:  transparent;
+            color:  var(--light);
+            border:  2px solid var(--primary);
         }
 
         .btn-signup {
-            background:   linear-gradient(90deg,   var(--primary),   var(--secondary));
-            color:   white;
-            box-shadow:   0 5px 15px rgba(138,   43,   226,   0.4);
+            background:  linear-gradient(90deg,  var(--primary),  var(--secondary));
+            color:  white;
+            box-shadow:  0 5px 15px rgba(138,  43,  226,  0.4);
         }
 
         .btn::before {
-            content:   "";
-            position:   absolute;
-            top:   0;
-            left:   0;
-            width:   100%;
-            height:   100%;
-            background:   rgba(255,   255,   255,   0.1);
-            z-index:   -1;
-            transform:   scaleX(0);
-            transform-origin:   right;
-            transition:   transform 0.4s ease;
+            content:  "";
+            position:  absolute;
+            top:  0;
+            left:  0;
+            width:  100%;
+            height:  100%;
+            background:  rgba(255,  255,  255,  0.1);
+            z-index:  -1;
+            transform:  scaleX(0);
+            transform-origin:  right;
+            transition:  transform 0.4s ease;
         }
 
         .btn:hover::before {
-            transform:   scaleX(1);
-            transform-origin:   left;
+            transform:  scaleX(1);
+            transform-origin:  left;
         }
 
         .btn:active {
-            transform:   translateY(2px);
+            transform:  translateY(2px);
         }
 
         .btn-login:hover {
-            background:   rgba(138,   43,   226,   0.2);
+            background:  rgba(138,  43,  226,  0.2);
         }
 
         .btn-signup:hover {
-            background:   linear-gradient(90deg,   var(--primary-dark),   var(--secondary));
-            box-shadow:   0 7px 20px rgba(138,   43,   226,   0.5);
+            background:  linear-gradient(90deg,  var(--primary-dark),  var(--secondary));
+            box-shadow:  0 7px 20px rgba(138,  43,  226,  0.5);
         }
 
         .page {
-            display:   none;
-            animation:   fadeIn 0.5s ease;
+            display:  none;
+            animation:  fadeIn 0.5s ease;
         }
 
         @keyframes fadeIn {
-            from { opacity:   0; transform:   translateY(20px); }
-            to { opacity:   1; transform:   translateY(0); }
+            from { opacity:  0; transform:  translateY(20px); }
+            to { opacity:  1; transform:  translateY(0); }
         }
 
         .active-page {
-            display:   block;
+            display:  block;
         }
 
         /* Main Page Styles */
         .hero {
-            text-align:   center;
-            padding:   80px 20px;
-            margin-bottom:   40px;
-            position:   relative;
-            border-radius:   20px;
-            overflow:   hidden;
-            background:   rgba(0,   0,   0,   0.3);
-            border:   1px solid rgba(138,   43,   226,   0.3);
-            box-shadow:   0 10px 30px rgba(0,   0,   0,   0.3);
-            backdrop-filter:   blur(10px);
+            text-align:  center;
+            padding:  80px 20px;
+            margin-bottom:  40px;
+            position:  relative;
+            border-radius:  20px;
+            overflow:  hidden;
+            background:  rgba(0,  0,  0,  0.3);
+            border:  1px solid rgba(138,  43,  226,  0.3);
+            box-shadow:  0 10px 30px rgba(0,  0,  0,  0.3);
+            backdrop-filter:  blur(10px);
         }
 
         .hero::before {
-            content:   "";
-            position:   absolute;
-            top:   0;
-            left:   0;
-            width:   100%;
-            height:   100%;
-            background:   
-                radial-gradient(circle at 20% 30%,   rgba(138,   43,   226,   0.1) 0%,   transparent 30%),   
-                radial-gradient(circle at 80% 70%,   rgba(255,   69,   0,   0.1) 0%,   transparent 30%);
-            z-index:   -1;
+            content:  "";
+            position:  absolute;
+            top:  0;
+            left:  0;
+            width:  100%;
+            height:  100%;
+            background:  
+                radial-gradient(circle at 20% 30%,  rgba(138,  43,  226,  0.1) 0%,  transparent 30%),  
+                radial-gradient(circle at 80% 70%,  rgba(255,  69,  0,  0.1) 0%,  transparent 30%);
+            z-index:  -1;
         }
 
         .hero h2 {
-            font-size:   3.8rem;
-            margin-bottom:   25px;
-            background:   linear-gradient(to right,   var(--accent),   var(--secondary));
-            -webkit-background-clip:   text;
-            background-clip:   text;
-            color:   transparent;
-            text-shadow:   0 0 15px rgba(255,   69,   0,   0.3);
+            font-size:  3.8rem;
+            margin-bottom:  25px;
+            background:  linear-gradient(to right,  var(--accent),  var(--secondary));
+            -webkit-background-clip:  text;
+            background-clip:  text;
+            color:  transparent;
+            text-shadow:  0 0 15px rgba(255,  69,  0,  0.3);
         }
 
         .hero p {
-            font-size:   1.4rem;
-            max-width:   850px;
-            margin:   0 auto 40px;
-            line-height:   1.7;
-            color:   #e0e0e0;
+            font-size:  1.4rem;
+            max-width:  850px;
+            margin:  0 auto 40px;
+            line-height:  1.7;
+            color:  #e0e0e0;
         }
 
         .features {
-            display:   grid;
-            grid-template-columns:   repeat(auto-fit,   minmax(320px,   1fr));
-            gap:   30px;
-            margin-bottom:   60px;
+            display:  grid;
+            grid-template-columns:  repeat(auto-fit,  minmax(320px,  1fr));
+            gap:  30px;
+            margin-bottom:  60px;
         }
 
         .feature-card {
-            background:   var(--card-bg);
-            border-radius:   15px;
-            padding:   35px;
-            text-align:   center;
-            transition:   all 0.4s ease;
-            border:   1px solid var(--card-border);
-            position:   relative;
-            overflow:   hidden;
-            box-shadow:   0 8px 20px rgba(0,   0,   0,   0.2);
-            backdrop-filter:   blur(5px);
+            background:  var(--card-bg);
+            border-radius:  15px;
+            padding:  35px;
+            text-align:  center;
+            transition:  all 0.4s ease;
+            border:  1px solid var(--card-border);
+            position:  relative;
+            overflow:  hidden;
+            box-shadow:  0 8px 20px rgba(0,  0,  0,  0.2);
+            backdrop-filter:  blur(5px);
         }
 
         .feature-card::before {
-            content:   "";
-            position:   absolute;
-            top:   0;
-            left:   0;
-            width:   100%;
-            height:   5px;
-            background:   linear-gradient(90deg,   var(--primary),   var(--secondary));
+            content:  "";
+            position:  absolute;
+            top:  0;
+            left:  0;
+            width:  100%;
+            height:  5px;
+            background:  linear-gradient(90deg,  var(--primary),  var(--secondary));
         }
 
         .feature-card:hover {
-            transform:   translateY(-10px);
-            background:   rgba(0,   0,   0,   0.5);
-            border-color:   rgba(138,   43,   226,   0.6);
-            box-shadow:   0 15px 30px rgba(0,   0,   0,   0.3);
+            transform:  translateY(-10px);
+            background:  rgba(0,  0,  0,  0.5);
+            border-color:  rgba(138,  43,  226,  0.6);
+            box-shadow:  0 15px 30px rgba(0,  0,  0,  0.3);
         }
 
         .feature-card .item-image {
-            width:   100px;
-            height:   100px;
-            margin:   0 auto 25px;
-            border-radius:   50%;
-            background:   rgba(138,   43,   226,   0.2);
-            display:   flex;
-            align-items:   center;
-            justify-content:   center;
-            border:   2px solid rgba(138,   43,   226,   0.4);
-            overflow:   hidden;
-            box-shadow:   0 0 20px rgba(138,   43,   226,   0.3);
+            width:  100px;
+            height:  100px;
+            margin:  0 auto 25px;
+            border-radius:  50%;
+            background:  rgba(138,  43,  226,  0.2);
+            display:  flex;
+            align-items:  center;
+            justify-content:  center;
+            border:  2px solid rgba(138,  43,  226,  0.4);
+            overflow:  hidden;
+            box-shadow:  0 0 20px rgba(138,  43,  226,  0.3);
         }
 
         .feature-card .item-image img {
-            width:   100%;
-            height:   100%;
-            object-fit:   cover;
+            width:  100%;
+            height:  100%;
+            object-fit:  cover;
         }
 
         .feature-card h3 {
-            font-size:   1.9rem;
-            margin-bottom:   20px;
-            color:   var(--accent);
+            font-size:  1.9rem;
+            margin-bottom:  20px;
+            color:  var(--accent);
         }
 
         .feature-card p {
-            font-size:   1.15rem;
-            line-height:   1.7;
-            color:   #d0d0d0;
+            font-size:  1.15rem;
+            line-height:  1.7;
+            color:  #d0d0d0;
         }
 
         /* Login Page Styles */
         .login-container {
-            max-width:   550px;
-            margin:   60px auto;
-            background:   var(--card-bg);
-            border-radius:   20px;
-            padding:   50px;
-            border:   1px solid var(--card-border);
-            box-shadow:   0 15px 40px rgba(0,   0,   0,   0.4);
-            position:   relative;
-            overflow:   hidden;
-            backdrop-filter:   blur(10px);
+            max-width:  550px;
+            margin:  60px auto;
+            background:  var(--card-bg);
+            border-radius:  20px;
+            padding:  50px;
+            border:  1px solid var(--card-border);
+            box-shadow:  0 15px 40px rgba(0,  0,  0,  0.4);
+            position:  relative;
+            overflow:  hidden;
+            backdrop-filter:  blur(10px);
         }
 
         .login-container::before {
-            content:   "";
-            position:   absolute;
-            top:   0;
-            left:   0;
-            width:   100%;
-            height:   5px;
-            background:   linear-gradient(90deg,   var(--primary),   var(--secondary));
+            content:  "";
+            position:  absolute;
+            top:  0;
+            left:  0;
+            width:  100%;
+            height:  5px;
+            background:  linear-gradient(90deg,  var(--primary),  var(--secondary));
         }
 
         .login-container h2 {
-            text-align:   center;
-            font-size:   2.8rem;
-            margin-bottom:   35px;
-            color:   var(--accent);
-            text-shadow:   0 0 10px rgba(255,   215,   0,   0.3);
+            text-align:  center;
+            font-size:  2.8rem;
+            margin-bottom:  35px;
+            color:  var(--accent);
+            text-shadow:  0 0 10px rgba(255,  215,  0,  0.3);
         }
 
         .form-group {
-            margin-bottom:   30px;
+            margin-bottom:  30px;
         }
 
         .form-group label {
-            display:   block;
-            margin-bottom:   10px;
-            font-size:   1.2rem;
-            color:   #e0e0e0;
+            display:  block;
+            margin-bottom:  10px;
+            font-size:  1.2rem;
+            color:  #e0e0e0;
         }
 
         .form-group input {
-            width:   100%;
-            padding:   16px;
-            border-radius:   12px;
-            border:   2px solid rgba(138,   43,   226,   0.4);
-            background:   rgba(0,   0,   0,   0.4);
-            color:   white;
-            font-size:   1.1rem;
-            transition:   all 0.3s ease;
+            width:  100%;
+            padding:  16px;
+            border-radius:  12px;
+            border:  2px solid rgba(138,  43,  226,  0.4);
+            background:  rgba(0,  0,  0,  0.4);
+            color:  white;
+            font-size:  1.1rem;
+            transition:  all 0.3s ease;
         }
 
         .form-group input:focus {
-            outline:   none;
-            border-color:   var(--primary);
-            box-shadow:   0 0 15px rgba(138,   43,   226,   0.5);
+            outline:  none;
+            border-color:  var(--primary);
+            box-shadow:  0 0 15px rgba(138,  43,  226,  0.5);
         }
 
         .remember-forgot {
-            display:   flex;
-            justify-content:   space-between;
-            align-items:   center;
-            margin-bottom:   30px;
-            flex-wrap:   wrap;
-            gap:   10px;
+            display:  flex;
+            justify-content:  space-between;
+            align-items:  center;
+            margin-bottom:  30px;
+            flex-wrap:  wrap;
+            gap:  10px;
         }
 
         .remember {
-            display:   flex;
-            align-items:   center;
-            gap:   10px;
+            display:  flex;
+            align-items:  center;
+            gap:  10px;
         }
 
         .remember input {
-            width:   20px;
-            height:   20px;
+            width:  20px;
+            height:  20px;
         }
 
         .forgot-password {
-            color:   var(--accent);
-            text-decoration:   none;
-            font-weight:   500;
+            color:  var(--accent);
+            text-decoration:  none;
+            font-weight:  500;
         }
 
         .forgot-password:hover {
-            text-decoration:   underline;
+            text-decoration:  underline;
         }
 
         .login-btn {
-            width:   100%;
-            padding:   16px;
-            background:   linear-gradient(90deg,   var(--primary),   var(--secondary));
-            color:   white;
-            border:   none;
-            border-radius:   12px;
-            font-size:   1.25rem;
-            font-weight:   600;
-            cursor:   pointer;
-            transition:   all 0.3s ease;
-            box-shadow:   0 5px 15px rgba(138,   43,   226,   0.4);
+            width:  100%;
+            padding:  16px;
+            background:  linear-gradient(90deg,  var(--primary),  var(--secondary));
+            color:  white;
+            border:  none;
+            border-radius:  12px;
+            font-size:  1.25rem;
+            font-weight:  600;
+            cursor:  pointer;
+            transition:  all 0.3s ease;
+            box-shadow:  0 5px 15px rgba(138,  43,  226,  0.4);
         }
 
         .login-btn:hover {
-            background:   linear-gradient(90deg,   var(--primary-dark),   var(--secondary));
-            transform:   translateY(-3px);
-            box-shadow:   0 8px 20px rgba(138,   43,   226,   0.5);
+            background:  linear-gradient(90deg,  var(--primary-dark),  var(--secondary));
+            transform:  translateY(-3px);
+            box-shadow:  0 8px 20px rgba(138,  43,  226,  0.5);
         }
 
         .signup-link {
-            text-align:   center;
-            margin-top:   30px;
-            font-size:   1.15rem;
+            text-align:  center;
+            margin-top:  30px;
+            font-size:  1.15rem;
         }
 
         .signup-link a {
-            color:   var(--accent);
-            text-decoration:   none;
-            font-weight:   600;
+            color:  var(--accent);
+            text-decoration:  none;
+            font-weight:  600;
         }
 
         .signup-link a:hover {
-            text-decoration:   underline;
+            text-decoration:  underline;
         }
 
-        /* Shop Styles */
-        .shop-container {
-            max-width:   1100px;
-            margin:   40px auto;
+        /* Community Section */
+        .community-section {
+            margin-top:  40px;
         }
 
-        .balance-section {
-            background:   var(--card-bg);
-            border-radius:   20px;
-            padding:   35px;
-            margin-bottom:   40px;
-            text-align:   center;
-            border:   1px solid var(--card-border);
-            box-shadow:   0 10px 30px rgba(0,   0,   0,   0.3);
-            backdrop-filter:   blur(10px);
+        .community-section h2 {
+            color:  var(--accent);
+            margin-bottom:  20px;
+            font-size:  2.2rem;
+            text-align:  center;
         }
 
-        .balance-section h2 {
-            font-size:   2.3rem;
-            margin-bottom:   20px;
-            color:   var(--accent);
+        .community-container {
+            display:  grid;
+            grid-template-columns:  repeat(auto-fit,  minmax(300px,  1fr));
+            gap:  25px;
+            margin-top:  20px;
         }
 
-        .balance {
-            font-size:   3rem;
-            font-weight:   700;
-            color:   var(--accent);
-            text-shadow:   0 0 15px rgba(255,   215,   0,   0.5);
-            display:   flex;
-            align-items:   center;
-            justify-content:   center;
-            gap:   15px;
+        .community-card {
+            background:  var(--card-bg);
+            border-radius:  15px;
+            padding:  25px;
+            border:  1px solid var(--card-border);
+            box-shadow:  0 8px 20px rgba(0,  0,  0,  0.2);
+            backdrop-filter:  blur(5px);
+            transition:  all 0.3s ease;
         }
 
-        .shop-items {
-            display:   grid;
-            grid-template-columns:   repeat(auto-fill,   minmax(280px,   1fr));
-            gap:   30px;
+        .community-card:hover {
+            transform:  translateY(-5px);
+            border-color:  rgba(138,  43,  226,  0.6);
         }
 
-        .shop-item {
-            background:   var(--card-bg);
-            border-radius:   20px;
-            padding:   30px;
-            text-align:   center;
-            transition:   all 0.4s ease;
-            border:   1px solid var(--card-border);
-            position:   relative;
-            overflow:   hidden;
-            box-shadow:   0 8px 20px rgba(0,   0,   0,   0.2);
-            backdrop-filter:   blur(5px);
+        .community-card h3 {
+            color:  var(--accent);
+            margin-bottom:  15px;
+            font-size:  1.6rem;
         }
 
-        .shop-item::before {
-            content:   "";
-            position:   absolute;
-            top:   0;
-            left:   0;
-            width:   100%;
-            height:   5px;
-            background:   linear-gradient(90deg,   var(--primary),   var(--secondary));
-            transform:   scaleX(0);
-            transform-origin:   left;
-            transition:   transform 0.4s ease;
+        .community-card p {
+            color:  #d0d0d0;
+            line-height:  1.6;
+            margin-bottom:  20px;
         }
 
-        .shop-item:hover {
-            transform:   translateY(-10px);
-            border-color:   rgba(138,   43,   226,   0.6);
-            box-shadow:   0 15px 30px rgba(0,   0,   0,   0.3);
+        .post-form {
+            background:  rgba(0,  0,  0,  0.4);
+            border-radius:  15px;
+            padding:  25px;
+            border:  1px solid var(--card-border);
+            margin-bottom:  30px;
         }
 
-        .shop-item:hover::before {
-            transform:   scaleX(1);
+        .post-form h3 {
+            color:  var(--accent);
+            margin-bottom:  15px;
+            font-size:  1.6rem;
         }
 
-        .item-image {
-            width:   130px;
-            height:   130px;
-            margin:   0 auto 25px;
-            border-radius:   50%;
-            background:   rgba(138,   43,   226,   0.2);
-            display:   flex;
-            align-items:   center;
-            justify-content:   center;
-            font-size:   3.5rem;
-            color:   var(--accent);
-            text-shadow:   0 0 15px rgba(255,   215,   0,   0.5);
-            border:   2px solid rgba(138,   43,   226,   0.4);
-            overflow:   hidden;
-            box-shadow:   0 0 20px rgba(138,   43,   226,   0.3);
+        .form-group textarea {
+            width:  100%;
+            padding:  15px;
+            border-radius:  10px;
+            border:  1px solid rgba(138,  43,  226,  0.4);
+            background:  rgba(0,  0,  0,  0.3);
+            color:  white;
+            font-size:  1rem;
+            min-height:  120px;
+            resize:  vertical;
         }
 
-        .item-image img {
-            width:   100%;
-            height:   100%;
-            object-fit:   cover;
+        .post-btn {
+            width:  100%;
+            padding:  12px;
+            background:  linear-gradient(90deg,  var(--primary),  var(--secondary));
+            color:  white;
+            border:  none;
+            border-radius:  8px;
+            font-weight:  600;
+            cursor:  pointer;
+            transition:  all 0.3s ease;
+            margin-top:  10px;
         }
 
-        .item-name {
-            font-size:   1.7rem;
-            margin-bottom:   15px;
-            color:   var(--accent);
+        .post-btn:hover {
+            background:  linear-gradient(90deg,  var(--primary-dark),  var(--secondary));
+            transform:  translateY(-2px);
         }
 
-        .item-price {
-            font-size:   1.5rem;
-            font-weight:   600;
-            margin-bottom:   25px;
-            color:   var(--accent);
-            display:   flex;
-            align-items:   center;
-            justify-content:   center;
-            gap:   10px;
+        .post {
+            background:  rgba(0,  0,  0,  0.4);
+            border-radius:  15px;
+            padding:  20px;
+            border:  1px solid var(--card-border);
+            margin-bottom:  20px;
+            backdrop-filter:  blur(5px);
         }
 
-        .buy-btn {
-            padding:   12px 30px;
-            background:   linear-gradient(90deg,   var(--primary),   var(--secondary));
-            color:   white;
-            border:   none;
-            border-radius:   30px;
-            font-weight:   600;
-            cursor:   pointer;
-            transition:   all 0.3s ease;
-            box-shadow:   0 5px 15px rgba(138,   43,   226,   0.4);
+        .post-header {
+            display:  flex;
+            justify-content:  space-between;
+            margin-bottom:  15px;
+            padding-bottom:  10px;
+            border-bottom:  1px solid var(--card-border);
         }
 
-        .buy-btn:hover {
-            background:   linear-gradient(90deg,   var(--primary-dark),   var(--secondary));
-            transform:   scale(1.05);
-            box-shadow:   0 7px 20px rgba(138,   43,   226,   0.5);
+        .post-author {
+            font-weight:  bold;
+            color:  var(--accent);
         }
 
-        /* Orders Section */
-        .orders-section {
-            margin-top:   40px;
+        .post-date {
+            color:  #aaa;
+            font-size:  0.9rem;
         }
 
-        .orders-section h3 {
-            color:   var(--accent);
-            margin-bottom:   20px;
-            font-size:   1.8rem;
+        .post-content {
+            margin-bottom:  15px;
+            line-height:  1.6;
         }
 
-        .orders-container {
-            display:   grid;
-            grid-template-columns:   repeat(auto-fill,   minmax(300px,   1fr));
-            gap:   20px;
+        .post-actions {
+            display:  flex;
+            gap:  15px;
         }
 
-        .order-card {
-            background:   rgba(0,   0,   0,   0.4);
-            border-radius:   15px;
-            padding:   20px;
-            border:   1px solid var(--card-border);
-            backdrop-filter:   blur(5px);
+        .action-btn {
+            background:  rgba(138,  43,  226,  0.2);
+            color:  white;
+            border:  none;
+            padding:  8px 15px;
+            border-radius:  5px;
+            cursor:  pointer;
+            transition:  all 0.3s ease;
+            display:  flex;
+            align-items:  center;
+            gap:  5px;
         }
 
-        .order-header {
-            display:   flex;
-            justify-content:   space-between;
-            margin-bottom:   15px;
-            padding-bottom:   10px;
-            border-bottom:   1px solid var(--card-border);
-        }
-
-        .order-id {
-            font-weight:   bold;
-            color:   var(--accent);
-        }
-
-        .order-date {
-            color:   #aaa;
-            font-size:   0.9rem;
-        }
-
-        .order-item {
-            margin-bottom:   10px;
-            display:   flex;
-            justify-content:   space-between;
-        }
-
-        .order-total {
-            margin-top:   15px;
-            padding-top:   10px;
-            border-top:   1px solid var(--card-border);
-            font-weight:   bold;
-            color:   var(--accent);
-        }
-
-        .order-status {
-            padding:   5px 10px;
-            border-radius:   20px;
-            font-size:   0.9rem;
-            font-weight:   bold;
-            text-align:   center;
-            margin-top:   10px;
-        }
-
-        .status-submitted {
-            background:   #1e90ff;
-            color:   white;
-        }
-
-        .status-progress {
-            background:   #ffa500;
-            color:   white;
-        }
-
-        .status-completed {
-            background:   #32cd32;
-            color:   white;
-        }
-
-        .status-refunded {
-            background:   #ff4500;
-            color:   white;
-        }
-
-        .status-select {
-            width:   100%;
-            padding:   8px;
-            border-radius:   5px;
-            background:   rgba(0,   0,   0,   0.3);
-            color:   white;
-            border:   1px solid var(--card-border);
+        .action-btn:hover {
+            background:  rgba(138,  43,  226,  0.4);
         }
 
         /* Admin Panel Styles */
         .admin-panel {
-            background:   var(--admin-bg);
-            border-radius:   20px;
-            padding:   30px;
-            margin-top:   40px;
-            border:   1px solid var(--card-border);
-            box-shadow:   0 10px 30px rgba(0,   0,   0,   0.3);
-            backdrop-filter:   blur(10px);
+            background:  var(--admin-bg);
+            border-radius:  20px;
+            padding:  30px;
+            margin-top:  40px;
+            border:  1px solid var(--card-border);
+            box-shadow:  0 10px 30px rgba(0,  0,  0,  0.3);
+            backdrop-filter:  blur(10px);
         }
 
         .admin-panel h2 {
-            color:   var(--accent);
-            margin-bottom:   25px;
-            font-size:   2.2rem;
-            text-align:   center;
+            color:  var(--accent);
+            margin-bottom:  25px;
+            font-size:  2.2rem;
+            text-align:  center;
         }
 
         .admin-controls {
-            display:   grid;
-            grid-template-columns:   repeat(auto-fit,   minmax(300px,   1fr));
-            gap:   25px;
-            margin-bottom:   30px;
+            display:  grid;
+            grid-template-columns:  repeat(auto-fit,  minmax(300px,  1fr));
+            gap:  25px;
+            margin-bottom:  30px;
         }
 
         .admin-card {
-            background:   rgba(0,   0,   0,   0.4);
-            border-radius:   15px;
-            padding:   25px;
-            border:   1px solid var(--card-border);
+            background:  rgba(0,  0,  0,  0.4);
+            border-radius:  15px;
+            padding:  25px;
+            border:  1px solid var(--card-border);
         }
 
         .admin-card h3 {
-            color:   var(--accent);
-            margin-bottom:   15px;
-            font-size:   1.6rem;
+            color:  var(--accent);
+            margin-bottom:  15px;
+            font-size:  1.6rem;
         }
 
-        .form-group input,   .form-group select {
-            width:   100%;
-            padding:   12px;
-            border-radius:   8px;
-            border:   1px solid rgba(138,   43,   226,   0.4);
-            background:   rgba(0,   0,   0,   0.3);
-            color:   white;
-            font-size:   1rem;
-            margin-bottom:   15px;
+        .form-group input,  .form-group select {
+            width:  100%;
+            padding:  12px;
+            border-radius:  8px;
+            border:  1px solid rgba(138,  43,  226,  0.4);
+            background:  rgba(0,  0,  0,  0.3);
+            color:  white;
+            font-size:  1rem;
+            margin-bottom:  15px;
         }
 
         .admin-btn {
-            width:   100%;
-            padding:   12px;
-            background:   linear-gradient(90deg,   var(--primary),   var(--secondary));
-            color:   white;
-            border:   none;
-            border-radius:   8px;
-            font-weight:   600;
-            cursor:   pointer;
-            transition:   all 0.3s ease;
-            margin-top:   10px;
+            width:  100%;
+            padding:  12px;
+            background:  linear-gradient(90deg,  var(--primary),  var(--secondary));
+            color:  white;
+            border:  none;
+            border-radius:  8px;
+            font-weight:  600;
+            cursor:  pointer;
+            transition:  all 0.3s ease;
+            margin-top:  10px;
         }
 
         .admin-btn:hover {
-            background:   linear-gradient(90deg,   var(--primary-dark),   var(--secondary));
-            transform:   translateY(-2px);
+            background:  linear-gradient(90deg,  var(--primary-dark),  var(--secondary));
+            transform:  translateY(-2px);
         }
 
-        .orders-table {
-            width:   100%;
-            border-collapse:   collapse;
-            margin-top:   20px;
-            background:   rgba(0,   0,   0,   0.3);
-            border-radius:   10px;
-            overflow:   hidden;
+        .users-table {
+            width:  100%;
+            border-collapse:  collapse;
+            margin-top:  20px;
+            background:  rgba(0,  0,  0,  0.3);
+            border-radius:  10px;
+            overflow:  hidden;
         }
 
-        .orders-table th,   .orders-table td {
-            padding:   15px;
-            text-align:   left;
-            border-bottom:   1px solid var(--card-border);
+        .users-table th,  .users-table td {
+            padding:  15px;
+            text-align:  left;
+            border-bottom:  1px solid var(--card-border);
         }
 
-        .orders-table th {
-            background:   rgba(106,   27,   154,   0.5);
-            color:   var(--accent);
+        .users-table th {
+            background:  rgba(106,  27,  154,  0.5);
+            color:  var(--accent);
         }
 
-        .orders-table tr:last-child td {
-            border-bottom:   none;
+        .users-table tr:last-child td {
+            border-bottom:  none;
         }
 
-        .orders-table tr:hover {
-            background:   rgba(138,   43,   226,   0.1);
+        .users-table tr:hover {
+            background:  rgba(138,  43,  226,  0.1);
         }
 
         footer {
-            text-align:   center;
-            padding:   40px 0;
-            margin-top:   60px;
-            border-top:   1px solid var(--card-border);
+            text-align:  center;
+            padding:  40px 0;
+            margin-top:  60px;
+            border-top:  1px solid var(--card-border);
         }
 
         footer p {
-            font-size:   1.1rem;
-            color:   #aaa;
+            font-size:  1.1rem;
+            color:  #aaa;
         }
 
         .notification {
-            position:   fixed;
-            top:   25px;
-            right:   25px;
-            padding:   20px 30px;
-            border-radius:   10px;
-            background:   var(--primary);
-            color:   white;
-            font-weight:   600;
-            box-shadow:   0 10px 25px rgba(0,   0,   0,   0.3);
-            transform:   translateX(200%);
-            transition:   transform 0.4s ease;
-            z-index:   1000;
-            display:   flex;
-            align-items:   center;
-            gap:   15px;
+            position:  fixed;
+            top:  25px;
+            right:  25px;
+            padding:  20px 30px;
+            border-radius:  10px;
+            background:  var(--primary);
+            color:  white;
+            font-weight:  600;
+            box-shadow:  0 10px 25px rgba(0,  0,  0,  0.3);
+            transform:  translateX(200%);
+            transition:  transform 0.4s ease;
+            z-index:  1000;
+            display:  flex;
+            align-items:  center;
+            gap:  15px;
         }
 
         .notification.show {
-            transform:   translateX(0);
+            transform:  translateX(0);
         }
 
         .user-info-display {
-            display:   flex;
-            align-items:   center;
-            gap:   15px;
-            background:   rgba(0,   0,   0,   0.4);
-            padding:   10px 20px;
-            border-radius:   30px;
-            border:   1px solid var(--card-border);
+            display:  flex;
+            align-items:  center;
+            gap:  15px;
+            background:  rgba(0,  0,  0,  0.4);
+            padding:  10px 20px;
+            border-radius:  30px;
+            border:  1px solid var(--card-border);
         }
 
         .user-info-display span {
-            font-weight:   600;
-            color:   var(--accent);
+            font-weight:  600;
+            color:  var(--accent);
         }
 
         /* Default item image */
         .default-item-image {
-            background:   linear-gradient(135deg,   #8A2BE2,   #FF4500);
-            display:   flex;
-            align-items:   center;
-            justify-content:   center;
-            color:   white;
-            font-size:   2rem;
+            background:  linear-gradient(135deg,  #8A2BE2,  #FF4500);
+            display:  flex;
+            align-items:  center;
+            justify-content:  center;
+            color:  white;
+            font-size:  2rem;
         }
 
-        /* EBucks Styles */
-        .ebucks-section {
-            background:   var(--card-bg);
-            border-radius:   20px;
-            padding:   35px;
-            margin-bottom:   40px;
-            text-align:   center;
-            border:   1px solid var(--card-border);
-            box-shadow:   0 10px 30px rgba(0,   0,   0,   0.3);
-            backdrop-filter:   blur(10px);
+        /* Login Info */
+        .login-info {
+            font-size:  0.9rem;
+            color:  #aaa;
+            margin-top:  5px;
         }
 
-        .ebucks-section h2 {
-            font-size:   2.3rem;
-            margin-bottom:   20px;
-            color:   var(--accent);
+        /* New Navigation Design */
+        .nav-container {
+            display:  flex;
+            justify-content:  space-between;
+            align-items:  center;
+            width:  100%;
+            background:  rgba(26,  26,  46,  0.9);
+            border-radius:  30px;
+            padding:  10px;
+            box-shadow:  0 5px 15px rgba(0,  0,  0,  0.3);
         }
 
-        .ebucks {
-            font-size:   3rem;
-            font-weight:   700;
-            color:   var(--accent);
-            text-shadow:   0 0 15px rgba(255,   215,   0,   0.5);
-            display:   flex;
-            align-items:   center;
-            justify-content:   center;
-            gap:   15px;
+        .nav-links {
+            display:  flex;
+            gap:  10px;
+        }
+
+        .nav-link {
+            padding:  12px 25px;
+            border-radius:  25px;
+            text-decoration:  none;
+            color:  var(--light);
+            font-weight:  500;
+            transition:  all 0.3s ease;
+            position:  relative;
+            overflow:  hidden;
+        }
+
+        .nav-link::before {
+            content:  "";
+            position:  absolute;
+            top:  0;
+            left:  0;
+            width:  100%;
+            height:  100%;
+            background:  linear-gradient(90deg,  var(--primary),  var(--secondary));
+            z-index:  -1;
+            border-radius:  25px;
+            transform:  scaleX(0);
+            transform-origin:  right;
+            transition:  transform 0.4s ease;
+        }
+
+        .nav-link:hover::before,  .nav-link.active::before {
+            transform:  scaleX(1);
+            transform-origin:  left;
+        }
+
+        .nav-link:hover,  .nav-link.active {
+            color:  white;
         }
 
         /* Responsive Design */
-        @media (max-width:   992px) {
+        @media (max-width:  992px) {
             .hero h2 {
-                font-size:   3rem;
+                font-size:  3rem;
             }
             
             .hero p {
-                font-size:   1.2rem;
+                font-size:  1.2rem;
             }
             
             .features {
-                grid-template-columns:   repeat(auto-fit,   minmax(280px,   1fr));
+                grid-template-columns:  repeat(auto-fit,  minmax(280px,  1fr));
             }
         }
 
-        @media (max-width:   768px) {
+        @media (max-width:  768px) {
             header {
-                flex-direction:   column;
-                gap:   20px;
+                flex-direction:  column;
+                gap:  20px;
             }
             
             nav ul {
-                flex-wrap:   wrap;
-                justify-content:   center;
+                flex-wrap:  wrap;
+                justify-content:  center;
             }
             
             .hero {
-                padding:   60px 20px;
+                padding:  60px 20px;
             }
             
             .hero h2 {
-                font-size:   2.5rem;
+                font-size:  2.5rem;
             }
             
             .hero p {
-                font-size:   1.1rem;
+                font-size:  1.1rem;
             }
             
             .login-container {
-                padding:   30px 20px;
-                margin:   40px auto;
+                padding:  30px 20px;
+                margin:  40px auto;
             }
             
             .login-container h2 {
-                font-size:   2.2rem;
+                font-size:  2.2rem;
+            }
+            
+            .nav-container {
+                flex-direction:  column;
+                gap:  10px;
+            }
+            
+            .nav-links {
+                flex-wrap:  wrap;
+                justify-content:  center;
             }
         }
 
-        @media (max-width:   576px) {
+        @media (max-width:  576px) {
             .logo h1 {
-                font-size:   2rem;
+                font-size:  2rem;
             }
             
             .logo i {
-                font-size:   2.2rem;
+                font-size:  2.2rem;
             }
             
             .hero h2 {
-                font-size:   2rem;
+                font-size:  2rem;
             }
             
             .hero p {
-                font-size:   1rem;
+                font-size:  1rem;
             }
             
-            .balance {
-                font-size:   2.2rem;
-            }
-            
-            .shop-items {
-                grid-template-columns:   1fr;
+            .community-container {
+                grid-template-columns:  1fr;
             }
             
             .remember-forgot {
-                flex-direction:   column;
-                align-items:   flex-start;
+                flex-direction:  column;
+                align-items:  flex-start;
             }
         }
 
         /* Dragon Animation */
         .dragon-animation {
-            position:   absolute;
-            top:   20%;
-            right:   10%;
-            font-size:   5rem;
-            color:   var(--accent);
-            animation:   fly 15s infinite linear;
-            z-index:   -1;
-            opacity:   0.3;
+            position:  absolute;
+            top:  20%;
+            right:  10%;
+            font-size:  5rem;
+            color:  var(--accent);
+            animation:  fly 15s infinite linear;
+            z-index:  -1;
+            opacity:  0.3;
         }
 
         @keyframes fly {
-            0% { transform:   translateX(0) translateY(0) rotate(0deg); }
-            25% { transform:   translateX(-100px) translateY(-50px) rotate(10deg); }
-            50% { transform:   translateX(-200px) translateY(0) rotate(0deg); }
-            75% { transform:   translateX(-100px) translateY(50px) rotate(-10deg); }
-            100% { transform:   translateX(0) translateY(0) rotate(0deg); }
+            0% { transform:  translateX(0) translateY(0) rotate(0deg); }
+            25% { transform:  translateX(-100px) translateY(-50px) rotate(10deg); }
+            50% { transform:  translateX(-200px) translateY(0) rotate(0deg); }
+            75% { transform:  translateX(-100px) translateY(50px) rotate(-10deg); }
+            100% { transform:  translateX(0) translateY(0) rotate(0deg); }
         }
 
         /* Fire Animation */
         .fire {
-            position:   absolute;
-            bottom:   0;
-            left:   0;
-            width:   100%;
-            height:   100px;
-            background:   linear-gradient(to top,   rgba(255,   69,   0,   0.7),   transparent);
-            z-index:   -1;
-            opacity:   0.5;
+            position:  absolute;
+            bottom:  0;
+            left:  0;
+            width:  100%;
+            height:  100px;
+            background:  linear-gradient(to top,  rgba(255,  69,  0,  0.7),  transparent);
+            z-index:  -1;
+            opacity:  0.5;
         }
 
         /* Glowing Dragon */
         .glowing-dragon {
-            position:   absolute;
-            top:   10%;
-            left:   5%;
-            font-size:   8rem;
-            color:   var(--accent);
-            text-shadow:   0 0 30px var(--accent),   0 0 60px var(--secondary);
-            animation:   glow 3s infinite alternate;
-            z-index:   -1;
-            opacity:   0.2;
+            position:  absolute;
+            top:  10%;
+            left:  5%;
+            font-size:  8rem;
+            color:  var(--accent);
+            text-shadow:  0 0 30px var(--accent),  0 0 60px var(--secondary);
+            animation:  glow 3s infinite alternate;
+            z-index:  -1;
+            opacity:  0.2;
         }
 
         @keyframes glow {
-            0% { text-shadow:   0 0 30px var(--accent),   0 0 60px var(--secondary); }
-            100% { text-shadow:   0 0 50px var(--accent),   0 0 100px var(--secondary); }
+            0% { text-shadow:  0 0 30px var(--accent),  0 0 60px var(--secondary); }
+            100% { text-shadow:  0 0 50px var(--accent),  0 0 100px var(--secondary); }
         }
 
         /* Loading Spinner */
         .spinner {
-            display:   none;
-            position:   fixed;
-            top:   50%;
-            left:   50%;
-            transform:   translate(-50%,   -50%);
-            z-index:   9999;
+            display:  none;
+            position:  fixed;
+            top:  50%;
+            left:  50%;
+            transform:  translate(-50%,  -50%);
+            z-index:  9999;
         }
 
         .spinner-border {
-            display:   inline-block;
-            width:   3rem;
-            height:   3rem;
-            vertical-align:   text-bottom;
-            border:   0.25em solid currentColor;
-            border-right-color:   transparent;
-            border-radius:   50%;
-            animation:   spinner-border 0.75s linear infinite;
+            display:  inline-block;
+            width:  3rem;
+            height:  3rem;
+            vertical-align:  text-bottom;
+            border:  0.25em solid currentColor;
+            border-right-color:  transparent;
+            border-radius:  50%;
+            animation:  spinner-border 0.75s linear infinite;
         }
 
         @keyframes spinner-border {
-            to { transform:   rotate(360deg); }
+            to { transform:  rotate(360deg); }
         }
 
         /* User Management */
         .user-management {
-            margin-top:   30px;
+            margin-top:  30px;
         }
 
         .user-list {
-            max-height:   400px;
-            overflow-y:   auto;
-            margin-top:   20px;
+            max-height:  400px;
+            overflow-y:  auto;
+            margin-top:  20px;
         }
 
         .user-item {
-            display:   flex;
-            justify-content:   space-between;
-            align-items:   center;
-            padding:   15px;
-            background:   rgba(0,   0,   0,   0.3);
-            border-radius:   10px;
-            margin-bottom:   10px;
-            border:   1px solid var(--card-border);
+            display:  flex;
+            justify-content:  space-between;
+            align-items:  center;
+            padding:  15px;
+            background:  rgba(0,  0,  0,  0.3);
+            border-radius:  10px;
+            margin-bottom:  10px;
+            border:  1px solid var(--card-border);
         }
 
         .user-info {
-            flex:   1;
+            flex:  1;
         }
 
         .user-actions {
-            display:   flex;
-            gap:   10px;
+            display:  flex;
+            gap:  10px;
         }
 
         .ban-btn {
-            background:   #ff3b30;
-            color:   white;
-            border:   none;
-            padding:   8px 15px;
-            border-radius:   5px;
-            cursor:   pointer;
+            background:  #ff3b30;
+            color:  white;
+            border:  none;
+            padding:  8px 15px;
+            border-radius:  5px;
+            cursor:  pointer;
         }
 
         .unban-btn {
-            background:   #32cd32;
-            color:   white;
-            border:   none;
-            padding:   8px 15px;
-            border-radius:   5px;
-            cursor:   pointer;
+            background:  #32cd32;
+            color:  white;
+            border:  none;
+            padding:  8px 15px;
+            border-radius:  5px;
+            cursor:  pointer;
         }
 
         .role-badge {
-            padding:   3px 8px;
-            border-radius:   10px;
-            font-size:   0.8rem;
-            font-weight:   bold;
-            margin-left:   10px;
+            padding:  3px 8px;
+            border-radius:  10px;
+            font-size:  0.8rem;
+            font-weight:  bold;
+            margin-left:  10px;
         }
 
         .role-owner {
-            background:   #9400d3;
-            color:   white;
+            background:  #9400d3;
+            color:  white;
         }
 
         .role-admin {
-            background:   #ff4500;
-            color:   white;
+            background:  #ff4500;
+            color:  white;
         }
 
         .role-elite {
-            background:   #1e90ff;
-            color:   white;
+            background:  #1e90ff;
+            color:  white;
         }
 
         .role-premium {
-            background:   #32cd32;
-            color:   white;
+            background:  #32cd32;
+            color:  white;
         }
 
         .role-moderator {
-            background:   #ffa500;
-            color:   white;
+            background:  #ffa500;
+            color:  white;
         }
         
         .role-staff {
-            background:   #8a2be2;
-            color:   white;
+            background:  #8a2be2;
+            color:  white;
         }
         
         .role-member {
-            background:   #4682b4;
-            color:   white;
+            background:  #4682b4;
+            color:  white;
         }
         
         /* Admin Management */
         .admin-management {
-            margin-top:   30px;
+            margin-top:  30px;
         }
         
         .admin-list {
-            max-height:   300px;
-            overflow-y:   auto;
-            margin-top:   20px;
+            max-height:  300px;
+            overflow-y:  auto;
+            margin-top:  20px;
         }
         
         .admin-item {
-            display:   flex;
-            justify-content:   space-between;
-            align-items:   center;
-            padding:   15px;
-            background:   rgba(0,   0,   0,   0.3);
-            border-radius:   10px;
-            margin-bottom:   10px;
-            border:   1px solid var(--card-border);
+            display:  flex;
+            justify-content:  space-between;
+            align-items:  center;
+            padding:  15px;
+            background:  rgba(0,  0,  0,  0.3);
+            border-radius:  10px;
+            margin-bottom:  10px;
+            border:  1px solid var(--card-border);
         }
         
         .admin-actions {
-            display:   flex;
-            gap:   10px;
+            display:  flex;
+            gap:  10px;
         }
         
         .remove-admin-btn {
-            background:   #ff3b30;
-            color:   white;
-            border:   none;
-            padding:   8px 15px;
-            border-radius:   5px;
-            cursor:   pointer;
+            background:  #ff3b30;
+            color:  white;
+            border:  none;
+            padding:  8px 15px;
+            border-radius:  5px;
+            cursor:  pointer;
         }
         
         .add-admin-form {
-            background:   rgba(0,   0,   0,   0.4);
-            border-radius:   15px;
-            padding:   25px;
-            border:   1px solid var(--card-border);
-            margin-top:   30px;
+            background:  rgba(0,  0,  0,  0.4);
+            border-radius:  15px;
+            padding:  25px;
+            border:  1px solid var(--card-border);
+            margin-top:  30px;
         }
         
         .add-admin-form h3 {
-            color:   var(--accent);
-            margin-bottom:   15px;
-            font-size:   1.6rem;
+            color:  var(--accent);
+            margin-bottom:  15px;
+            font-size:  1.6rem;
         }
         
         /* Role Management Styles */
         .role-management {
-            margin-top:   30px;
+            margin-top:  30px;
         }
         
         .role-form {
-            background:   rgba(0,   0,   0,   0.4);
-            border-radius:   15px;
-            padding:   25px;
-            border:   1px solid var(--card-border);
-            margin-top:   20px;
+            background:  rgba(0,  0,  0,  0.4);
+            border-radius:  15px;
+            padding:  25px;
+            border:  1px solid var(--card-border);
+            margin-top:  20px;
         }
         
         .role-form h3 {
-            color:   var(--accent);
-            margin-bottom:   15px;
-            font-size:   1.6rem;
+            color:  var(--accent);
+            margin-bottom:  15px;
+            font-size:  1.6rem;
         }
         
         .role-select {
-            width:   100%;
-            padding:   12px;
-            border-radius:   8px;
-            border:   1px solid rgba(138,   43,   226,   0.4);
-            background:   rgba(0,   0,   0,   0.3);
-            color:   white;
-            font-size:   1rem;
-            margin-bottom:   15px;
+            width:  100%;
+            padding:  12px;
+            border-radius:  8px;
+            border:  1px solid rgba(138,  43,  226,  0.4);
+            background:  rgba(0,  0,  0,  0.3);
+            color:  white;
+            font-size:  1rem;
+            margin-bottom:  15px;
         }
         
-        /* Category Styles */
-        .category-filter {
-            display:   flex;
-            justify-content:   center;
-            flex-wrap:   wrap;
-            gap:   10px;
-            margin-bottom:   30px;
+        /* Shop Styles */
+        .shop-container {
+            display:  grid;
+            grid-template-columns:  repeat(auto-fill,  minmax(280px,  1fr));
+            gap:  25px;
+            margin-top:  20px;
         }
-        
-        .category-btn {
-            padding:   10px 20px;
-            background:   rgba(138,   43,   226,   0.2);
-            color:   var(--light);
-            border:   1px solid var(--card-border);
-            border-radius:   30px;
-            cursor:   pointer;
-            transition:   all 0.3s ease;
+
+        .shop-item {
+            background:  var(--card-bg);
+            border-radius:  15px;
+            padding:  25px;
+            border:  1px solid var(--card-border);
+            box-shadow:  0 8px 20px rgba(0,  0,  0,  0.2);
+            backdrop-filter:  blur(5px);
+            transition:  all 0.3s ease;
         }
-        
-        .category-btn.active,   .category-btn:hover {
-            background:   linear-gradient(90deg,   var(--primary),   var(--secondary));
-            color:   white;
+
+        .shop-item:hover {
+            transform:  translateY(-5px);
+            border-color:  rgba(138,  43,  226,  0.6);
         }
-        
-        /* Page Selector Grouping */
-        .page-selector-group {
-            display:   flex;
-            flex-wrap:   wrap;
-            gap:   15px;
-            margin-bottom:   20px;
-            padding:   15px;
-            background:   rgba(0,   0,   0,   0.3);
-            border-radius:   15px;
-            border:   1px solid var(--card-border);
+
+        .item-image {
+            width:  100%;
+            height:  180px;
+            border-radius:  10px;
+            overflow:  hidden;
+            margin-bottom:  15px;
+            background:  rgba(138,  43,  226,  0.2);
+            display:  flex;
+            align-items:  center;
+            justify-content:  center;
+            border:  2px solid rgba(138,  43,  226,  0.4);
         }
-        
-        .page-selector-group h3 {
-            color:   var(--accent);
-            width:   100%;
-            margin-bottom:   10px;
+
+        .item-image img {
+            width:  100%;
+            height:  100%;
+            object-fit:  cover;
         }
-        
-        .item-category {
-            font-size:   0.9rem;
-            color:   #aaa;
-            margin-top:   5px;
-            text-transform:   uppercase;
-            letter-spacing:   1px;
+
+        .item-info h3 {
+            color:  var(--accent);
+            margin-bottom:  10px;
+            font-size:  1.5rem;
         }
-        
-        /* Category Management */
-        .category-management {
-            margin-top:   30px;
+
+        .item-description {
+            color:  #d0d0d0;
+            margin-bottom:  15px;
+            line-height:  1.5;
         }
-        
-        .category-form {
-            background:   rgba(0,   0,   0,   0.4);
-            border-radius:   15px;
-            padding:   25px;
-            border:   1px solid var(--card-border);
-            margin-top:   20px;
+
+        .item-price {
+            font-size:  1.3rem;
+            font-weight:  bold;
+            color:  var(--accent);
+            margin-bottom:  15px;
         }
-        
-        .category-form h3 {
-            color:   var(--accent);
-            margin-bottom:   15px;
-            font-size:   1.6rem;
+
+        .item-quantity {
+            display:  flex;
+            align-items:  center;
+            margin-bottom:  15px;
         }
-        
-        .category-item {
-            display:   flex;
-            align-items:   center;
-            gap:   15px;
-            padding:   10px;
-            background:   rgba(0,   0,   0,   0.3);
-            border-radius:   10px;
-            margin-bottom:   10px;
+
+        .item-quantity label {
+            margin-right:  10px;
+            color:  #e0e0e0;
         }
-        
-        .category-item img {
-            width:   50px;
-            height:   50px;
-            border-radius:   50%;
-            object-fit:   cover;
+
+        .quantity-input {
+            width:  70px;
+            padding:  8px;
+            border-radius:  8px;
+            border:  1px solid rgba(138,  43,  226,  0.4);
+            background:  rgba(0,  0,  0,  0.3);
+            color:  white;
+            text-align:  center;
         }
-        
-        .category-item input {
-            flex:   1;
-            padding:   8px;
-            border-radius:   5px;
-            border:   1px solid rgba(138,   43,   226,   0.4);
-            background:   rgba(0,   0,   0,   0.3);
-            color:   white;
+
+        .buy-btn {
+            width:  100%;
+            padding:  12px;
+            background:  linear-gradient(90deg,  var(--primary),  var(--secondary));
+            color:  white;
+            border:  none;
+            border-radius:  8px;
+            font-weight:  600;
+            cursor:  pointer;
+            transition:  all 0.3s ease;
         }
-        
-        .category-item button {
-            padding:   8px 15px;
-            background:   #ff3b30;
-            color:   white;
-            border:   none;
-            border-radius:   5px;
-            cursor:   pointer;
+
+        .buy-btn:hover {
+            background:  linear-gradient(90deg,  var(--primary-dark),  var(--secondary));
+            transform:  translateY(-2px);
         }
-        
-        /* Login Info */
-        .login-info {
-            font-size:   0.9rem;
-            color:   #aaa;
-            margin-top:   5px;
+
+        /* Orders Styles */
+        .order-item {
+            background:  rgba(0,  0,  0,  0.4);
+            border-radius:  15px;
+            padding:  20px;
+            border:  1px solid var(--card-border);
+            margin-bottom:  20px;
+            backdrop-filter:  blur(5px);
+        }
+
+        .order-header {
+            display:  flex;
+            justify-content:  space-between;
+            margin-bottom:  15px;
+            padding-bottom:  10px;
+            border-bottom:  1px solid var(--card-border);
+        }
+
+        .order-id {
+            font-weight:  bold;
+            color:  var(--accent);
+        }
+
+        .order-date {
+            color:  #aaa;
+            font-size:  0.9rem;
+        }
+
+        .order-details {
+            margin-bottom:  15px;
+        }
+
+        .order-item-info {
+            display:  flex;
+            align-items:  center;
+            margin-bottom:  10px;
+        }
+
+        .order-item-image {
+            width:  60px;
+            height:  60px;
+            border-radius:  8px;
+            overflow:  hidden;
+            margin-right:  15px;
+            background:  rgba(138,  43,  226,  0.2);
+            border:  1px solid rgba(138,  43,  226,  0.4);
+        }
+
+        .order-item-image img {
+            width:  100%;
+            height:  100%;
+            object-fit:  cover;
+        }
+
+        .order-item-name {
+            font-weight:  bold;
+            color:  white;
+        }
+
+        .order-quantity {
+            color:  #aaa;
+            margin-left:  10px;
+        }
+
+        .order-total {
+            font-size:  1.2rem;
+            font-weight:  bold;
+            color:  var(--accent);
+            margin:  15px 0;
+        }
+
+        .order-status {
+            padding:  5px 10px;
+            border-radius:  20px;
+            font-weight:  bold;
+            display:  inline-block;
+        }
+
+        .status-pending {
+            background:  #ffa500;
+            color:  white;
+        }
+
+        .status-completed {
+            background:  #32cd32;
+            color:  white;
+        }
+
+        .status-cancelled {
+            background:  #ff3b30;
+            color:  white;
+        }
+
+        .chat-btn {
+            background:  rgba(138,  43,  226,  0.2);
+            color:  white;
+            border:  none;
+            padding:  8px 15px;
+            border-radius:  5px;
+            cursor:  pointer;
+            transition:  all 0.3s ease;
+            display:  flex;
+            align-items:  center;
+            gap:  5px;
+            margin-top:  10px;
+        }
+
+        .chat-btn:hover {
+            background:  rgba(138,  43,  226,  0.4);
+        }
+
+        /* Admin Shop Management */
+        .shop-management {
+            margin-top:  30px;
+        }
+
+        .add-item-form {
+            background:  rgba(0,  0,  0,  0.4);
+            border-radius:  15px;
+            padding:  25px;
+            border:  1px solid var(--card-border);
+            margin-top:  20px;
+        }
+
+        .add-item-form h3 {
+            color:  var(--accent);
+            margin-bottom:  15px;
+            font-size:  1.6rem;
+        }
+
+        .item-image-preview {
+            width:  100px;
+            height:  100px;
+            border-radius:  10px;
+            overflow:  hidden;
+            margin:  15px 0;
+            background:  rgba(138,  43,  226,  0.2);
+            border:  1px solid rgba(138,  43,  226,  0.4);
+            display:  flex;
+            align-items:  center;
+            justify-content:  center;
+        }
+
+        .item-image-preview img {
+            width:  100%;
+            height:  100%;
+            object-fit:  cover;
+        }
+
+        /* Order Management */
+        .order-management {
+            margin-top:  30px;
+        }
+
+        .order-management-item {
+            background:  rgba(0,  0,  0,  0.4);
+            border-radius:  15px;
+            padding:  20px;
+            border:  1px solid var(--card-border);
+            margin-bottom:  20px;
+            backdrop-filter:  blur(5px);
+        }
+
+        .order-actions {
+            display:  flex;
+            gap:  10px;
+            margin-top:  15px;
+        }
+
+        .status-btn {
+            padding:  8px 15px;
+            border-radius:  5px;
+            border:  none;
+            font-weight:  600;
+            cursor:  pointer;
+            transition:  all 0.3s ease;
+        }
+
+        .complete-btn {
+            background:  #32cd32;
+            color:  white;
+        }
+
+        .cancel-btn {
+            background:  #ff3b30;
+            color:  white;
+        }
+
+        /* Search Bar */
+        .search-bar {
+            display:  flex;
+            gap:  10px;
+            margin-bottom:  20px;
+        }
+
+        .search-bar input {
+            flex:  1;
+            padding:  12px;
+            border-radius:  8px;
+            border:  1px solid rgba(138,  43,  226,  0.4);
+            background:  rgba(0,  0,  0,  0.3);
+            color:  white;
+            font-size:  1rem;
+        }
+
+        .search-bar button {
+            padding:  12px 20px;
+            background:  linear-gradient(90deg,  var(--primary),  var(--secondary));
+            color:  white;
+            border:  none;
+            border-radius:  8px;
+            font-weight:  600;
+            cursor:  pointer;
+        }
+
+        .search-bar button:hover {
+            background:  linear-gradient(90deg,  var(--primary-dark),  var(--secondary));
+        }
+
+        /* Credits Display */
+        .credits-display {
+            display:  flex;
+            align-items:  center;
+            gap:  8px;
+            background:  rgba(0,  0,  0,  0.4);
+            padding:  8px 15px;
+            border-radius:  20px;
+            border:  1px solid var(--card-border);
+            margin-left:  15px;
+        }
+
+        .credits-display i {
+            color:  #32cd32;
+        }
+
+        .credits-amount {
+            font-weight:  600;
+            color:  #32cd32;
+        }
+
+        /* Chat Styles */
+        .chat-container {
+            background:  rgba(0,  0,  0,  0.4);
+            border-radius:  15px;
+            padding:  20px;
+            border:  1px solid var(--card-border);
+            margin-top:  20px;
+            max-height:  400px;
+            overflow-y:  auto;
+        }
+
+        .chat-message {
+            padding:  10px;
+            margin-bottom:  10px;
+            border-radius:  8px;
+            background:  rgba(138,  43,  226,  0.2);
+        }
+
+        .chat-message.admin {
+            background:  rgba(255,  69,  0,  0.2);
+            text-align:  right;
+        }
+
+        .chat-message .sender {
+            font-weight:  bold;
+            color:  var(--accent);
+        }
+
+        .chat-message .timestamp {
+            font-size:  0.8rem;
+            color:  #aaa;
+            margin-left:  10px;
+        }
+
+        .chat-input {
+            display:  flex;
+            gap:  10px;
+            margin-top:  15px;
+        }
+
+        .chat-input input {
+            flex:  1;
+            padding:  12px;
+            border-radius:  8px;
+            border:  1px solid rgba(138,  43,  226,  0.4);
+            background:  rgba(0,  0,  0,  0.3);
+            color:  white;
+            font-size:  1rem;
+        }
+
+        .chat-input button {
+            padding:  12px 20px;
+            background:  linear-gradient(90deg,  var(--primary),  var(--secondary));
+            color:  white;
+            border:  none;
+            border-radius:  8px;
+            font-weight:  600;
+            cursor:  pointer;
+        }
+
+        .chat-input button:hover {
+            background:  linear-gradient(90deg,  var(--primary-dark),  var(--secondary));
         }
     </style>
 </head>
@@ -1346,22 +1590,27 @@
                 <i class="fas fa-dragon"></i>
                 <h1>Dragon City</h1>
             </div>
-            <nav>
-                <ul>
-                    <li><a href="#" class="nav-link active" data-page="main">Home</a></li>
-                    <li><a href="#" class="nav-link" data-page="login" id="loginLink">Login</a></li>
-                    <li><a href="#" class="nav-link" data-page="shop" id="shopLink" style="display:   none;">Shop</a></li>
-                    <li><a href="#" class="nav-link" data-page="orders" id="ordersLink" style="display:   none;">Orders</a></li>
-                    <li><a href="#" class="nav-link" data-page="admin" id="adminLink" style="display:   none;">Admin</a></li>
-                </ul>
-            </nav>
-            <div class="auth-buttons">
-                <button class="btn btn-login" id="loginBtn">Login</button>
-                <button class="btn btn-signup" id="signupBtn">Sign Up</button>
-                <div class="user-info-display" id="userInfo" style="display:   none;">
-                    <span id="userEmail"></span>
-                    <span id="userRole" class="role-badge"></span>
-                    <button class="btn btn-login" id="logoutBtn">Logout</button>
+            <div class="nav-container">
+                <div class="nav-links">
+                    <a href="#" class="nav-link active" data-page="main">Home</a>
+                    <a href="#" class="nav-link" data-page="login" id="loginLink">Login</a>
+                    <a href="#" class="nav-link" data-page="community" id="communityLink" style="display:  none;">Community</a>
+                    <a href="#" class="nav-link" data-page="shop" id="shopLink" style="display:  none;">Shop</a>
+                    <a href="#" class="nav-link" data-page="orders" id="ordersLink" style="display:  none;">Orders</a>
+                    <a href="#" class="nav-link" data-page="admin" id="adminLink" style="display:  none;">Admin</a>
+                </div>
+                <div class="auth-buttons">
+                    <button class="btn btn-login" id="loginBtn">Login</button>
+                    <button class="btn btn-signup" id="signupBtn">Sign Up</button>
+                    <div class="user-info-display" id="userInfo" style="display:  none;">
+                        <span id="userEmail"></span>
+                        <span id="userRole" class="role-badge"></span>
+                        <div class="credits-display">
+                            <i class="fas fa-coins"></i>
+                            <span id="userCredits" class="credits-amount">$0</span>
+                        </div>
+                        <button class="btn btn-login" id="logoutBtn">Logout</button>
+                    </div>
                 </div>
             </div>
         </header>
@@ -1370,7 +1619,7 @@
         <div id="main-page" class="page active-page">
             <div class="hero">
                 <h2>Welcome to Dragon City Enjoyer</h2>
-                <p>Your ultimate destination for all things Dragon City! Connect with fellow dragon trainers,   discover new strategies,   and enhance your gameplay experience.</p>
+                <p>Your ultimate destination for all things Dragon City! Connect with fellow dragon trainers,  discover new strategies,  and enhance your gameplay experience.</p>
                 <button class="btn btn-signup" id="heroSignupBtn">Join Our Community</button>
             </div>
 
@@ -1464,28 +1713,34 @@
             </div>
         </div>
 
+        <!-- Community Page -->
+        <div id="community-page" class="page">
+            <div class="community-section">
+                <h2>Dragon City Community</h2>
+                
+                <div class="post-form">
+                    <h3>Share Your Experience</h3>
+                    <div class="form-group">
+                        <textarea id="postContent" placeholder="Share your dragon breeding tips,  battle strategies,  or ask questions..."></textarea>
+                    </div>
+                    <button class="post-btn" id="submitPost">Post to Community</button>
+                </div>
+                
+                <div class="community-container" id="communityPosts">
+                    <!-- Community posts will be loaded here -->
+                </div>
+            </div>
+        </div>
+
         <!-- Shop Page -->
         <div id="shop-page" class="page">
-            <div class="shop-container">
-                <div class="balance-section">
-                    <h2>Your Balance</h2>
-                    <div class="balance" id="userBalance">$0.00 <i class="fas fa-dollar-sign"></i></div>
+            <div class="container">
+                <h2>Dragon City Shop</h2>
+                <div class="search-bar">
+                    <input type="text" id="searchInput" placeholder="Search items...">
+                    <button id="searchBtn"><i class="fas fa-search"></i> Search</button>
                 </div>
-                
-                <div class="ebucks-section">
-                    <h2>Your EBucks</h2>
-                    <div class="ebucks" id="userEBucks">0 <i class="fas fa-medal"></i></div>
-                </div>
-                
-                <div class="category-filter" id="categoryFilter">
-                    <button class="category-btn active" data-category="all">All Items</button>
-                    <button class="category-btn" data-category="dragon">Dragons</button>
-                    <button class="category-btn" data-category="food">Food</button>
-                    <button class="category-btn" data-category="habitat">Habitats</button>
-                    <button class="category-btn" data-category="decor">Decorations</button>
-                </div>
-                
-                <div class="shop-items" id="shopItemsContainer">
+                <div class="shop-container" id="shopItems">
                     <!-- Shop items will be loaded here -->
                 </div>
             </div>
@@ -1493,27 +1748,18 @@
 
         <!-- Orders Page -->
         <div id="orders-page" class="page">
-            <div class="shop-container">
-                <h2>Your Orders</h2>
-                <div class="orders-container" id="userOrdersContainer">
-                    <!-- User orders will be loaded here -->
+            <div class="container">
+                <h2>My Orders</h2>
+                <div class="orders-container" id="ordersList">
+                    <!-- Orders will be loaded here -->
                 </div>
             </div>
         </div>
 
         <!-- Admin Page -->
         <div id="admin-page" class="page">
-            <div class="shop-container">
+            <div class="container">
                 <h2>Admin Panel</h2>
-                
-                <!-- Page Selector Grouping Container -->
-                <div class="page-selector-group">
-                    <h3>Page Management</h3>
-                    <button class="admin-btn" id="addItemPageBtn">Add Item</button>
-                    <button class="admin-btn" id="updateItemPageBtn">Update Item</button>
-                    <button class="admin-btn" id="deleteItemPageBtn">Delete Item</button>
-                    <button class="admin-btn" id="manageCategoriesBtn">Manage Categories</button>
-                </div>
                 
                 <!-- Role Management Section -->
                 <div class="admin-panel role-management">
@@ -1541,89 +1787,6 @@
                     </div>
                 </div>
                 
-                <div class="admin-panel">
-                    <h2>Manage Shop Items</h2>
-                    
-                    <div class="admin-controls">
-                        <div class="admin-card" id="addItemCard">
-                            <h3>Add New Item</h3>
-                            <div class="form-group">
-                                <input type="text" id="itemName" placeholder="Item Name">
-                            </div>
-                            <div class="form-group">
-                                <input type="number" id="itemPrice" placeholder="Price" step="0.01">
-                            </div>
-                            <div class="form-group">
-                                <select id="itemCategory" class="role-select">
-                                    <option value="">Select Category</option>
-                                    <option value="dragon">Dragons</option>
-                                    <option value="food">Food</option>
-                                    <option value="habitat">Habitats</option>
-                                    <option value="decor">Decorations</option>
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <input type="text" id="itemImage" placeholder="Image URL (optional)">
-                            </div>
-                            <button class="admin-btn" id="addItemBtn">Add Item</button>
-                        </div>
-                        
-                        <div class="admin-card" id="updateItemCard" style="display:   none;">
-                            <h3>Update Item</h3>
-                            <div class="form-group">
-                                <select id="updateItemId">
-                                    <option value="">Select Item</option>
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <input type="text" id="updateItemName" placeholder="New Name">
-                            </div>
-                            <div class="form-group">
-                                <input type="number" id="updateItemPrice" placeholder="New Price" step="0.01">
-                            </div>
-                            <div class="form-group">
-                                <select id="updateItemCategory" class="role-select">
-                                    <option value="">Select Category</option>
-                                    <option value="dragon">Dragons</option>
-                                    <option value="food">Food</option>
-                                    <option value="habitat">Habitats</option>
-                                    <option value="decor">Decorations</option>
-                                </select>
-                            </div>
-                            <button class="admin-btn" id="updateItemBtn">Update Item</button>
-                        </div>
-                        
-                        <div class="admin-card" id="deleteItemCard" style="display:   none;">
-                            <h3>Delete Item</h3>
-                            <div class="form-group">
-                                <select id="deleteItemId">
-                                    <option value="">Select Item</option>
-                                </select>
-                            </div>
-                            <button class="admin-btn" id="deleteItemBtn">Delete Item</button>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Category Management Section -->
-                <div class="admin-panel category-management" id="categoryManagementCard" style="display:   none;">
-                    <h2>Manage Categories</h2>
-                    <div class="category-form">
-                        <h3>Edit Categories</h3>
-                        <div id="categoriesContainer">
-                            <!-- Categories will be loaded here -->
-                        </div>
-                        <button class="admin-btn" id="addCategoryBtn">Add New Category</button>
-                    </div>
-                </div>
-                
-                <div class="admin-panel">
-                    <h2>Manage Orders</h2>
-                    <div class="orders-container" id="adminOrdersContainer">
-                        <!-- Orders table will be loaded here -->
-                    </div>
-                </div>
-                
                 <div class="admin-panel user-management">
                     <h2>User Management</h2>
                     <div class="user-list" id="userList">
@@ -1645,6 +1808,45 @@
                         <!-- Admin list will be loaded here -->
                     </div>
                 </div>
+                
+                <!-- Shop Management -->
+                <div class="admin-panel shop-management">
+                    <h2>Shop Management</h2>
+                    <div class="add-item-form">
+                        <h3>Add New Item</h3>
+                        <div class="form-group">
+                            <label for="itemName">Item Name</label>
+                            <input type="text" id="itemName" placeholder="Enter item name">
+                        </div>
+                        <div class="form-group">
+                            <label for="itemDescription">Description</label>
+                            <textarea id="itemDescription" placeholder="Enter item description"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="itemPrice">Price ($)</label>
+                            <input type="number" id="itemPrice" placeholder="Enter price" min="0" step="0.01">
+                        </div>
+                        <div class="form-group">
+                            <label for="itemImage">Image URL</label>
+                            <input type="text" id="itemImage" placeholder="Enter image URL">
+                        </div>
+                        <div class="item-image-preview" id="itemImagePreview">
+                            <i class="fas fa-image"></i>
+                        </div>
+                        <button class="admin-btn" id="addItemBtn">Add Item</button>
+                    </div>
+                    
+                    <div class="shop-items-list" id="adminShopItems">
+                        <!-- Shop items will be loaded here for admin management -->
+                    </div>
+                </div>
+
+                <div class="admin-panel order-management">
+                    <h2>Order Management</h2>
+                    <div class="order-management-list" id="adminOrdersList">
+                        <!-- Orders will be loaded here for admin management -->
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -1656,21 +1858,20 @@
 
     <footer>
         <div class="container">
-            <p>© 2023 Dragon City Enjoyer. All rights reserved. This site is not affiliated with Social Point or any of its partners.</p>
+            <p>© 2026 Dragon City Enjoyer. All rights reserved. This site is not affiliated with Social Point or any of its partners.</p>
         </div>
     </footer>
-
     <script>
         // Initialize Firebase
         const firebaseConfig = {
-            apiKey:   "AIzaSyC8VsAM7drgTfqHohgKFK-asuSMhAU0fS0",     
-            authDomain:   "dragon-city-enjoyer.firebaseapp.com",     
-            databaseURL:   "https://dragon-city-enjoyer-default-rtdb.firebaseio.com/",     
-            projectId:   "dragon-city-enjoyer",     
-            storageBucket:   "dragon-city-enjoyer.firebasestorage.app",     
-            messagingSenderId:   "146535472297",     
-            appId:   "1:  146535472297:  web:  961d91a902f03b6d93ddb8",     
-            measurementId:   "G-RDJ43CLWZ5"
+            apiKey:  "AIzaSyC8VsAM7drgTfqHohgKFK-asuSMhAU0fS0",                 
+            authDomain:  "dragon-city-enjoyer.firebaseapp.com",                 
+            databaseURL:  "https://dragon-city-enjoyer-default-rtdb.firebaseio.com/",                 
+            projectId:  "dragon-city-enjoyer",                 
+            storageBucket:  "dragon-city-enjoyer.firebasestorage.app",                 
+            messagingSenderId:  "146535472297",                 
+            appId:  "1: 146535472297: web: 961d91a902f03b6d93ddb8",                 
+            measurementId:  "G-RDJ43CLWZ5"
         };
 
         // Initialize Firebase
@@ -1690,6 +1891,8 @@
         const userInfo = document.getElementById('userInfo');
         const userEmail = document.getElementById('userEmail');
         const userRole = document.getElementById('userRole');
+        const userCredits = document.getElementById('userCredits');
+        const communityLink = document.getElementById('communityLink');
         const shopLink = document.getElementById('shopLink');
         const ordersLink = document.getElementById('ordersLink');
         const adminLink = document.getElementById('adminLink');
@@ -1703,19 +1906,11 @@
         // Form Elements
         const loginForm = document.getElementById('loginForm');
         const signupForm = document.getElementById('signupForm');
-        const shopItemsContainer = document.getElementById('shopItemsContainer');
-        const userOrdersContainer = document.getElementById('userOrdersContainer');
-        const adminOrdersContainer = document.getElementById('adminOrdersContainer');
-        const userList = document.getElementById('userList');
+        const communityPosts = document.getElementById('communityPosts');
+        const postContent = document.getElementById('postContent');
+        const submitPost = document.getElementById('submitPost');
 
         // Admin Elements
-        const addItemBtn = document.getElementById('addItemBtn');
-        const updateItemBtn = document.getElementById('updateItemBtn');
-        const deleteItemBtn = document.getElementById('deleteItemBtn');
-        const updateItemId = document.getElementById('updateItemId');
-        const deleteItemId = document.getElementById('deleteItemId');
-        
-        // Admin Management Elements
         const addAdminBtn = document.getElementById('addAdminBtn');
         const newAdminEmail = document.getElementById('newAdminEmail');
         const adminList = document.getElementById('adminList');
@@ -1725,44 +1920,46 @@
         const roleSelect = document.getElementById('roleSelect');
         const changeRoleBtn = document.getElementById('changeRoleBtn');
         
-        // Page Selector Elements
-        const addItemPageBtn = document.getElementById('addItemPageBtn');
-        const updateItemPageBtn = document.getElementById('updateItemPageBtn');
-        const deleteItemPageBtn = document.getElementById('deleteItemPageBtn');
-        const manageCategoriesBtn = document.getElementById('manageCategoriesBtn');
-        const addItemCard = document.getElementById('addItemCard');
-        const updateItemCard = document.getElementById('updateItemCard');
-        const deleteItemCard = document.getElementById('deleteItemCard');
-        const categoryManagementCard = document.getElementById('categoryManagementCard');
-        
-        // Category Filter Elements
-        const categoryFilter = document.getElementById('categoryFilter');
-        const categoryBtns = document.querySelectorAll('.category-btn');
-        const categoriesContainer = document.getElementById('categoriesContainer');
-        const addCategoryBtn = document.getElementById('addCategoryBtn');
+        // User Management Elements
+        const userList = document.getElementById('userList');
+
+        // Shop Elements
+        const shopItems = document.getElementById('shopItems');
+        const ordersList = document.getElementById('ordersList');
+        const searchInput = document.getElementById('searchInput');
+        const searchBtn = document.getElementById('searchBtn');
+
+        // Admin Shop Elements
+        const itemName = document.getElementById('itemName');
+        const itemDescription = document.getElementById('itemDescription');
+        const itemPrice = document.getElementById('itemPrice');
+        const itemImage = document.getElementById('itemImage');
+        const itemImagePreview = document.getElementById('itemImagePreview');
+        const addItemBtn = document.getElementById('addItemBtn');
+        const adminShopItems = document.getElementById('adminShopItems');
+        const adminOrdersList = document.getElementById('adminOrdersList');
 
         // Current user
         let currentUser = null;
         let userRoleData = null;
-        let activeCategory = 'all';
         
         // Default owner email
         const OWNER_EMAIL = "chonhouliu@gmail.com";
 
         // Show notification
-        function showNotification(message,   isError = false) {
+        function showNotification(message,  isError = false) {
             const icon = notification.querySelector('i');
             const text = notification.querySelector('span');
             
             text.textContent = message;
-            notification.style.background = isError ? '#ff3b30' :   'var(--primary)';
-            icon.className = isError ? 'fas fa-exclamation-circle' :   'fas fa-check-circle';
+            notification.style.background = isError ? '#ff3b30' :  'var(--primary)';
+            icon.className = isError ? 'fas fa-exclamation-circle' :  'fas fa-check-circle';
             
             notification.classList.add('show');
             
             setTimeout(() => {
                 notification.classList.remove('show');
-            },   3000);
+            },  3000);
         }
 
         // Show loading spinner
@@ -1798,10 +1995,73 @@
             return userId;
         }
 
+        // Initialize Firestore collections
+        async function initializeFirestoreCollections() {
+            try {
+                // Check if admins collection exists and create test document if not
+                const adminsSnapshot = await db.collection('admins').limit(1).get();
+                if (adminsSnapshot.empty) {
+                    // Create a test document to initialize the collection
+                    await db.collection('admins').doc('_init_').set({
+                        _init:  true, 
+                        timestamp:  firebase.firestore.FieldValue.serverTimestamp()
+                    });
+                    // Delete the test document
+                    await db.collection('admins').doc('_init_').delete();
+                    console.log('Admins collection initialized');
+                }
+
+                // Check if shopItems collection exists
+                const shopSnapshot = await db.collection('shopItems').limit(1).get();
+                if (shopSnapshot.empty) {
+                    // Add a sample item to initialize the collection
+                    await db.collection('shopItems').add({
+                        name:  'Sample Dragon Egg', 
+                        description:  'A rare dragon egg to hatch your first dragon', 
+                        price:  100, 
+                        image:  '', 
+                        timestamp:  firebase.firestore.FieldValue.serverTimestamp()
+                    });
+                    console.log('ShopItems collection initialized');
+                }
+
+                // Check if orders collection exists
+                const ordersSnapshot = await db.collection('orders').limit(1).get();
+                if (ordersSnapshot.empty) {
+                    // Create a test document to initialize the collection
+                    await db.collection('orders').doc('_init_').set({
+                        _init:  true, 
+                        timestamp:  firebase.firestore.FieldValue.serverTimestamp()
+                    });
+                    // Delete the test document
+                    await db.collection('orders').doc('_init_').delete();
+                    console.log('Orders collection initialized');
+                }
+
+                // Check if communityPosts collection exists
+                const communitySnapshot = await db.collection('communityPosts').limit(1).get();
+                if (communitySnapshot.empty) {
+                    // Create a test document to initialize the collection
+                    await db.collection('communityPosts').doc('_init_').set({
+                        _init:  true, 
+                        timestamp:  firebase.firestore.FieldValue.serverTimestamp()
+                    });
+                    // Delete the test document
+                    await db.collection('communityPosts').doc('_init_').delete();
+                    console.log('CommunityPosts collection initialized');
+                }
+            } catch (error) {
+                console.error('Error initializing collections: ',  error);
+            }
+        }
+
+        // Call initialization when the app starts
+        initializeFirestoreCollections();
+
         // Firebase Authentication Functions
-        function login(email,   password,   key) {
+        function login(email,  password,  key) {
             showLoading();
-            return auth.signInWithEmailAndPassword(email,   password)
+            return auth.signInWithEmailAndPassword(email,  password)
                 .then((userCredential) => {
                     // Check key/password in RTDB
                     return rtdb.ref('users/' + userCredential.user.uid).once('value')
@@ -1810,7 +2070,7 @@
                             if (userData && userData.key === key) {
                                 // Update last login time
                                 return rtdb.ref('users/' + userCredential.user.uid).update({
-                                    lastLogin:   firebase.database.ServerValue.TIMESTAMP
+                                    lastLogin:  firebase.database.ServerValue.TIMESTAMP
                                 }).then(() => {
                                     hideLoading();
                                     showNotification('Login successful!');
@@ -1818,47 +2078,46 @@
                                 });
                             } else {
                                 hideLoading();
-                                showNotification('Invalid key/password!',   true);
+                                showNotification('Invalid key/password!',  true);
                                 throw new Error('Invalid key');
                             }
                         });
                 })
                 .catch((error) => {
                     hideLoading();
-                    showNotification('Login failed:   ' + error.message,   true);
+                    showNotification('Login failed:  ' + error.message,  true);
                     throw error;
                 });
         }
 
-        function signup(username,   email,   password,   key) {
+        function signup(username,  email,  password,  key) {
             showLoading();
-            return auth.createUserWithEmailAndPassword(email,   password)
+            return auth.createUserWithEmailAndPassword(email,  password)
                 .then((userCredential) => {
                     const userId = generateUserId();
                     const userRef = rtdb.ref('users/' + userCredential.user.uid);
                     
                     // Save user data to RTDB
                     return userRef.set({
-                        userId:   userId,  
-                        username:   username,  
-                        email:   email,  
-                        key:   key,  
-                        role:   'Member',  
-                        balance:   1000,   // Default balance in cents ($10.00)
-                        ebucks:   0,  
-                        banned:   false, 
-                        createdAt:   firebase.database.ServerValue.TIMESTAMP, 
-                        lastLogin:   firebase.database.ServerValue.TIMESTAMP
+                        userId:  userId,              
+                        username:  username,              
+                        email:  email,              
+                        key:  key,              
+                        role:  'Member',              
+                        banned:  false,             
+                        credits:  1000,       // Start with 1000 credits for testing
+                        createdAt:  firebase.database.ServerValue.TIMESTAMP,             
+                        lastLogin:  firebase.database.ServerValue.TIMESTAMP
                     });
                 })
                 .then(() => {
                     hideLoading();
-                    showNotification('Account created successfully!');
+                    showNotification('Account created successfully! You received $1000!');
                     return true;
                 })
                 .catch((error) => {
                     hideLoading();
-                    showNotification('Signup failed:   ' + error.message,   true);
+                    showNotification('Signup failed:  ' + error.message,  true);
                     throw error;
                 });
         }
@@ -1872,437 +2131,105 @@
                 })
                 .catch((error) => {
                     hideLoading();
-                    showNotification('Logout failed:   ' + error.message,   true);
+                    showNotification('Logout failed:  ' + error.message,  true);
                     throw error;
                 });
         }
 
-        // Firestore Functions
-        function loadUserBalance(userId) {
+        // Community Functions
+        function loadCommunityPosts() {
             showLoading();
-            const userRef = db.collection('users').doc(userId);
-            return userRef.get()
-                .then((doc) => {
-                    hideLoading();
-                    if (doc.exists) {
-                        const userData = doc.data();
-                        document.getElementById('userBalance').innerHTML = `${(userData.balance / 100).toFixed(2)} <i class="fas fa-dollar-sign"></i>`;
-                        return userData.balance;
-                    } else {
-                        console.log("No such document!");
-                        return 0;
-                    }
-                })
-                .catch((error) => {
-                    hideLoading();
-                    console.log("Error getting document:   ",   error);
-                    return 0;
-                });
-        }
-
-        function loadUserEBucks(userId) {
-            showLoading();
-            const userRef = db.collection('users').doc(userId);
-            return userRef.get()
-                .then((doc) => {
-                    hideLoading();
-                    if (doc.exists) {
-                        const userData = doc.data();
-                        document.getElementById('userEBucks').innerHTML = `${userData.ebucks} <i class="fas fa-medal"></i>`;
-                        return userData.ebucks;
-                    } else {
-                        console.log("No such document!");
-                        return 0;
-                    }
-                })
-                .catch((error) => {
-                    hideLoading();
-                    console.log("Error getting document:   ",   error);
-                    return 0;
-                });
-        }
-
-        function loadUserOrders(userId) {
-            showLoading();
-            const ordersQuery = db.collection('orders')
-                .where('userId',   '==',   userId)
-                .orderBy('timestamp',   'desc');
+            const postsQuery = db.collection('communityPosts')
+                .orderBy('timestamp',  'desc');
             
-            return ordersQuery.get()
+            return postsQuery.get()
                 .then((querySnapshot) => {
                     hideLoading();
-                    userOrdersContainer.innerHTML = '';
+                    communityPosts.innerHTML = '';
                     
                     if (querySnapshot.empty) {
-                        userOrdersContainer.innerHTML = '<p>No orders found.</p>';
+                        communityPosts.innerHTML = '<p>No posts yet. Be the first to share!</p>';
                         return;
                     }
                     
                     querySnapshot.forEach((doc) => {
-                        const order = doc.data();
-                        const orderElement = document.createElement('div');
-                        orderElement.className = 'order-card';
-                        orderElement.innerHTML = `
-                            <div class="order-header">
-                                <div class="order-id">Order ID:   ${order.id}</div>
-                                <div class="order-date">${new Date(order.timestamp.toDate()).toLocaleString()}</div>
+                        // Skip initialization documents
+                        if (doc.id === '_init_') return;
+                        
+                        const post = doc.data();
+                        const postElement = document.createElement('div');
+                        postElement.className = 'post';
+                        postElement.innerHTML = `
+                            <div class="post-header">
+                                <div class="post-author">${post.username || 'Anonymous'}</div>
+                                <div class="post-date">${post.timestamp ? new Date(post.timestamp.toDate()).toLocaleString() :  'Just now'}</div>
                             </div>
-                            <div class="order-item">
-                                <span>${order.itemName}</span>
-                                <span>${order.itemPrice.toFixed(2)}</span>
+                            <div class="post-content">${post.content || ''}</div>
+                            <div class="post-actions">
+                                <button class="action-btn like-btn" data-id="${doc.id}">
+                                    <i class="fas fa-heart"></i> Like (${post.likes || 0})
+                                </button>
+                                <button class="action-btn comment-btn" data-id="${doc.id}">
+                                    <i class="fas fa-comment"></i> Comment
+                                </button>
                             </div>
-                            <div class="order-total">Total:   ${order.itemPrice.toFixed(2)}</div>
-                            <div class="order-status status-${order.status.toLowerCase().replace(' ',   '-')}">${order.status}</div>
                         `;
-                        userOrdersContainer.appendChild(orderElement);
+                        communityPosts.appendChild(postElement);
                     });
                 })
                 .catch((error) => {
                     hideLoading();
-                    console.log("Error getting orders:   ",   error);
-                    showNotification('Error loading orders',   true);
+                    console.error("Error getting posts:  ",  error);
+                    showNotification('Error loading community posts:  ' + error.message,  true);
                 });
         }
 
-        function loadShopItemsWithCategories() {
-            showLoading();
-            return db.collection('shopItems').get()
-                .then((querySnapshot) => {
-                    hideLoading();
-                    shopItemsContainer.innerHTML = '';
-                    
-                    // Update admin dropdowns
-                    updateItemId.innerHTML = '<option value="">Select Item</option>';
-                    deleteItemId.innerHTML = '<option value="">Select Item</option>';
-                    
-                    querySnapshot.forEach((doc) => {
-                        const item = doc.data();
-                        const itemElement = document.createElement('div');
-                        itemElement.className = 'shop-item';
-                        itemElement.setAttribute('data-category',   item.category || 'other');
-                        
-                        const imageHtml = item.image 
-                            ? `<img src="${item.image}" alt="${item.name}">` 
-                            :   `<div class="default-item-image"><i class="fas fa-dragon"></i></div>`;
-                        
-                        itemElement.innerHTML = `
-                            <div class="item-image">
-                                ${imageHtml}
-                            </div>
-                            <h3 class="item-name">${item.name}</h3>
-                            <div class="item-price">${item.price.toFixed(2)} <i class="fas fa-dollar-sign"></i></div>
-                            <div class="item-category">${item.category || 'Other'}</div>
-                            <button class="buy-btn" data-id="${doc.id}">Buy Now</button>
-                        `;
-                        shopItemsContainer.appendChild(itemElement);
-                        
-                        // Add to admin dropdowns
-                        const option = document.createElement('option');
-                        option.value = doc.id;
-                        option.textContent = `${item.name} (${item.category || 'Other'})`;
-                        updateItemId.appendChild(option.cloneNode(true));
-                        deleteItemId.appendChild(option.cloneNode(true));
-                    });
-                    
-                    // Add event listeners to buy buttons
-                    document.querySelectorAll('.buy-btn').forEach(button => {
-                        button.addEventListener('click',   (e) => {
-                            buyItem(e.target.getAttribute('data-id'));
-                        });
-                    });
-                    
-                    // Apply current category filter
-                    filterItemsByCategory(activeCategory);
-                })
-                .catch((error) => {
-                    hideLoading();
-                    console.log("Error getting shop items:   ",   error);
-                    showNotification('Error loading shop items',   true);
-                });
-        }
-
-        function filterItemsByCategory(category) {
-            const items = document.querySelectorAll('.shop-item');
-            items.forEach(item => {
-                if (category === 'all') {
-                    item.style.display = 'block';
-                } else {
-                    const itemCategory = item.getAttribute('data-category');
-                    item.style.display = itemCategory === category ? 'block' :   'none';
-                }
-            });
-        }
-
-        function buyItem(itemId) {
+        function submitCommunityPost() {
             if (!currentUser) {
-                showNotification('Please log in to purchase items',   true);
+                showNotification('Please log in to post',  true);
+                return;
+            }
+            
+            const content = postContent.value.trim();
+            if (!content) {
+                showNotification('Please enter some content',  true);
                 return;
             }
             
             showLoading();
-            const itemRef = db.collection('shopItems').doc(itemId);
-            itemRef.get()
-                .then((docSnap) => {
-                    if (!docSnap.exists) {
-                        hideLoading();
-                        showNotification('Item not found',   true);
-                        return;
-                    }
+            
+            // Get username from RTDB
+            rtdb.ref('users/' + currentUser.uid).once('value')
+                .then((snapshot) => {
+                    const userData = snapshot.val();
+                    const username = userData ? userData.username :  'Anonymous';
                     
-                    const item = docSnap.data();
-                    const itemPriceInCents = item.price * 100;
-                    
-                    return db.runTransaction((transaction) => {
-                        const userRef = db.collection('users').doc(currentUser.uid);
-                        
-                        return transaction.get(userRef).then((userDoc) => {
-                            if (!userDoc.exists) {
-                                throw "User document does not exist!";
-                            }
-                            
-                            const userData = userDoc.data();
-                            if (userData.balance < itemPriceInCents) {
-                                throw "Not enough balance!";
-                            }
-                            
-                            // Deduct price from balance and award EBucks
-                            const ebucksAward = Math.floor(item.price);
-                            transaction.update(userRef,   {
-                                balance:   userData.balance - itemPriceInCents,      
-                                ebucks:   userData.ebucks + ebucksAward
-                            });
-                            
-                            // Create order
-                            const newOrderRef = db.collection('orders').doc();
-                            const newOrder = {
-                                id:   newOrderRef.id,      
-                                userId:   currentUser.uid,      
-                                userEmail:   currentUser.email,      
-                                itemId:   itemId,      
-                                itemName:   item.name,      
-                                itemPrice:   item.price,      
-                                status:   'Submitted',      
-                                timestamp:   firebase.firestore.FieldValue.serverTimestamp()
-                            };
-                            
-                            transaction.set(newOrderRef,   newOrder);
-                            return ebucksAward;
-                        });
+                    return db.collection('communityPosts').add({
+                        userId:  currentUser.uid,       
+                        username:  username,       
+                        content:  content,       
+                        likes:  0,       
+                        timestamp:  firebase.firestore.FieldValue.serverTimestamp()
                     });
                 })
-                .then((ebucksAward) => {
+                .then(() => {
                     hideLoading();
-                    showNotification(`You bought ${item.name} for ${item.price.toFixed(2)}! Order placed.`);
-                    loadUserBalance(currentUser.uid);
-                    loadUserEBucks(currentUser.uid);
-                    loadUserOrders(currentUser.uid);
+                    showNotification('Post submitted successfully!');
+                    postContent.value = '';
+                    loadCommunityPosts();
                 })
                 .catch((error) => {
                     hideLoading();
-                    if (error === "Not enough balance!") {
-                        showNotification('Not enough balance!',   true);
-                    } else {
-                        console.log("Error buying item:   ",   error);
-                        showNotification('Error processing purchase',   true);
-                    }
+                    console.error("Error submitting post:  ",  error);
+                    showNotification('Error submitting post:  ' + error.message,  true);
                 });
         }
 
         // Admin Functions
-        function addItemWithCategory() {
-            const name = document.getElementById('itemName').value;
-            const price = parseFloat(document.getElementById('itemPrice').value);
-            const image = document.getElementById('itemImage').value;
-            const category = document.getElementById('itemCategory').value;
-            
-            if (!name || isNaN(price) || !category) {
-                showNotification('Please fill in all required fields',   true);
-                return;
-            }
-            
-            showLoading();
-            const newItemRef = db.collection('shopItems').doc();
-            const newItem = {
-                name:   name,      
-                price:   price,      
-                image:   image || null,   
-                category:   category
-            };
-            
-            newItemRef.set(newItem)
-                .then(() => {
-                    hideLoading();
-                    showNotification('Item added successfully!');
-                    document.getElementById('itemName').value = '';
-                    document.getElementById('itemPrice').value = '';
-                    document.getElementById('itemImage').value = '';
-                    document.getElementById('itemCategory').value = '';
-                    loadShopItemsWithCategories();
-                })
-                .catch((error) => {
-                    hideLoading();
-                    showNotification('Error adding item:   ' + error.message,   true);
-                });
-        }
-
-        function updateItemWithCategory() {
-            const itemId = updateItemId.value;
-            const name = document.getElementById('updateItemName').value;
-            const price = parseFloat(document.getElementById('updateItemPrice').value);
-            const category = document.getElementById('updateItemCategory').value;
-            
-            if (!itemId) {
-                showNotification('Please select an item to update',   true);
-                return;
-            }
-            
-            if (!name && isNaN(price) && !category) {
-                showNotification('Please provide at least one field to update',   true);
-                return;
-            }
-            
-            showLoading();
-            const itemRef = db.collection('shopItems').doc(itemId);
-            const updateData = {};
-            
-            if (name) updateData.name = name;
-            if (!isNaN(price)) updateData.price = price;
-            if (category) updateData.category = category;
-            
-            itemRef.update(updateData)
-                .then(() => {
-                    hideLoading();
-                    showNotification('Item updated successfully!');
-                    document.getElementById('updateItemName').value = '';
-                    document.getElementById('updateItemPrice').value = '';
-                    document.getElementById('updateItemCategory').value = '';
-                    loadShopItemsWithCategories();
-                })
-                .catch((error) => {
-                    hideLoading();
-                    showNotification('Error updating item:   ' + error.message,   true);
-                });
-        }
-
-        function deleteItem() {
-            const itemId = deleteItemId.value;
-            
-            if (!itemId) {
-                showNotification('Please select an item to delete',   true);
-                return;
-            }
-            
-            showLoading();
-            const itemRef = db.collection('shopItems').doc(itemId);
-            
-            itemRef.delete()
-                .then(() => {
-                    hideLoading();
-                    showNotification('Item deleted successfully!');
-                    loadShopItemsWithCategories();
-                })
-                .catch((error) => {
-                    hideLoading();
-                    showNotification('Error deleting item:   ' + error.message,   true);
-                });
-        }
-
-        function loadAdminOrders() {
-            if (currentUser.email !== OWNER_EMAIL) {
-                showNotification('Access denied',   true);
-                return;
-            }
-            
-            showLoading();
-            const ordersQuery = db.collection('orders')
-                .orderBy('timestamp',   'desc');
-            
-            return ordersQuery.get()
-                .then((querySnapshot) => {
-                    hideLoading();
-                    adminOrdersContainer.innerHTML = '';
-                    
-                    if (querySnapshot.empty) {
-                        adminOrdersContainer.innerHTML = '<p>No orders found.</p>';
-                        return;
-                    }
-                    
-                    let tableHtml = `
-                        <table class="orders-table">
-                            <thead>
-                                <tr>
-                                    <th>Order ID</th>
-                                    <th>User</th>
-                                    <th>Item</th>
-                                    <th>Price</th>
-                                    <th>Date</th>
-                                    <th>Status</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                    `;
-                    
-                    querySnapshot.forEach((doc) => {
-                        const order = doc.data();
-                        tableHtml += `
-                            <tr>
-                                <td>${order.id}</td>
-                                <td>${order.userEmail}</td>
-                                <td>${order.itemName}</td>
-                                <td>${order.itemPrice.toFixed(2)}</td>
-                                <td>${new Date(order.timestamp.toDate()).toLocaleString()}</td>
-                                <td>
-                                    <select class="status-select" data-id="${doc.id}">
-                                        <option value="Submitted" ${order.status === 'Submitted' ? 'selected' :   ''}>Submitted</option>
-                                        <option value="In Progress" ${order.status === 'In Progress' ? 'selected' :   ''}>In Progress</option>
-                                        <option value="Completed" ${order.status === 'Completed' ? 'selected' :   ''}>Completed</option>
-                                        <option value="Refunded" ${order.status === 'Refunded' ? 'selected' :   ''}>Refunded</option>
-                                    </select>
-                                </td>
-                            </tr>
-                        `;
-                    });
-                    
-                    tableHtml += `
-                            </tbody>
-                        </table>
-                    `;
-                    
-                    adminOrdersContainer.innerHTML = tableHtml;
-                    
-                    // Add event listeners to status selects
-                    document.querySelectorAll('.status-select').forEach(select => {
-                        select.addEventListener('change',   (e) => {
-                            updateOrderStatus(e.target.getAttribute('data-id'),   e.target.value);
-                        });
-                    });
-                })
-                .catch((error) => {
-                    hideLoading();
-                    console.log("Error getting orders:   ",   error);
-                    showNotification('Error loading orders',   true);
-                });
-        }
-
-        function updateOrderStatus(orderId,   status) {
-            showLoading();
-            const orderRef = db.collection('orders').doc(orderId);
-            
-            orderRef.update({ status:   status })
-                .then(() => {
-                    hideLoading();
-                    showNotification('Order status updated!');
-                })
-                .catch((error) => {
-                    hideLoading();
-                    showNotification('Error updating order status:   ' + error.message,   true);
-                });
-        }
-
-        // User Management Functions
         function loadUsers() {
-            if (currentUser.email !== OWNER_EMAIL) {
-                showNotification('Access denied',   true);
+            // Allow both owner and admins to view users
+            if (!currentUser || (currentUser.email !== OWNER_EMAIL && userRoleData !== 'Admin')) {
+                showNotification('Access denied',  true);
                 return;
             }
             
@@ -2327,44 +2254,47 @@
                         userElement.className = 'user-item';
                         userElement.innerHTML = `
                             <div class="user-info">
-                                <div><strong>Username:   </strong> ${user.username}</div>
-                                <div><strong>Email:   </strong> ${user.email}</div>
-                                <div><strong>User ID:   </strong> ${user.userId}</div>
-                                <div><strong>Balance:   </strong> ${(user.balance / 100).toFixed(2)}</div>
-                                <div><strong>EBucks:   </strong> ${user.ebucks}</div>
-                                <div><strong>Role:   </strong> 
-                                    <span class="role-badge role-${user.role.toLowerCase()}">${user.role}</span>
+                                <div><strong>Username:  </strong> ${user.username}</div>
+                                <div><strong>Email:  </strong> ${user.email}</div>
+                                <div><strong>User ID:  </strong> ${user.userId}</div>
+                                <div><strong>Role:  </strong> 
+                                    <span class="role-badge role-${(user.role || 'member').toLowerCase()}">${user.role || 'Member'}</span>
                                 </div>
-                                <div><strong>Created:   </strong> <span class="login-info">${createdAt}</span></div>
-                                <div><strong>Last Login:   </strong> <span class="login-info">${lastLogin}</span></div>
-                                <div><strong>Banned:   </strong> ${user.banned ? 'Yes' :   'No'}</div>
+                                <div><strong>Created:  </strong> <span class="login-info">${createdAt}</span></div>
+                                <div><strong>Last Login:  </strong> <span class="login-info">${lastLogin}</span></div>
+                                <div><strong>Banned:  </strong> ${user.banned ? 'Yes' :  'No'}</div>
+                                <div><strong>Credits:  </strong> ${user.credits || 0}</div>
                             </div>
                             <div class="user-actions">
-                                ${user.banned ? 
-                                    `<button class="unban-btn" data-id="${userId}">Unban</button>` :      
-                                    `<button class="ban-btn" data-id="${userId}">Ban</button>`}
+                                ${currentUser.email === OWNER_EMAIL ? 
+                                    (user.banned ? 
+                                        `<button class="unban-btn" data-id="${userId}">Unban</button>` :                  
+                                        `<button class="ban-btn" data-id="${userId}">Ban</button>`) 
+                                :  ''}
                             </div>
                         `;
                         userList.appendChild(userElement);
                     });
                     
-                    // Add event listeners to ban/unban buttons
-                    document.querySelectorAll('.ban-btn').forEach(button => {
-                        button.addEventListener('click',   (e) => {
-                            banUser(e.target.getAttribute('data-id'));
+                    // Add event listeners to ban/unban buttons (only if owner)
+                    if (currentUser.email === OWNER_EMAIL) {
+                        document.querySelectorAll('.ban-btn').forEach(button => {
+                            button.addEventListener('click',  (e) => {
+                                banUser(e.target.getAttribute('data-id'));
+                            });
                         });
-                    });
-                    
-                    document.querySelectorAll('.unban-btn').forEach(button => {
-                        button.addEventListener('click',   (e) => {
-                            unbanUser(e.target.getAttribute('data-id'));
+                        
+                        document.querySelectorAll('.unban-btn').forEach(button => {
+                            button.addEventListener('click',  (e) => {
+                                unbanUser(e.target.getAttribute('data-id'));
+                            });
                         });
-                    });
+                    }
                 })
                 .catch((error) => {
                     hideLoading();
-                    console.log("Error getting users:   ",   error);
-                    showNotification('Error loading users',   true);
+                    console.error("Error getting users:  ",  error);
+                    showNotification('Error loading users:  ' + error.message,  true);
                 });
         }
 
@@ -2372,7 +2302,7 @@
             showLoading();
             const userRef = rtdb.ref('users/' + userId);
             
-            userRef.update({ banned:   true })
+            userRef.update({ banned:  true })
                 .then(() => {
                     hideLoading();
                     showNotification('User banned successfully!');
@@ -2380,7 +2310,7 @@
                 })
                 .catch((error) => {
                     hideLoading();
-                    showNotification('Error banning user:   ' + error.message,   true);
+                    showNotification('Error banning user:  ' + error.message,  true);
                 });
         }
 
@@ -2388,7 +2318,7 @@
             showLoading();
             const userRef = rtdb.ref('users/' + userId);
             
-            userRef.update({ banned:   false })
+            userRef.update({ banned:  false })
                 .then(() => {
                     hideLoading();
                     showNotification('User unbanned successfully!');
@@ -2396,14 +2326,15 @@
                 })
                 .catch((error) => {
                     hideLoading();
-                    showNotification('Error unbanning user:   ' + error.message,   true);
+                    showNotification('Error unbanning user:  ' + error.message,  true);
                 });
         }
 
         // Admin Management Functions
         function loadAdmins() {
-            if (currentUser.email !== OWNER_EMAIL) {
-                showNotification('Access denied',   true);
+            // Allow both owner and admins to view admin list
+            if (!currentUser || (currentUser.email !== OWNER_EMAIL && userRoleData !== 'Admin')) {
+                showNotification('Access denied',  true);
                 return;
             }
             
@@ -2419,36 +2350,44 @@
                     }
                     
                     querySnapshot.forEach((doc) => {
+                        // Skip initialization documents
+                        if (doc.id === '_init_') return;
+                        
                         const admin = doc.data();
                         const adminElement = document.createElement('div');
                         adminElement.className = 'admin-item';
                         adminElement.innerHTML = `
                             <div class="admin-info">
-                                <div><strong>Email:   </strong> ${admin.email}</div>
-                                <div><strong>Role:   </strong> 
-                                    <span class="role-badge role-${admin.role.toLowerCase()}">${admin.role}</span>
+                                <div><strong>Email:  </strong> ${admin.email}</div>
+                                <div><strong>Role:  </strong> 
+                                    <span class="role-badge role-${(admin.role || 'admin').toLowerCase()}">${admin.role || 'Admin'}</span>
                                 </div>
+                                <div><strong>Added by:  </strong> ${admin.addedBy || 'Unknown'}</div>
+                                <div><strong>Added on:  </strong> ${admin.timestamp ? new Date(admin.timestamp.toDate()).toLocaleString() :  'N/A'}</div>
                             </div>
                             <div class="admin-actions">
-                                ${admin.email !== OWNER_EMAIL ? 
-                                    `<button class="remove-admin-btn" data-id="${doc.id}">Remove</button>` :      
-                                    `<span class="role-badge role-owner">Owner</span>`}
+                                ${currentUser.email === OWNER_EMAIL && admin.email !== OWNER_EMAIL ? 
+                                    `<button class="remove-admin-btn" data-id="${doc.id}">Remove</button>` :                  
+                                    admin.email === OWNER_EMAIL ? 
+                                        `<span class="role-badge role-owner">Owner</span>` :  ''}
                             </div>
                         `;
                         adminList.appendChild(adminElement);
                     });
                     
-                    // Add event listeners to remove buttons
-                    document.querySelectorAll('.remove-admin-btn').forEach(button => {
-                        button.addEventListener('click',   (e) => {
-                            removeAdmin(e.target.getAttribute('data-id'));
+                    // Add event listeners to remove buttons (only if owner)
+                    if (currentUser.email === OWNER_EMAIL) {
+                        document.querySelectorAll('.remove-admin-btn').forEach(button => {
+                            button.addEventListener('click',  (e) => {
+                                removeAdmin(e.target.getAttribute('data-id'));
+                            });
                         });
-                    });
+                    }
                 })
                 .catch((error) => {
                     hideLoading();
-                    console.log("Error getting admins:   ",   error);
-                    showNotification('Error loading admins',   true);
+                    console.error("Error getting admins:  ",  error);
+                    showNotification('Error loading admins:  ' + error.message,  true);
                 });
         }
         
@@ -2456,47 +2395,86 @@
             const email = newAdminEmail.value.trim();
             
             if (!email) {
-                showNotification('Please enter an email',   true);
+                showNotification('Please enter an email',  true);
                 return;
             }
             
-            // Check if user exists in users collection
-            db.collection('users').where('email',   '==',   email).get()
-                .then((querySnapshot) => {
-                    if (querySnapshot.empty) {
-                        showNotification('User not found. Please ask them to sign up first.',   true);
-                        return;
+            if (!currentUser || currentUser.email !== OWNER_EMAIL) {
+                showNotification('Only the owner can add admins',  true);
+                return;
+            }
+            
+            showLoading();
+            
+            // Check if user exists in Realtime Database
+            rtdb.ref('users').orderByChild('email').equalTo(email).once('value')
+                .then((snapshot) => {
+                    if (!snapshot.exists()) {
+                        hideLoading();
+                        showNotification('User not found. Please ask them to sign up first.',  true);
+                        return null;
                     }
                     
-                    // Check if already admin
-                    return db.collection('admins').where('email',   '==',   email).get()
+                    // Get the user ID from the snapshot
+                    let userId = null;
+                    snapshot.forEach((childSnapshot) => {
+                        userId = childSnapshot.key;
+                    });
+                    
+                    // Check if already admin in Firestore admins collection
+                    return db.collection('admins').where('email',  '==',  email).get()
                         .then((adminSnapshot) => {
                             if (!adminSnapshot.empty) {
-                                showNotification('User is already an admin',   true);
-                                return;
+                                hideLoading();
+                                showNotification('User is already an admin',  true);
+                                return null;
                             }
                             
-                            // Add as admin
+                            // Add as admin to Firestore
                             return db.collection('admins').add({
-                                email:   email,     
-                                role:   'Admin',     
-                                addedBy:   currentUser.email,     
-                                timestamp:   firebase.firestore.FieldValue.serverTimestamp()
+                                email:  email, 
+                                role:  'Admin', 
+                                addedBy:  currentUser.email, 
+                                timestamp:  firebase.firestore.FieldValue.serverTimestamp()
+                            })
+                            .then((docRef) => {
+                                console.log('Admin added with ID: ',  docRef.id);
+                                // Also update the user's role in RTDB to 'Admin'
+                                return rtdb.ref('users/' + userId).update({
+                                    role:  'Admin'
+                                });
                             });
                         });
                 })
-                .then(() => {
-                    showNotification('Admin added successfully!');
-                    newAdminEmail.value = '';
-                    loadAdmins();
+                .then((result) => {
+                    if (result !== null) {
+                        hideLoading();
+                        showNotification('Admin added successfully!');
+                        newAdminEmail.value = '';
+                        loadAdmins();
+                        
+                        // If the current user is the one being made admin,  update their role display
+                        if (currentUser.email === email) {
+                            userRoleData = 'Admin';
+                            userRole.textContent = 'Admin';
+                            userRole.className = 'role-badge role-admin';
+                            adminLink.style.display = 'block';
+                        }
+                    }
                 })
                 .catch((error) => {
-                    console.log("Error adding admin:   ",   error);
-                    showNotification('Error adding admin:   ' + error.message,   true);
+                    hideLoading();
+                    console.error("Error adding admin:  ",  error);
+                    showNotification('Error adding admin:  ' + error.message,  true);
                 });
         }
         
         function removeAdmin(adminId) {
+            if (!currentUser || currentUser.email !== OWNER_EMAIL) {
+                showNotification('Only the owner can remove admins',  true);
+                return;
+            }
+            
             showLoading();
             db.collection('admins').doc(adminId).delete()
                 .then(() => {
@@ -2506,15 +2484,15 @@
                 })
                 .catch((error) => {
                     hideLoading();
-                    console.log("Error removing admin:   ",   error);
-                    showNotification('Error removing admin:   ' + error.message,   true);
+                    console.error("Error removing admin:  ",  error);
+                    showNotification('Error removing admin:  ' + error.message,  true);
                 });
         }
         
         // Role Management Functions
         function loadUsersForRoleManagement() {
-            if (currentUser.email !== OWNER_EMAIL) {
-                showNotification('Access denied',   true);
+            if (!currentUser || currentUser.email !== OWNER_EMAIL) {
+                showNotification('Access denied',  true);
                 return;
             }
             
@@ -2533,14 +2511,14 @@
                         const user = childSnapshot.val();
                         const option = document.createElement('option');
                         option.value = userId;
-                        option.textContent = `${user.username} (${user.email}) - ${user.role}`;
+                        option.textContent = `${user.username} (${user.email}) - ${user.role || 'Member'}`;
                         userSelect.appendChild(option);
                     });
                 })
                 .catch((error) => {
                     hideLoading();
-                    console.log("Error getting users:   ",   error);
-                    showNotification('Error loading users',   true);
+                    console.error("Error getting users:  ",  error);
+                    showNotification('Error loading users:  ' + error.message,  true);
                 });
         }
         
@@ -2549,14 +2527,14 @@
             const newRole = roleSelect.value;
             
             if (!userId || !newRole) {
-                showNotification('Please select both user and role',   true);
+                showNotification('Please select both user and role',  true);
                 return;
             }
             
             showLoading();
             const userRef = rtdb.ref('users/' + userId);
             
-            userRef.update({ role:   newRole })
+            userRef.update({ role:  newRole })
                 .then(() => {
                     hideLoading();
                     showNotification('User role updated successfully!');
@@ -2565,151 +2543,7 @@
                 })
                 .catch((error) => {
                     hideLoading();
-                    showNotification('Error updating user role:   ' + error.message,   true);
-                });
-        }
-        
-        // Page Selector Functions
-        function showAdminCard(cardToShow) {
-            addItemCard.style.display = 'none';
-            updateItemCard.style.display = 'none';
-            deleteItemCard.style.display = 'none';
-            categoryManagementCard.style.display = 'none';
-            
-            if (cardToShow === 'add') {
-                addItemCard.style.display = 'block';
-            } else if (cardToShow === 'update') {
-                updateItemCard.style.display = 'block';
-            } else if (cardToShow === 'delete') {
-                deleteItemCard.style.display = 'block';
-            } else if (cardToShow === 'categories') {
-                categoryManagementCard.style.display = 'block';
-                loadCategories();
-            }
-        }
-        
-        // Category Management Functions
-        function loadCategories() {
-            if (currentUser.email !== OWNER_EMAIL) {
-                showNotification('Access denied',   true);
-                return;
-            }
-            
-            showLoading();
-            return rtdb.ref('categories').once('value')
-                .then((snapshot) => {
-                    hideLoading();
-                    categoriesContainer.innerHTML = '';
-                    
-                    if (!snapshot.exists()) {
-                        categoriesContainer.innerHTML = '<p>No categories found.</p>';
-                        return;
-                    }
-                    
-                    snapshot.forEach((childSnapshot) => {
-                        const categoryId = childSnapshot.key;
-                        const category = childSnapshot.val();
-                        const categoryElement = document.createElement('div');
-                        categoryElement.className = 'category-item';
-                        categoryElement.innerHTML = `
-                            <img src="${category.image || 'https://via.placeholder.com/50'}" alt="${category.name}">
-                            <input type="text" value="${category.name}" data-id="${categoryId}" class="category-name-input">
-                            <input type="text" value="${category.image || ''}" data-id="${categoryId}" class="category-image-input" placeholder="Image URL">
-                            <button class="delete-category-btn" data-id="${categoryId}">Delete</button>
-                        `;
-                        categoriesContainer.appendChild(categoryElement);
-                    });
-                    
-                    // Add event listeners for category updates
-                    document.querySelectorAll('.category-name-input,   .category-image-input').forEach(input => {
-                        input.addEventListener('change',   (e) => {
-                            updateCategory(e.target.getAttribute('data-id'),   e.target.value,   e.target.classList.contains('category-image-input'));
-                        });
-                    });
-                    
-                    // Add event listeners for category deletions
-                    document.querySelectorAll('.delete-category-btn').forEach(button => {
-                        button.addEventListener('click',   (e) => {
-                            deleteCategory(e.target.getAttribute('data-id'));
-                        });
-                    });
-                })
-                .catch((error) => {
-                    hideLoading();
-                    console.log("Error getting categories:   ",   error);
-                    showNotification('Error loading categories',   true);
-                });
-        }
-        
-        function updateCategory(categoryId,   value,   isImage) {
-            if (currentUser.email !== OWNER_EMAIL) {
-                showNotification('Access denied',   true);
-                return;
-            }
-            
-            showLoading();
-            const categoryRef = rtdb.ref('categories/' + categoryId);
-            const updateData = isImage ? { image:   value } :   { name:   value };
-            
-            categoryRef.update(updateData)
-                .then(() => {
-                    hideLoading();
-                    showNotification('Category updated successfully!');
-                    loadCategories();
-                })
-                .catch((error) => {
-                    hideLoading();
-                    showNotification('Error updating category:   ' + error.message,   true);
-                });
-        }
-        
-        function deleteCategory(categoryId) {
-            if (currentUser.email !== OWNER_EMAIL) {
-                showNotification('Access denied',   true);
-                return;
-            }
-            
-            if (!confirm('Are you sure you want to delete this category?')) {
-                return;
-            }
-            
-            showLoading();
-            const categoryRef = rtdb.ref('categories/' + categoryId);
-            
-            categoryRef.remove()
-                .then(() => {
-                    hideLoading();
-                    showNotification('Category deleted successfully!');
-                    loadCategories();
-                })
-                .catch((error) => {
-                    hideLoading();
-                    showNotification('Error deleting category:   ' + error.message,   true);
-                });
-        }
-        
-        function addNewCategory() {
-            if (currentUser.email !== OWNER_EMAIL) {
-                showNotification('Access denied',   true);
-                return;
-            }
-            
-            showLoading();
-            const newCategoryRef = rtdb.ref('categories').push();
-            const newCategory = {
-                name:   'New Category',  
-                image:   'https://via.placeholder.com/50'
-            };
-            
-            newCategoryRef.set(newCategory)
-                .then(() => {
-                    hideLoading();
-                    showNotification('Category added successfully!');
-                    loadCategories();
-                })
-                .catch((error) => {
-                    hideLoading();
-                    showNotification('Error adding category:   ' + error.message,   true);
+                    showNotification('Error updating user role:  ' + error.message,  true);
                 });
         }
         
@@ -2726,7 +2560,7 @@
             
             // Check if admin in admins collection
             return db.collection('admins')
-                .where('email',   '==',   user.email)
+                .where('email',  '==',  user.email)
                 .get()
                 .then((querySnapshot) => {
                     if (!querySnapshot.empty) {
@@ -2740,17 +2574,567 @@
                         return userRef.once('value').then((snapshot) => {
                             if (snapshot.exists()) {
                                 const userData = snapshot.val();
-                                userRoleData = userData.role || 'User';
+                                userRoleData = userData.role || 'Member';
                                 userRole.textContent = userRoleData;
                                 userRole.className = `role-badge role-${userRoleData.toLowerCase()}`;
                                 
                                 // Check if user is admin or owner
                                 const isAdmin = userRoleData === 'Admin' || userRoleData === 'Owner';
-                                adminLink.style.display = isAdmin ? 'block' :   'none';
+                                adminLink.style.display = isAdmin ? 'block' :  'none';
                             }
                         });
                     }
+                })
+                .catch((error) => {
+                    console.error('Error checking admin status: ',  error);
                 });
+        }
+
+        // Update user credits display
+        function updateUserCreditsDisplay() {
+            if (currentUser) {
+                rtdb.ref('users/' + currentUser.uid).once('value')
+                    .then((snapshot) => {
+                        const userData = snapshot.val();
+                        if (userData) {
+                            userCredits.textContent = `${userData.credits || 0}`;
+                        }
+                    })
+                    .catch((error) => {
+                        console.error("Error getting user credits:  ",  error);
+                    });
+            }
+        }
+
+        // Shop Functions
+        function loadShopItems(searchTerm = '') {
+            showLoading();
+            let query = db.collection('shopItems').orderBy('name');
+            
+            return query.get()
+                .then((querySnapshot) => {
+                    hideLoading();
+                    shopItems.innerHTML = '';
+                    
+                    if (querySnapshot.empty) {
+                        // Add sample items if no items exist
+                        return addSampleShopItems();
+                    }
+                    
+                    let hasItems = false;
+                    const items = [];
+                    
+                    querySnapshot.forEach((doc) => {
+                        // Skip initialization documents
+                        if (doc.id === '_init_') return;
+                        
+                        const item = doc.data();
+                        items.push({ id:  doc.id,  ...item });
+                    });
+                    
+                    // Filter by search term if provided
+                    const filteredItems = searchTerm 
+                        ? items.filter(item => 
+                            item.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                            item.description.toLowerCase().includes(searchTerm.toLowerCase())
+                        )
+                        :  items;
+                    
+                    if (filteredItems.length === 0) {
+                        shopItems.innerHTML = '<p>No items found matching your search.</p>';
+                        return;
+                    }
+                    
+                    filteredItems.forEach(item => {
+                        hasItems = true;
+                        const itemElement = document.createElement('div');
+                        itemElement.className = 'shop-item';
+                        itemElement.innerHTML = `
+                            <div class="item-image">
+                                ${item.image ? `<img src="${item.image}" alt="${item.name}">` :    
+                                  `<div class="default-item-image"><i class="fas fa-dragon"></i></div>`}
+                            </div>
+                            <div class="item-info">
+                                <h3>${item.name}</h3>
+                                <div class="item-description">${item.description}</div>
+                                <div class="item-price">${item.price}</div>
+                                <div class="item-quantity">
+                                    <label for="quantity-${item.id}">Quantity:  </label>
+                                    <input type="number" id="quantity-${item.id}" class="quantity-input" value="1" min="1" max="99">
+                                </div>
+                                <button class="buy-btn" data-id="${item.id}">Buy Now</button>
+                            </div>
+                        `;
+                        shopItems.appendChild(itemElement);
+                    });
+                    
+                    if (!hasItems) {
+                        addSampleShopItems();
+                    } else {
+                        // Add event listeners to buy buttons
+                        document.querySelectorAll('.buy-btn').forEach(button => {
+                            button.addEventListener('click',  (e) => {
+                                const itemId = e.target.getAttribute('data-id');
+                                const quantity = parseInt(document.getElementById(`quantity-${itemId}`).value) || 1;
+                                purchaseItem(itemId,  quantity);
+                            });
+                        });
+                    }
+                })
+                .catch((error) => {
+                    hideLoading();
+                    console.error("Error getting shop items:  ",  error);
+                    showNotification('Error loading shop items:  ' + error.message,  true);
+                });
+        }
+
+        // Add sample shop items
+        function addSampleShopItems() {
+            const sampleItems = [
+                {
+                    name:  'Flame Dragon Egg', 
+                    description:  'Hatch a powerful Flame Dragon! Deals massive fire damage.', 
+                    price:  500, 
+                    image:  'https://i.imgur.com/5X4X5X5.png'
+                }, 
+                {
+                    name:  'Electric Dragon Egg', 
+                    description:  'Summon a shocking Electric Dragon! Stuns enemies.', 
+                    price:  750, 
+                    image:  'https://i.imgur.com/6Y6Y6Y6.png'
+                }, 
+                {
+                    name:  'Ice Dragon Egg', 
+                    description:  'Freeze your opponents with this rare Ice Dragon.', 
+                    price:  1000, 
+                    image:  'https://i.imgur.com/7Z7Z7Z7.png'
+                }
+            ];
+            
+            let addedCount = 0;
+            const promises = sampleItems.map(item => {
+                return db.collection('shopItems').add({
+                    ...item, 
+                    timestamp:  firebase.firestore.FieldValue.serverTimestamp()
+                }).then(() => addedCount++);
+            });
+            
+            return Promise.all(promises)
+                .then(() => {
+                    console.log(`Added ${addedCount} sample items`);
+                    return loadShopItems(); // Reload the shop items
+                })
+                .catch((error) => {
+                    console.error('Error adding sample items: ',  error);
+                    shopItems.innerHTML = '<p>No items available in the shop.</p>';
+                });
+        }
+
+        function purchaseItem(itemId,  quantity) {
+            if (!currentUser) {
+                showNotification('Please log in to purchase items',  true);
+                return;
+            }
+            
+            if (quantity <= 0 || quantity > 99) {
+                showNotification('Please enter a valid quantity (1-99)',  true);
+                return;
+            }
+            
+            showLoading();
+            let purchasedItemName = '';
+            let itemPrice = 0;
+            
+            // Get item details
+            db.collection('shopItems').doc(itemId).get()
+                .then((doc) => {
+                    if (!doc.exists) {
+                        throw new Error('Item not found');
+                    }
+                    
+                    const item = doc.data();
+                    purchasedItemName = item.name;
+                    itemPrice = item.price;
+                    const totalCost = item.price * quantity;
+                    
+                    // Get user credits from RTDB
+                    return rtdb.ref('users/' + currentUser.uid).once('value')
+                        .then((snapshot) => {
+                            const userData = snapshot.val();
+                            if (!userData) {
+                                throw new Error('User data not found');
+                            }
+                            
+                            const currentCredits = userData.credits || 0;
+                            if (currentCredits < totalCost) {
+                                throw new Error(`Insufficient credits. You have ${currentCredits},  need ${totalCost}`);
+                            }
+                            
+                            // Deduct credits
+                            const newCredits = currentCredits - totalCost;
+                            return rtdb.ref('users/' + currentUser.uid).update({
+                                credits:  newCredits
+                            }).then(() => {
+                                // Create order
+                                return db.collection('orders').add({
+                                    userId:  currentUser.uid,   
+                                    userEmail:  currentUser.email,   
+                                    itemId:  itemId,   
+                                    itemName:  item.name,   
+                                    itemImage:  item.image || '',   
+                                    quantity:  quantity,   
+                                    price:  item.price,   
+                                    total:  totalCost,   
+                                    status:  'pending',   
+                                    timestamp:  firebase.firestore.FieldValue.serverTimestamp()
+                                });
+                            });
+                        });
+                })
+                .then(() => {
+                    hideLoading();
+                    showNotification(`Successfully purchased ${quantity}x ${purchasedItemName} for ${itemPrice * quantity}!`);
+                    loadShopItems(); // Refresh shop items
+                    updateUserCreditsDisplay(); // Update credits display
+                })
+                .catch((error) => {
+                    hideLoading();
+                    console.error("Error purchasing item:  ",  error);
+                    showNotification('Error purchasing item:  ' + error.message,  true);
+                });
+        }
+
+        // Orders Functions
+        function loadUserOrders() {
+            if (!currentUser) {
+                showNotification('Please log in to view orders',  true);
+                return;
+            }
+            
+            showLoading();
+            return db.collection('orders')
+                .where('userId',  '==',  currentUser.uid)
+                .orderBy('timestamp',  'desc')
+                .get()
+                .then((querySnapshot) => {
+                    hideLoading();
+                    ordersList.innerHTML = '';
+                    
+                    if (querySnapshot.empty) {
+                        ordersList.innerHTML = '<p>You have no orders yet.</p>';
+                        return;
+                    }
+                    
+                    let hasOrders = false;
+                    querySnapshot.forEach((doc) => {
+                        // Skip initialization documents
+                        if (doc.id === '_init_') return;
+                        
+                        const order = doc.data();
+                        hasOrders = true;
+                        const orderElement = document.createElement('div');
+                        orderElement.className = 'order-item';
+                        orderElement.innerHTML = `
+                            <div class="order-header">
+                                <div class="order-id">Order ID:  ${doc.id.substring(0,  8)}...</div>
+                                <div class="order-date">${order.timestamp ? new Date(order.timestamp.toDate()).toLocaleString() :  'Just now'}</div>
+                            </div>
+                            <div class="order-details">
+                                <div class="order-item-info">
+                                    <div class="order-item-image">
+                                        ${order.itemImage ? `<img src="${order.itemImage}" alt="${order.itemName}">` :    
+                                          `<div class="default-item-image"><i class="fas fa-dragon"></i></div>`}
+                                    </div>
+                                    <div>
+                                        <div class="order-item-name">${order.itemName}</div>
+                                        <div class="order-quantity">Quantity:  ${order.quantity}</div>
+                                        <div class="order-price">Price:  ${order.price} each</div>
+                                    </div>
+                                </div>
+                                <div class="order-total">Total:  ${order.total}</div>
+                                <div class="order-status status-${order.status}">${order.status.charAt(0).toUpperCase() + order.status.slice(1)}</div>
+                            </div>
+                            ${order.status === 'pending' ? 
+                                `<button class="chat-btn" data-order="${doc.id}">
+                                    <i class="fas fa-comments"></i> Contact Support
+                                </button>` :   ''}
+                        `;
+                        ordersList.appendChild(orderElement);
+                    });
+                    
+                    if (!hasOrders) {
+                        ordersList.innerHTML = '<p>You have no orders yet.</p>';
+                    }
+                    
+                    // Add event listeners to chat buttons
+                    document.querySelectorAll('.chat-btn').forEach(button => {
+                        button.addEventListener('click',  (e) => {
+                            const orderId = e.target.closest('.chat-btn').getAttribute('data-order');
+                            openAdminChat(orderId);
+                        });
+                    });
+                })
+                .catch((error) => {
+                    hideLoading();
+                    console.error("Error getting orders:  ",  error);
+                    showNotification('Error loading orders:  ' + error.message,  true);
+                });
+        }
+
+        function openAdminChat(orderId) {
+            // In a real implementation,  this would open a chat interface
+            // For now,  we'll just show a notification
+            showNotification('Support chat feature is coming soon!');
+            
+            // Log the chat request in community posts
+            if (currentUser) {
+                rtdb.ref('users/' + currentUser.uid).once('value')
+                    .then((snapshot) => {
+                        const userData = snapshot.val();
+                        const username = userData ? userData.username :  'Anonymous';
+                        
+                        return db.collection('communityPosts').add({
+                            userId:  currentUser.uid,
+                            username:  username,
+                            content:  `Customer support request for order ${orderId.substring(0,  8)}...`,
+                            likes:  0,
+                            timestamp:  firebase.firestore.FieldValue.serverTimestamp()
+                        });
+                    })
+                    .then(() => {
+                        console.log('Support request logged in community posts');
+                    })
+                    .catch((error) => {
+                        console.error("Error logging support request:  ",  error);
+                    });
+            }
+        }
+
+        // Admin Shop Management Functions
+        function loadAdminShopItems() {
+            // Allow both owner and admins
+            if (!currentUser || (currentUser.email !== OWNER_EMAIL && userRoleData !== 'Admin')) {
+                showNotification('Access denied',  true);
+                return;
+            }
+            
+            showLoading();
+            return db.collection('shopItems')
+                .orderBy('name')
+                .get()
+                .then((querySnapshot) => {
+                    hideLoading();
+                    adminShopItems.innerHTML = '<h3>Manage Shop Items</h3>';
+                    
+                    if (querySnapshot.empty) {
+                        adminShopItems.innerHTML += '<p>No items in the shop. Add your first item!</p>';
+                        return;
+                    }
+                    
+                    let hasItems = false;
+                    querySnapshot.forEach((doc) => {
+                        // Skip initialization documents
+                        if (doc.id === '_init_') return;
+                        
+                        const item = doc.data();
+                        hasItems = true;
+                        const itemElement = document.createElement('div');
+                        itemElement.className = 'admin-item';
+                        itemElement.innerHTML = `
+                            <div class="admin-info">
+                                <div><strong>Name:  </strong> ${item.name}</div>
+                                <div><strong>Price:  </strong> ${item.price}</div>
+                                <div><strong>Description:  </strong> ${item.description}</div>
+                                <div><strong>Image:  </strong> ${item.image ? '✓' :  '✗'}</div>
+                            </div>
+                            <div class="admin-actions">
+                                <button class="remove-admin-btn" data-id="${doc.id}">Remove</button>
+                            </div>
+                        `;
+                        adminShopItems.appendChild(itemElement);
+                    });
+                    
+                    if (!hasItems) {
+                        adminShopItems.innerHTML += '<p>No items in the shop. Add your first item!</p>';
+                    } else {
+                        // Add event listeners to remove buttons
+                        document.querySelectorAll('#adminShopItems .remove-admin-btn').forEach(button => {
+                            button.addEventListener('click',  (e) => {
+                                const itemId = e.target.getAttribute('data-id');
+                                removeShopItem(itemId);
+                            });
+                        });
+                    }
+                })
+                .catch((error) => {
+                    hideLoading();
+                    console.error("Error getting shop items:  ",  error);
+                    showNotification('Error loading shop items:  ' + error.message,  true);
+                });
+        }
+
+        function addShopItem() {
+            if (!currentUser || (currentUser.email !== OWNER_EMAIL && userRoleData !== 'Admin')) {
+                showNotification('Access denied',  true);
+                return;
+            }
+            
+            const name = itemName.value.trim();
+            const description = itemDescription.value.trim();
+            const price = parseFloat(itemPrice.value);
+            const image = itemImage.value.trim();
+            
+            if (!name || !description || isNaN(price) || price <= 0) {
+                showNotification('Please fill all fields with valid values',  true);
+                return;
+            }
+            
+            showLoading();
+            db.collection('shopItems').add({
+                name:  name,   
+                description:  description,   
+                price:  price,   
+                image:  image || '',   
+                timestamp:  firebase.firestore.FieldValue.serverTimestamp()
+            })
+            .then((docRef) => {
+                hideLoading();
+                showNotification(`Item "${name}" added successfully!`);
+                itemName.value = '';
+                itemDescription.value = '';
+                itemPrice.value = '';
+                itemImage.value = '';
+                itemImagePreview.innerHTML = '<i class="fas fa-image"></i>';
+                loadAdminShopItems();
+                loadShopItems(); // Refresh shop for users
+                console.log('Item added with ID: ',  docRef.id);
+            })
+            .catch((error) => {
+                hideLoading();
+                console.error("Error adding item:  ",  error);
+                showNotification('Error adding item:  ' + error.message,  true);
+            });
+        }
+
+        function removeShopItem(itemId) {
+            if (!currentUser || (currentUser.email !== OWNER_EMAIL && userRoleData !== 'Admin')) {
+                showNotification('Access denied',  true);
+                return;
+            }
+            
+            showLoading();
+            db.collection('shopItems').doc(itemId).delete()
+                .then(() => {
+                    hideLoading();
+                    showNotification('Item removed successfully!');
+                    loadAdminShopItems();
+                    loadShopItems(); // Refresh shop for users
+                })
+                .catch((error) => {
+                    hideLoading();
+                    console.error("Error removing item:  ",  error);
+                    showNotification('Error removing item:  ' + error.message,  true);
+                });
+        }
+
+        // Admin Order Management Functions
+        function loadAdminOrders() {
+            // Allow both owner and admins
+            if (!currentUser || (currentUser.email !== OWNER_EMAIL && userRoleData !== 'Admin')) {
+                showNotification('Access denied',  true);
+                return;
+            }
+            
+            showLoading();
+            return db.collection('orders')
+                .orderBy('timestamp',  'desc')
+                .get()
+                .then((querySnapshot) => {
+                    hideLoading();
+                    adminOrdersList.innerHTML = '<h3>Manage Orders</h3>';
+                    
+                    if (querySnapshot.empty) {
+                        adminOrdersList.innerHTML += '<p>No orders found.</p>';
+                        return;
+                    }
+                    
+                    let hasOrders = false;
+                    querySnapshot.forEach((doc) => {
+                        // Skip initialization documents
+                        if (doc.id === '_init_') return;
+                        
+                        const order = doc.data();
+                        hasOrders = true;
+                        const orderElement = document.createElement('div');
+                        orderElement.className = 'order-management-item';
+                        orderElement.innerHTML = `
+                            <div class="order-header">
+                                <div class="order-id">Order ID:  ${doc.id.substring(0,  8)}...</div>
+                                <div class="order-date">${order.timestamp ? new Date(order.timestamp.toDate()).toLocaleString() :  'Just now'}</div>
+                            </div>
+                            <div class="order-details">
+                                <div><strong>User:  </strong> ${order.userEmail}</div>
+                                <div><strong>User ID:  </strong> ${order.userId ? order.userId.substring(0,  8) + '...' :  'N/A'}</div>
+                                <div class="order-item-info">
+                                    <div class="order-item-image">
+                                        ${order.itemImage ? `<img src="${order.itemImage}" alt="${order.itemName}">` :    
+                                          `<div class="default-item-image"><i class="fas fa-dragon"></i></div>`}
+                                    </div>
+                                    <div>
+                                        <div class="order-item-name">${order.itemName}</div>
+                                        <div class="order-quantity">Quantity:  ${order.quantity}</div>
+                                        <div class="order-price">Price:  ${order.price} each</div>
+                                    </div>
+                                </div>
+                                <div class="order-total">Total:  ${order.total}</div>
+                                <div class="order-status status-${order.status}">${order.status.charAt(0).toUpperCase() + order.status.slice(1)}</div>
+                            </div>
+                            ${order.status === 'pending' ? 
+                                `<div class="order-actions">
+                                    <button class="status-btn complete-btn" data-id="${doc.id}" data-action="complete">Complete</button>
+                                    <button class="status-btn cancel-btn" data-id="${doc.id}" data-action="cancel">Cancel</button>
+                                </div>` :   ''}
+                        `;
+                        adminOrdersList.appendChild(orderElement);
+                    });
+                    
+                    if (!hasOrders) {
+                        adminOrdersList.innerHTML += '<p>No orders found.</p>';
+                    } else {
+                        // Add event listeners to status buttons
+                        document.querySelectorAll('.status-btn').forEach(button => {
+                            button.addEventListener('click',  (e) => {
+                                const orderId = e.target.getAttribute('data-id');
+                                const action = e.target.getAttribute('data-action');
+                                updateOrderStatus(orderId,  action);
+                            });
+                        });
+                    }
+                })
+                .catch((error) => {
+                    hideLoading();
+                    console.error("Error getting orders:  ",  error);
+                    showNotification('Error loading orders:  ' + error.message,  true);
+                });
+        }
+
+        function updateOrderStatus(orderId,  action) {
+            const newStatus = action === 'complete' ? 'completed' :  'cancelled';
+            
+            showLoading();
+            db.collection('orders').doc(orderId).update({
+                status:  newStatus
+            })
+            .then(() => {
+                hideLoading();
+                showNotification(`Order ${newStatus} successfully!`);
+                loadAdminOrders();
+            })
+            .catch((error) => {
+                hideLoading();
+                console.error("Error updating order:  ",  error);
+                showNotification('Error updating order:  ' + error.message,  true);
+            });
         }
 
         // Authentication state observer
@@ -2766,16 +3150,15 @@
                 // Check admin status
                 checkAdminStatus(user)
                     .then(() => {
+                        communityLink.style.display = 'block';
                         shopLink.style.display = 'block';
                         ordersLink.style.display = 'block';
                         
-                        // Load user data
-                        loadUserBalance(user.uid);
-                        loadUserEBucks(user.uid);
-                        loadUserOrders(user.uid);
+                        // Load user credits
+                        updateUserCreditsDisplay();
                         
-                        // Load shop items
-                        loadShopItemsWithCategories();
+                        // Load community posts
+                        loadCommunityPosts();
                         
                         showPage('main');
                     });
@@ -2786,6 +3169,7 @@
                 loginBtn.style.display = 'block';
                 signupBtn.style.display = 'block';
                 loginLink.style.display = 'block';
+                communityLink.style.display = 'none';
                 shopLink.style.display = 'none';
                 ordersLink.style.display = 'none';
                 adminLink.style.display = 'none';
@@ -2795,21 +3179,29 @@
 
         // Navigation
         navLinks.forEach(link => {
-            link.addEventListener('click',   (e) => {
+            link.addEventListener('click',  (e) => {
                 e.preventDefault();
                 const page = link.getAttribute('data-page');
                 
-                if (page === 'shop' || page === 'orders') {
-                    showPage(currentUser ? page :   'login');
+                if (page === 'community' || page === 'shop' || page === 'orders') {
+                    if (currentUser) {
+                        showPage(page);
+                        if (page === 'community') loadCommunityPosts();
+                        if (page === 'shop') loadShopItems();
+                        if (page === 'orders') loadUserOrders();
+                    } else {
+                        showPage('login');
+                    }
                 } else if (page === 'admin') {
-                    if (userRoleData === 'Admin' || userRoleData === 'Owner' || currentUser.email === OWNER_EMAIL) {
+                    if (currentUser && (userRoleData === 'Admin' || userRoleData === 'Owner' || currentUser.email === OWNER_EMAIL)) {
                         showPage('admin');
-                        loadAdminOrders();
                         loadUsers();
                         loadAdmins();
-                        loadUsersForRoleManagement(); // Load users for role management
+                        loadUsersForRoleManagement();
+                        loadAdminShopItems();
+                        loadAdminOrders();
                     } else {
-                        showNotification('Access denied',   true);
+                        showNotification('Access denied',  true);
                         showPage('main');
                     }
                 } else {
@@ -2819,34 +3211,34 @@
         });
 
         // Login button
-        loginBtn.addEventListener('click',   () => showPage('login'));
+        loginBtn.addEventListener('click',  () => showPage('login'));
 
         // Signup button
-        signupBtn.addEventListener('click',   () => showPage('signup'));
+        signupBtn.addEventListener('click',  () => showPage('signup'));
 
         // Show signup from login
-        showSignup.addEventListener('click',   (e) => {
+        showSignup.addEventListener('click',  (e) => {
             e.preventDefault();
             showPage('signup');
         });
 
         // Show login from signup
-        showLogin.addEventListener('click',   (e) => {
+        showLogin.addEventListener('click',  (e) => {
             e.preventDefault();
             showPage('login');
         });
 
         // Logout
-        logoutBtn.addEventListener('click',   logout);
+        logoutBtn.addEventListener('click',  logout);
 
         // Login form submission
-        loginForm.addEventListener('submit',   (e) => {
+        loginForm.addEventListener('submit',  (e) => {
             e.preventDefault();
             const email = document.getElementById('loginEmail').value;
             const password = document.getElementById('loginPassword').value;
             const key = document.getElementById('loginKey').value;
             
-            login(email,   password,   key)
+            login(email,  password,  key)
                 .then((user) => {
                     showPage('main');
                 })
@@ -2856,7 +3248,7 @@
         });
 
         // Signup form submission
-        signupForm.addEventListener('submit',   (e) => {
+        signupForm.addEventListener('submit',  (e) => {
             e.preventDefault();
             const username = document.getElementById('signupUsername').value;
             const email = document.getElementById('signupEmail').value;
@@ -2865,11 +3257,11 @@
             const confirmPassword = document.getElementById('confirmPassword').value;
             
             if (password !== confirmPassword) {
-                showNotification('Passwords do not match!',   true);
+                showNotification('Passwords do not match!',  true);
                 return;
             }
             
-            signup(username,   email,   password,   key)
+            signup(username,  email,  password,  key)
                 .then(() => {
                     showPage('main');
                 })
@@ -2878,36 +3270,42 @@
                 });
         });
 
+        // Community event listeners
+        submitPost.addEventListener('click',  submitCommunityPost);
+        
         // Admin event listeners
-        addItemBtn.addEventListener('click',   addItemWithCategory);
-        updateItemBtn.addEventListener('click',   updateItemWithCategory);
-        deleteItemBtn.addEventListener('click',   deleteItem);
-        addAdminBtn.addEventListener('click',   addAdmin);
+        addAdminBtn.addEventListener('click',  addAdmin);
         
         // Role Management event listeners
-        changeRoleBtn.addEventListener('click',   changeUserRole);
+        changeRoleBtn.addEventListener('click',  changeUserRole);
+
+        // Shop event listeners
+        addItemBtn.addEventListener('click',  addShopItem);
+        searchBtn.addEventListener('click',  () => {
+            const searchTerm = searchInput.value.trim();
+            loadShopItems(searchTerm);
+        });
         
-        // Page Selector event listeners
-        addItemPageBtn.addEventListener('click',   () => showAdminCard('add'));
-        updateItemPageBtn.addEventListener('click',   () => showAdminCard('update'));
-        deleteItemPageBtn.addEventListener('click',   () => showAdminCard('delete'));
-        manageCategoriesBtn.addEventListener('click',   () => showAdminCard('categories'));
-        
-        // Category Management event listeners
-        addCategoryBtn.addEventListener('click',   addNewCategory);
-        
-        // Category Filter event listeners
-        categoryBtns.forEach(btn => {
-            btn.addEventListener('click',   () => {
-                categoryBtns.forEach(b => b.classList.remove('active'));
-                btn.classList.add('active');
-                activeCategory = btn.getAttribute('data-category');
-                filterItemsByCategory(activeCategory);
-            });
+        searchInput.addEventListener('keyup',  (e) => {
+            if (e.key === 'Enter') {
+                const searchTerm = searchInput.value.trim();
+                loadShopItems(searchTerm);
+            }
         });
 
+        // Add image preview functionality
+        if (itemImage) {
+            itemImage.addEventListener('input',  () => {
+                const imageUrl = itemImage.value.trim();
+                if (imageUrl) {
+                    itemImagePreview.innerHTML = `<img src="${imageUrl}" alt="Preview" onerror="this.parentElement.innerHTML='<i class=\'fas fa-image\'></i>';">`;
+                } else {
+                    itemImagePreview.innerHTML = '<i class="fas fa-image"></i>';
+                }
+            });
+        }
+
         // Initialize the page
-        loadShopItemsWithCategories();
         showPage('main');
     </script>
 </body>
