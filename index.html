@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Merriweather:wght@700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
     <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-auth-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-firestore-compat.js"></script>
@@ -34,7 +34,7 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: Spectral, Georgia, 'Times New Roman', Times, serif;
+            font-family: "Manrope", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
         }
 
         body {
@@ -1119,29 +1119,6 @@
             margin-bottom: 15px;
         }
         
-        /* Shop Styles */
-        .shop-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 25px;
-            margin-top: 20px;
-        }
-
-        .shop-item {
-            background: var(--card-bg);
-            border-radius: 15px;
-            padding: 25px;
-            border: 1px solid var(--card-border);
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
-            backdrop-filter: blur(5px);
-            transition: all 0.3s ease;
-        }
-
-        .shop-item:hover {
-            transform: translateY(-5px);
-            border-color: rgba(138, 43, 226, 0.6);
-        }
-
         .item-image {
             width: 100%;
             height: 180px;
@@ -1171,51 +1148,6 @@
             color: #d0d0d0;
             margin-bottom: 15px;
             line-height: 1.5;
-        }
-
-        .item-price {
-            font-size: 1.3rem;
-            font-weight: bold;
-            color: var(--accent);
-            margin-bottom: 15px;
-        }
-
-        .item-quantity {
-            display: flex;
-            align-items: center;
-            margin-bottom: 15px;
-        }
-
-        .item-quantity label {
-            margin-right: 10px;
-            color: #e0e0e0;
-        }
-
-        .quantity-input {
-            width: 70px;
-            padding: 8px;
-            border-radius: 8px;
-            border: 1px solid rgba(138, 43, 226, 0.4);
-            background: rgba(0, 0, 0, 0.3);
-            color: white;
-            text-align: center;
-        }
-
-        .buy-btn {
-            width: 100%;
-            padding: 12px;
-            background: linear-gradient(90deg, var(--primary), var(--secondary));
-            color: white;
-            border: none;
-            border-radius: 8px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .buy-btn:hover {
-            background: linear-gradient(90deg, var(--primary-dark), var(--secondary));
-            transform: translateY(-2px);
         }
 
         /* Orders Styles */
@@ -1329,25 +1261,6 @@
             background: rgba(138, 43, 226, 0.4);
         }
 
-        /* Admin Shop Management */
-        .shop-management {
-            margin-top: 30px;
-        }
-
-        .add-item-form {
-            background: rgba(0, 0, 0, 0.4);
-            border-radius: 15px;
-            padding: 25px;
-            border: 1px solid var(--card-border);
-            margin-top: 20px;
-        }
-
-        .add-item-form h3 {
-            color: var(--accent);
-            margin-bottom: 15px;
-            font-size: 1.6rem;
-        }
-
         .item-image-preview {
             width: 100px;
             height: 100px;
@@ -1405,37 +1318,6 @@
         .cancel-btn {
             background: #ff3b30;
             color: white;
-        }
-
-        /* Search Bar */
-        .search-bar {
-            display: flex;
-            gap: 10px;
-            margin-bottom: 20px;
-        }
-
-        .search-bar input {
-            flex: 1;
-            padding: 12px;
-            border-radius: 8px;
-            border: 1px solid rgba(138, 43, 226, 0.4);
-            background: rgba(0, 0, 0, 0.3);
-            color: white;
-            font-size: 1rem;
-        }
-
-        .search-bar button {
-            padding: 12px 20px;
-            background: linear-gradient(90deg, var(--primary), var(--secondary));
-            color: white;
-            border: none;
-            border-radius: 8px;
-            font-weight: 600;
-            cursor: pointer;
-        }
-
-        .search-bar button:hover {
-            background: linear-gradient(90deg, var(--primary-dark), var(--secondary));
         }
 
         /* Credits Display */
@@ -2321,7 +2203,7 @@
             flex: 1;
         }
         
-        .user-list, .shop-items-list, .order-management-list {
+        .user-list, .order-management-list {
             max-height: 400px;
             overflow-y: auto;
             margin-top: 20px;
@@ -2451,7 +2333,7 @@
         }
 
         * {
-            font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            font-family: "Manrope", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
         }
 
         body {
@@ -2504,7 +2386,7 @@
             background: none;
             text-shadow: none;
             -webkit-text-fill-color: #152238;
-            font-family: "Merriweather", Georgia, serif;
+            font-family: "Space Grotesk", "Manrope", sans-serif;
         }
 
         .logo-text p {
@@ -2551,8 +2433,9 @@
 
         .nav-link.active {
             color: #ffffff;
-            background: #1f3a5f;
-            border-color: #1f3a5f;
+            background: linear-gradient(135deg, #315cf0, #253b87);
+            border-color: #253b87;
+            box-shadow: 0 8px 16px rgba(37, 59, 135, 0.28);
         }
 
         .auth-buttons {
@@ -2584,10 +2467,8 @@
         .btn-signup,
         .login-btn,
         .post-btn,
-        .buy-btn,
         .chat-action-btn,
         .status-btn,
-        #searchBtn,
         #sendMessageBtn,
         .send-chat-panel-btn {
             background: #1f3a5f;
@@ -2598,10 +2479,8 @@
         .btn-signup:hover,
         .login-btn:hover,
         .post-btn:hover,
-        .buy-btn:hover,
         .chat-action-btn:hover,
         .status-btn:hover,
-        #searchBtn:hover,
         #sendMessageBtn:hover,
         .send-chat-panel-btn:hover {
             background: #162d4a;
@@ -2687,7 +2566,7 @@
             font-size: clamp(2rem, 5vw, 3.1rem);
             line-height: 1.2;
             max-width: 15ch;
-            font-family: "Merriweather", Georgia, serif;
+            font-family: "Space Grotesk", "Manrope", sans-serif;
         }
 
         .hero p {
@@ -2709,7 +2588,7 @@
         }
 
         .features-intro h3 {
-            font-family: "Merriweather", Georgia, serif;
+            font-family: "Space Grotesk", "Manrope", sans-serif;
             font-size: 1.5rem;
             color: #182538;
             margin-bottom: 8px;
@@ -2721,7 +2600,6 @@
 
         .features,
         .community-container,
-        .shop-container,
         .orders-container {
             gap: 18px;
         }
@@ -2731,7 +2609,6 @@
         .post-form,
         .post,
         .community-card,
-        .shop-item,
         .order-item,
         .order-management-item,
         .admin-item,
@@ -2767,13 +2644,12 @@
         .feature-card h3,
         .login-container h2,
         .community-section h2,
-        #shop-page h2,
         #orders-page h2,
         #admin-page h2,
         #settings-page h2 {
             color: #152238;
             text-shadow: none;
-            font-family: "Merriweather", Georgia, serif;
+            font-family: "Space Grotesk", "Manrope", sans-serif;
         }
 
         .feature-card p,
@@ -3001,14 +2877,6 @@
             padding: 8px;
         }
 
-        .shop-item {
-            display: grid;
-            grid-template-columns: 130px 1fr;
-            gap: 18px;
-            padding: 18px;
-        }
-
-        .shop-item .item-image,
         .order-item-image {
             width: 100%;
             height: 120px;
@@ -3018,14 +2886,12 @@
             overflow: hidden;
         }
 
-        .shop-item .item-image img,
         .order-item-image img {
             width: 100%;
             height: 100%;
             object-fit: cover;
         }
 
-        .item-price,
         .order-total,
         .stat-card .value {
             color: #17345c;
@@ -3036,10 +2902,8 @@
         .form-group textarea,
         .form-group select,
         .role-select,
-        .quantity-input,
         .chat-panel-input,
-        #chatMessageInput,
-        #searchInput {
+        #chatMessageInput {
             background: #ffffff;
             color: #1c2532;
             border: 1px solid #c7d5e7;
@@ -3050,7 +2914,6 @@
         .form-group input:focus,
         .form-group textarea:focus,
         .form-group select:focus,
-        #searchInput:focus,
         .chat-panel-input:focus,
         #chatMessageInput:focus {
             border-color: #3b6ca1;
@@ -3074,8 +2937,9 @@
 
         .admin-menu a:hover,
         .admin-menu a.active {
-            background: #e9f0fa;
-            color: #17345c;
+            background: linear-gradient(135deg, #e8eeff, #dbe4ff);
+            color: #1c2f78;
+            border: 1px solid #b8c7ff;
         }
 
         .stats-container,
@@ -3152,10 +3016,6 @@
                 padding: 40px 24px;
             }
 
-            .shop-item {
-                grid-template-columns: 1fr;
-            }
-
             .user-info-display {
                 width: 100%;
             }
@@ -3227,7 +3087,6 @@
                 <a href="#" class="nav-link active" data-page="main">Home</a>
                 <a href="#" class="nav-link" data-page="login" id="loginLink">Login</a>
                 <a href="#" class="nav-link" data-page="community" id="communityLink" style="display: none;">Community</a>
-                <a href="#" class="nav-link" data-page="shop" id="shopLink" style="display: none;">Shop</a>
                 <a href="#" class="nav-link" data-page="orders" id="ordersLink" style="display: none;">Orders</a>
                 <a href="#" class="nav-link" data-page="settings" id="settingsLink" style="display: none;">Settings</a>
                 <a href="#" class="nav-link" data-page="admin" id="adminLink" style="display: none;">Admin</a>
@@ -3268,7 +3127,7 @@
 
             <div class="features-intro">
                 <h3>What you can do here</h3>
-                <p>Explore proven guides, talk with active players, and manage your in-game purchases from one place.</p>
+                <p>Explore proven guides, talk with active players, and coordinate your progress from one place.</p>
             </div>
 
             <div class="features">
@@ -3376,20 +3235,6 @@
             </div>
         </div>
 
-        <!-- Shop Page -->
-        <div id="shop-page" class="page">
-            <div class="container">
-                <h2>Dragon City Shop</h2>
-                <div class="search-bar">
-                    <input type="text" id="searchInput" placeholder="Search items...">
-                    <button id="searchBtn"><i class="fas fa-search"></i> Search</button>
-                </div>
-                <div class="shop-container" id="shopItems">
-                    <!-- Shop items will be loaded here -->
-                </div>
-            </div>
-        </div>
-
         <!-- Orders Page -->
         <div id="orders-page" class="page">
             <div class="container">
@@ -3489,9 +3334,6 @@
                             <li><a href="#" class="admin-menu-item" data-section="roles">
                                 <i class="fas fa-id-badge"></i> <span>Role Management</span>
                             </a></li>
-                            <li><a href="#" class="admin-menu-item" data-section="shop">
-                                <i class="fas fa-store"></i> <span>Shop Management</span>
-                            </a></li>
                             <li><a href="#" class="admin-menu-item" data-section="orders">
                                 <i class="fas fa-shopping-cart"></i> <span>Order Management</span>
                             </a></li>
@@ -3524,11 +3366,6 @@
                                     <i class="fas fa-comments"></i>
                                     <div class="value" id="activeChatsStat">0</div>
                                     <div class="label">Active Chats</div>
-                                </div>
-                                <div class="stat-card">
-                                    <i class="fas fa-store"></i>
-                                    <div class="value" id="shopItemsStat">0</div>
-                                    <div class="label">Shop Items</div>
                                 </div>
                             </div>
                             
@@ -3620,49 +3457,7 @@
                                 <button class="admin-btn" id="changeRoleBtn">Change Role</button>
                             </div>
                         </div>
-                        
-                        <!-- Shop Management Section -->
-                        <div id="shop-section" class="admin-section">
-                            <h2>Shop Management</h2>
-                            
-                            <div class="admin-form">
-                                <h3>Add New Item</h3>
-                                <div class="form-row">
-                                    <div class="form-group">
-                                        <label for="itemName">Item Name</label>
-                                        <input type="text" id="itemName" placeholder="Enter item name">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="itemPrice">Price ($)</label>
-                                        <input type="number" id="itemPrice" placeholder="Enter price" min="0" step="0.01">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="itemPosition">Position (1-9999)</label>
-                                        <input type="number" id="itemPosition" class="position-input" placeholder="Enter position" min="1" max="9999" value="100">
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label for="itemDescription">Description</label>
-                                    <textarea id="itemDescription" placeholder="Enter item description"></textarea>
-                                </div>
-                                <div class="form-group">
-                                    <label for="itemImage">Image URL</label>
-                                    <input type="text" id="itemImage" placeholder="Enter image URL">
-                                </div>
-                                <div class="item-image-preview" id="itemImagePreview">
-                                    <i class="fas fa-image"></i>
-                                </div>
-                                <button class="admin-btn" id="addItemBtn">Add Item</button>
-                            </div>
-                            
-                            <div class="admin-card">
-                                <h3>Shop Items</h3>
-                                <div class="shop-items-list" id="adminShopItems">
-                                    <!-- Shop items will be loaded here for admin management -->
-                                </div>
-                            </div>
-                        </div>
-                        
+
                         <!-- Order Management Section -->
                         <div id="orders-section" class="admin-section">
                             <h2>Order Management</h2>
@@ -3792,7 +3587,6 @@
         const userName = document.getElementById('userName');
         const userAvatar = document.getElementById('userAvatar');
         const communityLink = document.getElementById('communityLink');
-        const shopLink = document.getElementById('shopLink');
         const ordersLink = document.getElementById('ordersLink');
         const settingsLink = document.getElementById('settingsLink');
         const adminLink = document.getElementById('adminLink');
@@ -3830,22 +3624,8 @@
         // User Management Elements
         const userList = document.getElementById('userList');
 
-        // Shop Elements
-        const shopItems = document.getElementById('shopItems');
+        // Orders Elements
         const ordersList = document.getElementById('ordersList');
-        const searchInput = document.getElementById('searchInput');
-        const searchBtn = document.getElementById('searchBtn');
-
-        // Admin Shop Elements
-        const itemName = document.getElementById('itemName');
-        const itemDescription = document.getElementById('itemDescription');
-        const itemPrice = document.getElementById('itemPrice');
-        const itemPosition = document.getElementById('itemPosition');
-        const itemImage = document.getElementById('itemImage');
-        const itemImagePreview = document.getElementById('itemImagePreview');
-        const addItemBtn = document.getElementById('addItemBtn');
-        const adminShopItems = document.getElementById('adminShopItems');
-        const adminOrdersList = document.getElementById('adminOrdersList');
 
         // Customer Chat Elements
         const chatModal = document.getElementById('customer-chat-modal');
@@ -3874,11 +3654,13 @@
         const adminChatUser = document.getElementById('adminChatUser');
         const noUserSelected = document.getElementById('noUserSelected');
 
+        // Admin Orders Element
+        const adminOrdersList = document.getElementById('adminOrdersList');
+
         // Dashboard Elements
         const totalUsersStat = document.getElementById('totalUsersStat');
         const totalOrdersStat = document.getElementById('totalOrdersStat');
         const activeChatsStat = document.getElementById('activeChatsStat');
-        const shopItemsStat = document.getElementById('shopItemsStat');
 
         // Top-up Elements
         const topupUserSelect = document.getElementById('topupUserSelect');
@@ -3901,14 +3683,13 @@
 
         // URL routing
         const PAGE_TO_PATH = {
-            main: '/main',
-            login: '/login',
-            signup: '/signup',
-            community: '/chat',
-            shop: '/shop',
-            orders: '/orders',
-            settings: '/settings',
-            admin: '/admin'
+            main: '/dashboard/main',
+            login: '/dashboard/login',
+            signup: '/dashboard/signup',
+            community: '/dashboard/community',
+            orders: '/dashboard/orders',
+            settings: '/dashboard/settings',
+            admin: '/dashboard/admin'
         };
         const PATH_TO_PAGE = Object.entries(PAGE_TO_PATH).reduce((acc, [page, path]) => {
             acc[path] = page;
@@ -3970,8 +3751,16 @@
 
         function getPageFromPath(pathname = window.location.pathname) {
             const normalized = (pathname || '/').replace(/\/+$/, '') || '/';
-            if (normalized === '/') return 'main';
-            return PATH_TO_PAGE[normalized] || 'main';
+            if (normalized === '/' || normalized === '/dashboard') return 'main';
+            if (PATH_TO_PAGE[normalized]) return PATH_TO_PAGE[normalized];
+            const dashboardPrefix = '/dashboard/';
+            if (normalized.startsWith(dashboardPrefix)) {
+                const candidate = normalized.slice(dashboardPrefix.length);
+                if (candidate && Object.prototype.hasOwnProperty.call(PAGE_TO_PATH, candidate)) {
+                    return candidate;
+                }
+            }
+            return 'main';
         }
 
         function pushPageRoute(pageId, replace = false) {
@@ -3994,7 +3783,7 @@
             }
 
             // Keep protected pages auth-only
-            const authOnlyPages = ['community', 'shop', 'orders', 'settings', 'admin'];
+            const authOnlyPages = ['community', 'orders', 'settings', 'admin'];
             if (!currentUser && authOnlyPages.includes(targetPage)) {
                 targetPage = 'login';
             }
@@ -4062,21 +3851,6 @@
                     // Delete the test document
                     await db.collection('admins').doc('_init_').delete();
                     console.log('Admins collection initialized');
-                }
-
-                // Check if shopItems collection exists
-                const shopSnapshot = await db.collection('shopItems').limit(1).get();
-                if (shopSnapshot.empty) {
-                    // Add a sample item to initialize the collection
-                    await db.collection('shopItems').add({
-                        name: 'Sample Dragon Egg',      
-                        description: 'A rare dragon egg to hatch your first dragon',      
-                        price: 100,      
-                        position: 100,   
-                        image: '',      
-                        timestamp: firebase.firestore.FieldValue.serverTimestamp()
-                    });
-                    console.log('ShopItems collection initialized');
                 }
 
                 // Check if orders collection exists
@@ -4405,197 +4179,6 @@
             }
         }
 
-        // Shop Functions
-        function loadShopItems() {
-            showLoading();
-            // Order by position in descending order (higher position first)
-            let query = db.collection('shopItems').orderBy('position', 'desc');
-            
-            return query.get()
-                .then((querySnapshot) => {
-                    hideLoading();
-                    shopItems.innerHTML = '';
-                    
-                    if (querySnapshot.empty) {
-                        // Add sample items if no items exist
-                        return addSampleShopItems();
-                    }
-                    
-                    let hasItems = false;
-                    
-                    querySnapshot.forEach((doc) => {
-                        // Skip initialization documents
-                        if (doc.id === '_init_') return;
-                        
-                        const item = doc.data();
-                        hasItems = true;
-                        const itemElement = document.createElement('div');
-                        itemElement.className = 'shop-item';
-                        itemElement.innerHTML = `
-                            <div class="item-image">
-                                ${item.image ? `<img src="${item.image}" alt="${item.name}">` :       
-                                  `<div class="default-item-image"><i class="fas fa-dragon"></i></div>`}
-                            </div>
-                            <div class="item-info">
-                                <h3>${item.name}</h3>
-                                <div class="item-description">${item.description}</div>
-                                <div class="item-price">${item.price}</div>
-                                <div class="item-quantity">
-                                    <label for="quantity-${doc.id}">Quantity: </label>
-                                    <input type="number" id="quantity-${doc.id}" class="quantity-input" value="1" min="1" max="99">
-                                </div>
-                                <button class="buy-btn" data-id="${doc.id}">Buy Now</button>
-                            </div>
-                        `;
-                        shopItems.appendChild(itemElement);
-                    });
-                    
-                    if (!hasItems) {
-                        addSampleShopItems();
-                    } else {
-                        // Add event listeners to buy buttons
-                        document.querySelectorAll('.buy-btn').forEach(button => {
-                            button.addEventListener('click', (e) => {
-                                const itemId = e.target.getAttribute('data-id');
-                                const quantity = parseInt(document.getElementById(`quantity-${itemId}`).value) || 1;
-                                purchaseItem(itemId, quantity);
-                            });
-                        });
-                    }
-                })
-                .catch((error) => {
-                    hideLoading();
-                    console.error("Error getting shop items: ", error);
-                    showNotification('Error loading shop items: ' + error.message, true);
-                });
-        }
-
-        // Add sample shop items
-        function addSampleShopItems() {
-            const sampleItems = [
-                {
-                    name: 'Coming Soon',      
-                    description: 'Hatch a powerful Flame Dragon! Deals massive fire damage.',      
-                    price: 'Unavailable',      
-                    position: 300,      
-                    image: 'https://i.imgur.com/5X4X5X5.png'
-                }
-            ];
-            
-            let addedCount = 0;
-            const promises = sampleItems.map(item => {
-                return db.collection('shopItems').add({
-                    ...item,      
-                    timestamp: firebase.firestore.FieldValue.serverTimestamp()
-                }).then(() => addedCount++);
-            });
-            
-            return Promise.all(promises)
-                .then(() => {
-                    console.log(`Added ${addedCount} sample items`);
-                    return loadShopItems(); // Reload the shop items
-                })
-                .catch((error) => {
-                    console.error('Error adding sample items: ', error);
-                    shopItems.innerHTML = '<p>No items available in the shop.</p>';
-                });
-        }
-
-        function purchaseItem(itemId, quantity) {
-            if (!currentUser) {
-                showNotification('Please log in to purchase items', true);
-                return;
-            }
-            
-            if (quantity <= 0 || quantity > 99) {
-                showNotification('Please enter a valid quantity (1-99)', true);
-                return;
-            }
-            
-            showLoading();
-            let purchasedItemName = '';
-            let itemPrice = 0;
-            
-            // Get item details
-            db.collection('shopItems').doc(itemId).get()
-                .then((doc) => {
-                    if (!doc.exists) {
-                        throw new Error('Item not found');
-                    }
-                    
-                    const item = doc.data();
-                    purchasedItemName = item.name;
-                    itemPrice = item.price;
-                    const totalCost = item.price * quantity;
-                    
-                    // Get user credits from RTDB
-                    return rtdb.ref('users/' + currentUser.uid).once('value')
-                        .then((snapshot) => {
-                            const userData = snapshot.val();
-                            if (!userData) {
-                                throw new Error('User data not found');
-                            }
-                            
-                            const currentCredits = userData.credits || 0;
-                            if (currentCredits < totalCost) {
-                                throw new Error(`Insufficient credits. You have ${currentCredits}, need ${totalCost}`);
-                            }
-                            
-                            // Deduct credits
-                            const newCredits = currentCredits - totalCost;
-                            return rtdb.ref('users/' + currentUser.uid).update({
-                                credits: newCredits
-                            }).then(() => {
-                                // Create order
-                                return db.collection('orders').add({
-                                    userId: currentUser.uid,      
-                                    userEmail: currentUser.email,      
-                                    username: userData.username || 'Player',
-                                    profilePicture: normalizeProfilePicture(userData.profilePicture),
-                                    itemId: itemId,      
-                                    itemName: item.name,      
-                                    itemImage: item.image || '',      
-                                    quantity: quantity,      
-                                    price: item.price,      
-                                    total: totalCost,      
-                                    status: 'pending',      
-                                    timestamp: firebase.firestore.FieldValue.serverTimestamp()
-                                });
-                            });
-                        });
-                })
-                .then((doc) => {
-                    // Create chat document for the order
-                    const orderId = doc.id;
-                    const chatRef = db.collection('chats').doc(orderId);
-                    return chatRef.set({
-                        orderId: orderId,      
-                        customerId: currentUser.uid,      
-                        customerEmail: currentUser.email,      
-                        createdAt: firebase.firestore.FieldValue.serverTimestamp()
-                    }, { merge: true }).then(() => orderId);
-                })
-                .then((orderId) => {
-                    // Auto-send receipt to chat
-                    return sendReceiptToChat(orderId).then(() => orderId);
-                })
-                .then((orderId) => {
-                    hideLoading();
-                    showNotification(`Successfully purchased ${quantity}x ${purchasedItemName} for ${itemPrice * quantity}!`);
-                    
-                    // Auto-open chat for customer
-                    openCustomerChat(orderId, currentUser.uid, currentUser.email);
-                    
-                    loadShopItems(); // Refresh shop items
-                    updateUserCreditsDisplay(); // Update credits display
-                })
-                .catch((error) => {
-                    hideLoading();
-                    console.error("Error purchasing item: ", error);
-                    showNotification('Error purchasing item: ' + error.message, true);
-                });
-        }
-
         // Orders Functions
         function loadUserOrders() {
             if (!currentUser) {
@@ -4670,138 +4253,6 @@
                     hideLoading();
                     console.error("Error getting orders: ", error);
                     showNotification('Error loading orders: ' + error.message, true);
-                });
-        }
-
-        // Admin Shop Management Functions
-        function loadAdminShopItems() {
-            // Allow both owner and admins
-            if (!currentUser || (currentUser.email !== OWNER_EMAIL && userRoleData !== 'Admin')) {
-                showNotification('Access denied', true);
-                return;
-            }
-            
-            showLoading();
-            // Order by position in descending order for admin view
-            return db.collection('shopItems')
-                .orderBy('position', 'desc')
-                .get()
-                .then((querySnapshot) => {
-                    hideLoading();
-                    adminShopItems.innerHTML = '<h3>Manage Shop Items</h3>';
-                    
-                    if (querySnapshot.empty) {
-                        adminShopItems.innerHTML += '<p>No items in the shop. Add your first item!</p>';
-                        return;
-                    }
-                    
-                    querySnapshot.forEach((doc) => {
-                        // Skip initialization documents
-                        if (doc.id === '_init_') return;
-                        
-                        const item = doc.data();
-                        const itemElement = document.createElement('div');
-                        itemElement.className = 'admin-item';
-                        itemElement.innerHTML = `
-                            <div class="admin-info">
-                                <div><strong>Name: </strong> ${item.name}</div>
-                                <div><strong>Price: </strong> ${item.price}</div>
-                                <div class="item-position"><strong>Position: </strong> ${item.position || 0}</div>
-                                <div><strong>Description: </strong> ${item.description}</div>
-                                <div><strong>Image: </strong> ${item.image ? '✓' : '✗'}</div>
-                            </div>
-                            <div class="admin-actions">
-                                <button class="remove-admin-btn" data-id="${doc.id}">Remove</button>
-                            </div>
-                        `;
-                        adminShopItems.appendChild(itemElement);
-                    });
-                    
-                    // Add event listeners to remove buttons
-                    document.querySelectorAll('#adminShopItems .remove-admin-btn').forEach(button => {
-                        button.addEventListener('click', (e) => {
-                            const itemId = e.target.getAttribute('data-id');
-                            removeShopItem(itemId);
-                        });
-                    });
-                })
-                .catch((error) => {
-                    hideLoading();
-                    console.error("Error getting shop items: ", error);
-                    showNotification('Error loading shop items: ' + error.message, true);
-                });
-        }
-
-        function addShopItem() {
-            if (!currentUser || (currentUser.email !== OWNER_EMAIL && userRoleData !== 'Admin')) {
-                showNotification('Access denied', true);
-                return;
-            }
-            
-            const name = itemName.value.trim();
-            const description = itemDescription.value.trim();
-            const price = parseFloat(itemPrice.value);
-            const image = itemImage.value.trim();
-            const position = parseInt(itemPosition.value) || 100;
-            
-            if (!name || !description || isNaN(price) || price <= 0) {
-                showNotification('Please fill all fields with valid values', true);
-                return;
-            }
-            
-            // Validate position
-            if (position < 1 || position > 9999) {
-                showNotification('Position must be between 1 and 9999', true);
-                return;
-            }
-            
-            showLoading();
-            db.collection('shopItems').add({
-                name: name,      
-                description: description,      
-                price: price,      
-                position: position,      
-                image: image || '',      
-                timestamp: firebase.firestore.FieldValue.serverTimestamp()
-            })
-            .then((docRef) => {
-                hideLoading();
-                showNotification(`Item "${name}" added successfully with position ${position}!`);
-                itemName.value = '';
-                itemDescription.value = '';
-                itemPrice.value = '';
-                itemPosition.value = '100';
-                itemImage.value = '';
-                itemImagePreview.innerHTML = '<i class="fas fa-image"></i>';
-                loadAdminShopItems();
-                loadShopItems(); // Refresh shop for users
-                console.log('Item added with ID: ', docRef.id);
-            })
-            .catch((error) => {
-                hideLoading();
-                console.error("Error adding item: ", error);
-                showNotification('Error adding item: ' + error.message, true);
-            });
-        }
-
-        function removeShopItem(itemId) {
-            if (!currentUser || (currentUser.email !== OWNER_EMAIL && userRoleData !== 'Admin')) {
-                showNotification('Access denied', true);
-                return;
-            }
-            
-            showLoading();
-            db.collection('shopItems').doc(itemId).delete()
-                .then(() => {
-                    hideLoading();
-                    showNotification('Item removed successfully!');
-                    loadAdminShopItems();
-                    loadShopItems(); // Refresh shop for users
-                })
-                .catch((error) => {
-                    hideLoading();
-                    console.error("Error removing item: ", error);
-                    showNotification('Error removing item: ' + error.message, true);
                 });
         }
 
@@ -5258,15 +4709,9 @@
                 .catch((error) => {
                     console.error("Error getting order count: ", error);
                 });
-            
-            // Get shop items count
-            db.collection('shopItems').get()
-                .then((querySnapshot) => {
-                    shopItemsStat.textContent = querySnapshot.size;
-                })
-                .catch((error) => {
-                    console.error("Error getting shop items count: ", error);
-                });
+            // Active chats count (simplified)
+            activeChatsStat.textContent = '12'; // Placeholder value
+        });
             
             // Active chats count (simplified)
             activeChatsStat.textContent = '12'; // Placeholder value
@@ -6241,9 +5686,6 @@
                         case 'roles':
                             loadUsersForRoleManagement();
                             break;
-                        case 'shop':
-                            loadAdminShopItems();
-                            break;
                         case 'orders':
                             loadAdminOrders();
                             break;
@@ -6309,14 +5751,8 @@
                 }
             });
 
-            // Shop functions
-            searchBtn.addEventListener('click', () => {
-                loadShopItems(searchInput.value);
-            });
-
             // Admin functions
             changeRoleBtn.addEventListener('click', changeUserRole);
-            addItemBtn.addEventListener('click', addShopItem);
             addProfileOptionBtn.addEventListener('click', addProfileOption);
             saveDefaultProfileBtn.addEventListener('click', saveDefaultProfileOption);
 
@@ -6381,7 +5817,6 @@
 
                     // Show user navigation links
                     communityLink.style.display = 'block';
-                    shopLink.style.display = 'block';
                     ordersLink.style.display = 'block';
                     settingsLink.style.display = 'block';
 
@@ -6389,7 +5824,6 @@
                         loadCurrentUserProfile();
                         updateUserCreditsDisplay();
                         loadCommunityPosts();
-                        loadShopItems();
                         loadUserOrders();
 
                         if (userRoleData === 'Admin' || userRoleData === 'Owner') {
@@ -6419,7 +5853,6 @@
 
                     // Hide user navigation links
                     communityLink.style.display = 'none';
-                    shopLink.style.display = 'none';
                     ordersLink.style.display = 'none';
                     settingsLink.style.display = 'none';
                     adminLink.style.display = 'none';
