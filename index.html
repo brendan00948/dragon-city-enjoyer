@@ -2905,6 +2905,14 @@
             font-size: 0.9rem;
         }
 
+        .settings-help {
+            margin-top: -4px;
+            margin-bottom: 12px;
+            color: #5f7087;
+            font-size: 0.85rem;
+            line-height: 1.45;
+        }
+
         .profile-options-list {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -3434,6 +3442,7 @@
 
                     <div class="settings-card">
                         <h3>Update Email</h3>
+                        <p class="settings-help">Security note: changing your email may require a recent sign-in.</p>
                         <form id="updateEmailForm">
                             <div class="form-group">
                                 <label for="settingsEmail">New Email</label>
@@ -3445,6 +3454,7 @@
 
                     <div class="settings-card">
                         <h3>Change Password</h3>
+                        <p class="settings-help">Security note: changing your password may require a recent sign-in.</p>
                         <form id="updatePasswordForm">
                             <div class="form-group">
                                 <label for="settingsPassword">New Password</label>
