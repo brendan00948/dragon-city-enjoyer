@@ -2621,6 +2621,37 @@
             flex-wrap: wrap;
         }
 
+        .user-identity {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .user-identity-meta {
+            display: flex;
+            flex-direction: column;
+            line-height: 1.15;
+        }
+
+        .user-identity-meta #userName {
+            font-weight: 700;
+            color: #1b2f4b;
+        }
+
+        .user-identity-meta #userEmail {
+            font-size: 0.82rem;
+            color: #5f7087;
+        }
+
+        .user-avatar {
+            width: 34px;
+            height: 34px;
+            border-radius: 50%;
+            border: 2px solid #d5deeb;
+            object-fit: cover;
+            background: #eef3f9;
+        }
+
         .hero {
             text-align: left;
             background: #ffffff;
@@ -2738,7 +2769,8 @@
         .community-section h2,
         #shop-page h2,
         #orders-page h2,
-        #admin-page h2 {
+        #admin-page h2,
+        #settings-page h2 {
             color: #152238;
             text-shadow: none;
             font-family: "Merriweather", Georgia, serif;
@@ -2749,6 +2781,205 @@
         .post p,
         .item-description {
             color: #4c5f75;
+        }
+
+        .chat-subtitle {
+            margin: 2px 0 16px;
+            color: #5d6e84;
+        }
+
+        .community-chat-shell {
+            border: 1px solid #dce4ef;
+            border-radius: 16px;
+            background: #ffffff;
+            box-shadow: 0 10px 24px rgba(15, 23, 42, 0.06);
+            overflow: hidden;
+        }
+
+        .community-chat-list {
+            min-height: 320px;
+            max-height: 500px;
+            overflow-y: auto;
+            padding: 16px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            background: linear-gradient(180deg, #fbfcff 0%, #f4f7fd 100%);
+        }
+
+        .community-message {
+            display: flex;
+            gap: 10px;
+            align-items: flex-start;
+            background: #ffffff;
+            border: 1px solid #dce4ef;
+            border-radius: 12px;
+            padding: 10px 12px;
+        }
+
+        .community-message.mine {
+            border-color: #c6d8ee;
+            background: #eef5ff;
+        }
+
+        .community-message .avatar {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid #d6e0ec;
+            background: #eff4fb;
+            flex-shrink: 0;
+        }
+
+        .community-message-meta {
+            display: flex;
+            gap: 8px;
+            align-items: center;
+            margin-bottom: 4px;
+        }
+
+        .community-message-meta .username {
+            font-weight: 700;
+            color: #1a2f4b;
+        }
+
+        .community-message-meta .timestamp {
+            color: #6f8096;
+            font-size: 0.78rem;
+        }
+
+        .community-message-text {
+            color: #2d3f58;
+            line-height: 1.5;
+            white-space: pre-wrap;
+            word-break: break-word;
+        }
+
+        .signup-avatar-preview,
+        .settings-current-profile {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 16px;
+        }
+
+        .signup-avatar-preview img,
+        .settings-avatar {
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            border: 2px solid #cfd9e8;
+            object-fit: cover;
+            background: #eff4fb;
+        }
+
+        .settings-layout {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 14px;
+            margin-top: 16px;
+        }
+
+        .settings-card {
+            background: #ffffff;
+            border: 1px solid #dce4ef;
+            border-radius: 16px;
+            box-shadow: 0 10px 24px rgba(15, 23, 42, 0.06);
+            padding: 18px;
+        }
+
+        .settings-card h3 {
+            color: #1a2f49;
+            margin-bottom: 14px;
+        }
+
+        .settings-current-username {
+            font-size: 1.05rem;
+            color: #172a44;
+            font-weight: 700;
+        }
+
+        .settings-current-email {
+            color: #5f7087;
+            font-size: 0.9rem;
+        }
+
+        .profile-options-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 10px;
+        }
+
+        .profile-option-item {
+            border: 1px solid #dce4ef;
+            border-radius: 12px;
+            padding: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 8px;
+            background: #f9fbff;
+        }
+
+        .profile-option-item-main {
+            display: flex;
+            gap: 8px;
+            align-items: center;
+            min-width: 0;
+        }
+
+        .profile-option-item img {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 1px solid #d2ddec;
+            flex-shrink: 0;
+            background: #eff3fa;
+        }
+
+        .profile-option-item .label {
+            color: #2a3f5c;
+            font-size: 0.9rem;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        .profile-option-actions {
+            display: flex;
+            gap: 6px;
+        }
+
+        .tiny-btn {
+            border: 1px solid #cad6e6;
+            background: #ffffff;
+            color: #284567;
+            border-radius: 8px;
+            padding: 5px 8px;
+            font-size: 0.76rem;
+            cursor: pointer;
+        }
+
+        .tiny-btn:hover {
+            background: #edf3fc;
+        }
+
+        .message-sender-row {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 4px;
+        }
+
+        .message-sender-avatar {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 1px solid #cad6e6;
+            background: #eff3fa;
         }
 
         .feature-card .item-image {
@@ -2990,13 +3221,20 @@
                 <a href="#" class="nav-link" data-page="community" id="communityLink" style="display: none;">Community</a>
                 <a href="#" class="nav-link" data-page="shop" id="shopLink" style="display: none;">Shop</a>
                 <a href="#" class="nav-link" data-page="orders" id="ordersLink" style="display: none;">Orders</a>
+                <a href="#" class="nav-link" data-page="settings" id="settingsLink" style="display: none;">Settings</a>
                 <a href="#" class="nav-link" data-page="admin" id="adminLink" style="display: none;">Admin</a>
             </div>
             <div class="auth-buttons">
                 <button class="btn btn-login" id="loginBtn">Login</button>
                 <button class="btn btn-signup" id="signupBtn">Sign Up</button>
                 <div class="user-info-display" id="userInfo" style="display: none;">
-                    <span id="userEmail"></span>
+                    <div class="user-identity">
+                        <img id="userAvatar" class="user-avatar" src="https://api.dicebear.com/9.x/thumbs/svg?seed=dragon-city-default" alt="Profile picture">
+                        <div class="user-identity-meta">
+                            <span id="userName">Player</span>
+                            <span id="userEmail"></span>
+                        </div>
+                    </div>
                     <span id="userRole" class="role-badge"></span>
                     <div class="credits-display">
                         <i class="fas fa-coins"></i>
@@ -3092,6 +3330,15 @@
                         <label for="confirmPassword">Confirm Password</label>
                         <input type="password" id="confirmPassword" placeholder="Confirm your password" required>
                     </div>
+                    <div class="form-group">
+                        <label for="signupProfilePicture">Choose Profile Picture</label>
+                        <select id="signupProfilePicture" required>
+                            <option value="">Loading profile pictures...</option>
+                        </select>
+                    </div>
+                    <div class="signup-avatar-preview">
+                        <img id="signupProfilePreview" src="https://api.dicebear.com/9.x/thumbs/svg?seed=dragon-city-default" alt="Selected profile picture preview">
+                    </div>
                     <button type="submit" class="login-btn">Create Account</button>
                 </form>
                 <div class="signup-link">
@@ -3103,18 +3350,20 @@
         <!-- Community Page -->
         <div id="community-page" class="page">
             <div class="community-section">
-                <h2>Dragon City Community</h2>
-                
-                <div class="post-form">
-                    <h3>Share Your Experience</h3>
-                    <div class="form-group">
-                        <textarea id="postContent" placeholder="Share your dragon breeding tips, battle strategies, or ask questions..."></textarea>
+                <h2>Dragon City Live Chat</h2>
+                <p class="chat-subtitle">Chat in real time with players, share tips, and coordinate strategies instantly.</p>
+
+                <div class="community-chat-shell">
+                    <div class="community-chat-list" id="communityPosts">
+                        <!-- Community live chat messages will be loaded here -->
                     </div>
-                    <button class="post-btn" id="submitPost">Post to Community</button>
                 </div>
-                
-                <div class="community-container" id="communityPosts">
-                    <!-- Community posts will be loaded here -->
+                <div class="post-form">
+                    <h3>Send Message</h3>
+                    <div class="form-group">
+                        <textarea id="postContent" placeholder="Type a message to the community..." maxlength="600"></textarea>
+                    </div>
+                    <button class="post-btn" id="submitPost">Send to Live Chat</button>
                 </div>
             </div>
         </div>
@@ -3160,6 +3409,58 @@
             </div>
         </div>
 
+        <!-- Settings Page -->
+        <div id="settings-page" class="page">
+            <div class="container">
+                <h2>Account Settings</h2>
+                <div class="settings-layout">
+                    <div class="settings-card">
+                        <h3>Profile</h3>
+                        <div class="settings-current-profile">
+                            <img id="settingsCurrentAvatar" class="settings-avatar" src="https://api.dicebear.com/9.x/thumbs/svg?seed=dragon-city-default" alt="Current profile picture">
+                            <div>
+                                <div id="settingsCurrentUsername" class="settings-current-username">Player</div>
+                                <div id="settingsCurrentEmail" class="settings-current-email">email@example.com</div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="settingsProfilePicture">Profile Picture</label>
+                            <select id="settingsProfilePicture">
+                                <option value="">Loading profile pictures...</option>
+                            </select>
+                        </div>
+                        <button class="admin-btn" id="saveSettingsProfileBtn">Save Profile Picture</button>
+                    </div>
+
+                    <div class="settings-card">
+                        <h3>Update Email</h3>
+                        <form id="updateEmailForm">
+                            <div class="form-group">
+                                <label for="settingsEmail">New Email</label>
+                                <input type="email" id="settingsEmail" placeholder="Enter new email" required>
+                            </div>
+                            <button type="submit" class="admin-btn">Update Email</button>
+                        </form>
+                    </div>
+
+                    <div class="settings-card">
+                        <h3>Change Password</h3>
+                        <form id="updatePasswordForm">
+                            <div class="form-group">
+                                <label for="settingsPassword">New Password</label>
+                                <input type="password" id="settingsPassword" placeholder="Enter new password" minlength="6" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="settingsConfirmPassword">Confirm New Password</label>
+                                <input type="password" id="settingsConfirmPassword" placeholder="Confirm new password" minlength="6" required>
+                            </div>
+                            <button type="submit" class="admin-btn">Update Password</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <!-- Admin Page -->
         <div id="admin-page" class="page">
             <div class="container">
@@ -3186,6 +3487,9 @@
                             </a></li>
                             <li><a href="#" class="admin-menu-item" data-section="chats">
                                 <i class="fas fa-comments"></i> <span>Customer Chats</span>
+                            </a></li>
+                            <li><a href="#" class="admin-menu-item" data-section="profiles">
+                                <i class="fas fa-user-circle"></i> <span>Profile Pictures</span>
                             </a></li>
                         </ul>
                     </div>
@@ -3387,6 +3691,46 @@
                                 </div>
                             </div>
                         </div>
+
+                        <!-- Profile Pictures Section -->
+                        <div id="profiles-section" class="admin-section">
+                            <h2>Profile Picture Management</h2>
+
+                            <div class="admin-form">
+                                <h3>Add Profile Picture Option</h3>
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="profileOptionLabel">Label</label>
+                                        <input type="text" id="profileOptionLabel" placeholder="e.g. Ember Dragon">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="profileOptionUrl">Image URL</label>
+                                        <input type="text" id="profileOptionUrl" placeholder="https://...">
+                                    </div>
+                                </div>
+                                <button class="admin-btn" id="addProfileOptionBtn">Add Profile Option</button>
+                            </div>
+
+                            <div class="admin-form">
+                                <h3>Default Profile Picture</h3>
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="defaultProfileSelect">Select default profile picture</label>
+                                        <select id="defaultProfileSelect" class="role-select">
+                                            <option value="">Select an option</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <button class="admin-btn" id="saveDefaultProfileBtn">Save Default Profile</button>
+                            </div>
+
+                            <div class="admin-card">
+                                <h3>Available Profile Pictures</h3>
+                                <div id="profileOptionsList" class="profile-options-list">
+                                    <!-- Profile options will be loaded here -->
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -3435,9 +3779,12 @@
         const userEmail = document.getElementById('userEmail');
         const userRole = document.getElementById('userRole');
         const userCredits = document.getElementById('userCredits');
+        const userName = document.getElementById('userName');
+        const userAvatar = document.getElementById('userAvatar');
         const communityLink = document.getElementById('communityLink');
         const shopLink = document.getElementById('shopLink');
         const ordersLink = document.getElementById('ordersLink');
+        const settingsLink = document.getElementById('settingsLink');
         const adminLink = document.getElementById('adminLink');
         const loginLink = document.getElementById('loginLink');
         const notification = document.getElementById('notification');
@@ -3452,6 +3799,18 @@
         const communityPosts = document.getElementById('communityPosts');
         const postContent = document.getElementById('postContent');
         const submitPost = document.getElementById('submitPost');
+        const signupProfilePicture = document.getElementById('signupProfilePicture');
+        const signupProfilePreview = document.getElementById('signupProfilePreview');
+        const settingsProfilePicture = document.getElementById('settingsProfilePicture');
+        const settingsCurrentAvatar = document.getElementById('settingsCurrentAvatar');
+        const settingsCurrentUsername = document.getElementById('settingsCurrentUsername');
+        const settingsCurrentEmail = document.getElementById('settingsCurrentEmail');
+        const saveSettingsProfileBtn = document.getElementById('saveSettingsProfileBtn');
+        const updateEmailForm = document.getElementById('updateEmailForm');
+        const updatePasswordForm = document.getElementById('updatePasswordForm');
+        const settingsEmail = document.getElementById('settingsEmail');
+        const settingsPassword = document.getElementById('settingsPassword');
+        const settingsConfirmPassword = document.getElementById('settingsConfirmPassword');
 
         // Role Management Elements
         const userSelect = document.getElementById('userSelect');
@@ -3519,17 +3878,44 @@
         const changeUserSelect = document.getElementById('changeUserSelect');
         const changeCreditsAmount = document.getElementById('changeCreditsAmount');
         const changeCreditsBtn = document.getElementById('changeCreditsBtn');
+        const profileOptionLabel = document.getElementById('profileOptionLabel');
+        const profileOptionUrl = document.getElementById('profileOptionUrl');
+        const addProfileOptionBtn = document.getElementById('addProfileOptionBtn');
+        const saveDefaultProfileBtn = document.getElementById('saveDefaultProfileBtn');
+        const defaultProfileSelect = document.getElementById('defaultProfileSelect');
+        const profileOptionsList = document.getElementById('profileOptionsList');
 
         // Admin Menu Elements
         const adminMenuItems = document.querySelectorAll('.admin-menu-item');
         const adminSections = document.querySelectorAll('.admin-section');
 
+        // URL routing
+        const PAGE_TO_PATH = {
+            main: '/main',
+            login: '/login',
+            signup: '/signup',
+            community: '/chat',
+            shop: '/shop',
+            orders: '/orders',
+            settings: '/settings',
+            admin: '/admin'
+        };
+        const PATH_TO_PAGE = Object.entries(PAGE_TO_PATH).reduce((acc, [page, path]) => {
+            acc[path] = page;
+            return acc;
+        }, {});
+
         // Current user
         let currentUser = null;
         let userRoleData = null;
+        let currentUserProfileData = null;
         
         // Default owner email
         const OWNER_EMAIL = "chonhouliu@gmail.com";
+        const FALLBACK_PROFILE_PICTURE = 'https://api.dicebear.com/9.x/thumbs/svg?seed=dragon-city-default';
+        let defaultProfilePictureUrl = FALLBACK_PROFILE_PICTURE;
+        let defaultProfilePictureLabel = 'Default Dragon';
+        let profileOptionsCache = [];
 
         // Current chat context
         let currentChatOrderId = null;
@@ -3544,6 +3930,7 @@
         let customerChatInterval = null;
         let adminChatInterval = null;
         let adminUsersInterval = null;
+        let communityChatUnsubscribe = null;
 
         // Show notification
         function showNotification(message, isError = false) {
@@ -3571,23 +3958,75 @@
             loadingSpinner.style.display = 'none';
         }
 
-        // Show page
-        function showPage(pageId) {
-            // Don't allow access to login/signup pages if user is logged in
-            if (currentUser && (pageId === 'login' || pageId === 'signup')) {
-                pageId = 'main';
+        function getPageFromPath(pathname = window.location.pathname) {
+            const normalized = (pathname || '/').replace(/\/+$/, '') || '/';
+            if (normalized === '/') return 'main';
+            return PATH_TO_PAGE[normalized] || 'main';
+        }
+
+        function pushPageRoute(pageId, replace = false) {
+            const path = PAGE_TO_PATH[pageId] || PAGE_TO_PATH.main;
+            const state = { pageId };
+            if (replace) {
+                window.history.replaceState(state, '', path);
+            } else {
+                window.history.pushState(state, '', path);
             }
-            
+        }
+
+        // Show page
+        function showPage(pageId, updateHistory = true) {
+            let targetPage = pageId;
+
+            // Don't allow access to login/signup pages if user is logged in
+            if (currentUser && (targetPage === 'login' || targetPage === 'signup')) {
+                targetPage = 'main';
+            }
+
+            // Keep protected pages auth-only
+            const authOnlyPages = ['community', 'shop', 'orders', 'settings', 'admin'];
+            if (!currentUser && authOnlyPages.includes(targetPage)) {
+                targetPage = 'login';
+            }
+
+            // Prevent non-admin from opening admin page
+            const isAdminUser = currentUser && (userRoleData === 'Admin' || userRoleData === 'Owner');
+            if (targetPage === 'admin' && !isAdminUser) {
+                targetPage = currentUser ? 'main' : 'login';
+            }
+
+            const targetPageElement = document.getElementById(`${targetPage}-page`);
+            if (!targetPageElement) {
+                targetPage = 'main';
+            }
+
             pages.forEach(page => page.classList.remove('active-page'));
-            document.getElementById(`${pageId}-page`).classList.add('active-page');
-            
+            document.getElementById(`${targetPage}-page`).classList.add('active-page');
+
             // Update active nav link
             navLinks.forEach(link => {
                 link.classList.remove('active');
-                if (link.getAttribute('data-page') === pageId) {
+                if (link.getAttribute('data-page') === targetPage) {
                     link.classList.add('active');
                 }
             });
+
+            if (updateHistory) {
+                pushPageRoute(targetPage);
+            }
+
+            if (targetPage !== 'community' && communityChatUnsubscribe) {
+                communityChatUnsubscribe();
+                communityChatUnsubscribe = null;
+            }
+
+            // Page-specific hydration
+            if (targetPage === 'community') {
+                loadCommunityPosts();
+            }
+            if (targetPage === 'settings' && currentUser) {
+                loadCurrentUserProfile();
+            }
         }
 
         // Generate unique 17-digit user ID
@@ -3655,6 +4094,29 @@
                     await db.collection('communityPosts').doc('_init_').delete();
                     console.log('CommunityPosts collection initialized');
                 }
+
+                // Ensure profile picture options exist
+                const profileOptionsSnapshot = await db.collection('profileOptions').limit(1).get();
+                if (profileOptionsSnapshot.empty) {
+                    await db.collection('profileOptions').add({
+                        label: 'Default Dragon',
+                        imageUrl: FALLBACK_PROFILE_PICTURE,
+                        createdAt: firebase.firestore.FieldValue.serverTimestamp()
+                    });
+                    console.log('Profile options collection initialized');
+                }
+
+                // Ensure default profile settings exist
+                const profileSettingsRef = db.collection('appSettings').doc('profilePictures');
+                const profileSettingsDoc = await profileSettingsRef.get();
+                if (!profileSettingsDoc.exists) {
+                    await profileSettingsRef.set({
+                        defaultUrl: FALLBACK_PROFILE_PICTURE,
+                        defaultLabel: 'Default Dragon',
+                        updatedAt: firebase.firestore.FieldValue.serverTimestamp()
+                    }, { merge: true });
+                    console.log('Profile settings initialized');
+                }
             } catch (error) {
                 console.error('Error initializing collections: ', error);
             }
@@ -3688,45 +4150,6 @@
                 });
         }
 
-        function signup(username, email, password) {
-            showLoading();
-            return auth.createUserWithEmailAndPassword(email, password)
-                .then((userCredential) => {
-                    const userId = generateUserId();
-                    const userRef = rtdb.ref('users/' + userCredential.user.uid);
-                    
-                    // Save user data to RTDB
-                    return userRef.set({
-                        userId: userId, 
-                        username: username, 
-                        email: email, 
-                        role: 'Member', 
-                        banned: false, 
-                        credits: 0,   // Start with 0 credits for testing
-                        createdAt: firebase.database.ServerValue.TIMESTAMP, 
-                        lastLogin: firebase.database.ServerValue.TIMESTAMP
-                    }).then(() => {
-                        // Return the user credential so we can use it for auto-login
-                        return userCredential;
-                    });
-                })
-                .then((userCredential) => {
-                    // Auto-login with the same credentials
-                    return auth.signInWithEmailAndPassword(email, password)
-                        .then(() => {
-                            hideLoading();
-                            showNotification('Account created successfully!');
-                            showPage('main');
-                            return true;
-                        });
-                })
-                .catch((error) => {
-                    hideLoading();
-                    showNotification('Signup failed: ' + error.message, true);
-                    throw error;
-                });
-        }
-
         function logout() {
             showLoading();
             return auth.signOut()
@@ -3738,95 +4161,6 @@
                     hideLoading();
                     showNotification('Logout failed: ' + error.message, true);
                     throw error;
-                });
-        }
-
-        // Community Functions
-        function loadCommunityPosts() {
-            showLoading();
-            const postsQuery = db.collection('communityPosts')
-                .orderBy('timestamp', 'desc');
-            
-            return postsQuery.get()
-                .then((querySnapshot) => {
-                    hideLoading();
-                    communityPosts.innerHTML = '';
-                    
-                    if (querySnapshot.empty) {
-                        communityPosts.innerHTML = '<p>No posts yet. Be the first to share!</p>';
-                        return;
-                    }
-                    
-                    querySnapshot.forEach((doc) => {
-                        // Skip initialization documents
-                        if (doc.id === '_init_') return;
-                        
-                        const post = doc.data();
-                        const postElement = document.createElement('div');
-                        postElement.className = 'post';
-                        postElement.innerHTML = `
-                            <div class="post-header">
-                                <div class="post-author">${post.username || 'Anonymous'}</div>
-                                <div class="post-date">${post.timestamp ? new Date(post.timestamp.toDate()).toLocaleString() : 'Just now'}</div>
-                            </div>
-                            <div class="post-content">${post.content || ''}</div>
-                            <div class="post-actions">
-                                <button class="action-btn like-btn" data-id="${doc.id}">
-                                    <i class="fas fa-heart"></i> Like (${post.likes || 0})
-                                </button>
-                                <button class="action-btn comment-btn" data-id="${doc.id}">
-                                    <i class="fas fa-comment"></i> Comment
-                                </button>
-                            </div>
-                        `;
-                        communityPosts.appendChild(postElement);
-                    });
-                })
-                .catch((error) => {
-                    hideLoading();
-                    console.error("Error getting posts: ", error);
-                    showNotification('Error loading community posts: ' + error.message, true);
-                });
-        }
-
-        function submitCommunityPost() {
-            if (!currentUser) {
-                showNotification('Please log in to post', true);
-                return;
-            }
-            
-            const content = postContent.value.trim();
-            if (!content) {
-                showNotification('Please enter some content', true);
-                return;
-            }
-            
-            showLoading();
-            
-            // Get username from RTDB
-            rtdb.ref('users/' + currentUser.uid).once('value')
-                .then((snapshot) => {
-                    const userData = snapshot.val();
-                    const username = userData ? userData.username : 'Anonymous';
-                    
-                    return db.collection('communityPosts').add({
-                        userId: currentUser.uid,      
-                        username: username,      
-                        content: content,      
-                        likes: 0,      
-                        timestamp: firebase.firestore.FieldValue.serverTimestamp()
-                    });
-                })
-                .then(() => {
-                    hideLoading();
-                    showNotification('Post submitted successfully!');
-                    postContent.value = '';
-                    loadCommunityPosts();
-                })
-                .catch((error) => {
-                    hideLoading();
-                    console.error("Error submitting post: ", error);
-                    showNotification('Error submitting post: ' + error.message, true);
                 });
         }
 
@@ -4206,6 +4540,8 @@
                                 return db.collection('orders').add({
                                     userId: currentUser.uid,      
                                     userEmail: currentUser.email,      
+                                    username: userData.username || 'Player',
+                                    profilePicture: normalizeProfilePicture(userData.profilePicture),
                                     itemId: itemId,      
                                     itemName: item.name,      
                                     itemImage: item.image || '',      
@@ -4687,128 +5023,6 @@
                 });
         }
 
-        // Display a chat message
-        function displayChatMessage(message) {
-            if (!chatMessages) return;
-            
-            const messageElement = document.createElement('div');
-            
-            // Ensure timestamp is handled properly
-            let timestamp = 'Just now';
-            if (message.timestamp) {
-                try {
-                    if (message.timestamp.toDate) {
-                        timestamp = new Date(message.timestamp.toDate()).toLocaleString();
-                    } else if (message.timestamp instanceof Date) {
-                        timestamp = message.timestamp.toLocaleString();
-                    } else if (typeof message.timestamp === 'number') {
-                        timestamp = new Date(message.timestamp).toLocaleString();
-                    }
-                } catch (e) {
-                    console.error('Error parsing timestamp: ', e);
-                    timestamp = 'Invalid date';
-                }
-            }
-            
-            // Determine message type
-            if (message.type === 'system') {
-                messageElement.className = 'chat-message-item system';
-                messageElement.innerHTML = `
-                    <span>${message.content || ''}</span>
-                    <span class="timestamp">${timestamp}</span>
-                `;
-            } else if (message.type === 'image') {
-                messageElement.className = `chat-message-item ${message.senderId === (currentUser ? currentUser.uid : '') ? 'user' : 'admin'}`;
-                messageElement.innerHTML = `
-                    <span class="sender">${message.senderName || 'User'}</span>
-                    <img src="${message.content || ''}" alt="Chat image" class="chat-image-preview" onerror="this.src='https://via.placeholder.com/200x200?text=Image+Not+Found'">
-                    <span class="timestamp">${timestamp}</span>
-                `;
-            } else if (message.type === 'order') {
-                const order = message.content || {};
-                messageElement.className = `chat-message-item ${message.senderId === (currentUser ? currentUser.uid : '') ? 'user' : 'admin'}`;
-                messageElement.innerHTML = `
-                    <span class="sender">${message.senderName || 'User'}</span>
-                    <div class="chat-order-details">
-                        <h4>Order Details</h4>
-                        <p><strong>Order ID: </strong> ${order.id ? order.id.substring(0, 8) : 'N/A'}...</p>
-                        <p><strong>Item: </strong> ${order.itemName || 'Unknown'}</p>
-                        <p><strong>Quantity: </strong> ${order.quantity || 0}</p>
-                        <p><strong>Price: </strong> ${order.price || 0} each</p>
-                        <p><strong>Total: </strong> ${order.total || 0}</p>
-                        <p><strong>Status: </strong> <span class="status-${order.status || 'pending'}">${order.status ? order.status.charAt(0).toUpperCase() + order.status.slice(1) : 'Pending'}</span></p>
-                    </div>
-                    <span class="timestamp">${timestamp}</span>
-                `;
-            } else if (message.type === 'receipt') {
-                const receipt = message.content || {};
-                messageElement.className = `chat-message-item ${message.senderId === (currentUser ? currentUser.uid : '') ? 'user' : 'admin'}`;
-                messageElement.innerHTML = `
-                    <span class="sender">${message.senderName || 'User'}</span>
-                    <div class="chat-receipt">
-                        <h4>Order Receipt</h4>
-                        <div class="receipt-details">
-                            <p><strong>Order ID: </strong> ${receipt.orderId ? receipt.orderId.substring(0, 8) : 'N/A'}...</p>
-                            <p><strong>Customer: </strong> ${receipt.customerName || 'N/A'}</p>
-                            <p><strong>Item: </strong> ${receipt.itemName || 'N/A'}</p>
-                            <p><strong>Quantity: </strong> ${receipt.quantity || 0}</p>
-                            <p><strong>Price: </strong> ${receipt.price || 0} each</p>
-                            <p><strong>Date: </strong> ${receipt.date || 'N/A'}</p>
-                        </div>
-                        <div class="receipt-total">Total: ${receipt.total || 0}</div>
-                    </div>
-                    <span class="timestamp">${timestamp}</span>
-                `;
-            } else {
-                messageElement.className = `chat-message-item ${message.senderId === (currentUser ? currentUser.uid : '') ? 'user' : 'admin'}`;
-                messageElement.innerHTML = `
-                    <span class="sender">${message.senderName || 'User'}</span>
-                    <span>${message.content || ''}</span>
-                    <span class="timestamp">${timestamp}</span>
-                `;
-            }
-            
-            chatMessages.appendChild(messageElement);
-            chatMessages.scrollTop = chatMessages.scrollHeight;
-        }
-
-        // Send chat message
-        function sendChatMessage() {
-            const messageContent = chatMessageInput.value.trim();
-            if (!messageContent || !currentChatOrderId) return;
-            
-            showLoading();
-            
-            // Get user data for message
-            rtdb.ref('users/' + currentUser.uid).once('value')
-                .then((snapshot) => {
-                    const userData = snapshot.val();
-                    const senderName = userData ? userData.username : 'User';
-                    
-                    // Add message to chat
-                    return db.collection('chats')
-                        .doc(currentChatOrderId)
-                        .collection('messages')
-                        .add({
-                            senderId: currentUser.uid,     
-                            senderName: senderName,     
-                            content: messageContent,     
-                            type: 'text',     
-                            timestamp: firebase.firestore.FieldValue.serverTimestamp()
-                        });
-                })
-                .then(() => {
-                    hideLoading();
-                    chatMessageInput.value = '';
-                    loadChatMessages();
-                })
-                .catch((error) => {
-                    hideLoading();
-                    console.error("Error sending message: ", error);
-                    showNotification('Error sending message: ' + error.message, true);
-                });
-        }
-        
         // Send picture to chat
         function sendPictureToChat() {
             // In a real app, this would open a file picker
@@ -4821,6 +5035,7 @@
                 .then((snapshot) => {
                     const userData = snapshot.val();
                     const senderName = userData ? userData.username : 'User';
+                    const senderAvatar = normalizeProfilePicture(userData && userData.profilePicture);
                     
                     return db.collection('chats')
                         .doc(currentChatOrderId)
@@ -4828,6 +5043,7 @@
                         .add({
                             senderId: currentUser.uid,     
                             senderName: senderName,     
+                            senderAvatar: senderAvatar,
                             content: 'https://via.placeholder.com/300x200?text=Customer+Image',     
                             type: 'image',     
                             timestamp: firebase.firestore.FieldValue.serverTimestamp()
@@ -4863,6 +5079,7 @@
                         .then((snapshot) => {
                             const userData = snapshot.val();
                             const senderName = userData ? userData.username : 'User';
+                            const senderAvatar = normalizeProfilePicture(userData && userData.profilePicture);
                             
                             return db.collection('chats')
                                 .doc(currentChatOrderId)
@@ -4870,6 +5087,7 @@
                                 .add({
                                     senderId: currentUser.uid,     
                                     senderName: senderName,     
+                                    senderAvatar: senderAvatar,
                                     content: {
                                         id: doc.id,     
                                         itemName: order.itemName,     
@@ -4974,104 +5192,8 @@
         }
         
         // Admin Chat Functions
-        function loadAdminUsers() {
-            if (!currentUser || (currentUser.email !== OWNER_EMAIL && userRoleData !== 'Admin')) {
-                return;
-            }
-            
-            // Get all users with recent orders
-            return db.collection('orders')
-                .orderBy('timestamp', 'desc')
-                .limit(50)
-                .get()
-                .then((querySnapshot) => {
-                    const userIds = new Set();
-                    const userOrders = {};
-                    
-                    querySnapshot.forEach((doc) => {
-                        const order = doc.data();
-                        if (order.userId) {
-                            userIds.add(order.userId);
-                            if (!userOrders[order.userId]) {
-                                userOrders[order.userId] = {
-                                    orderId: doc.id,     
-                                    userEmail: order.userEmail,     
-                                    timestamp: order.timestamp
-                                };
-                            }
-                        }
-                    });
-                    
-                    // Get user details
-                    const promises = Array.from(userIds).map(userId => {
-                        return rtdb.ref('users/' + userId).once('value')
-                            .then((snapshot) => {
-                                if (snapshot.exists()) {
-                                    const user = snapshot.val();
-                                    return {
-                                        userId: userId,     
-                                        email: user.email,     
-                                        username: user.username,     
-                                        lastOrder: userOrders[userId]
-                                    };
-                                }
-                                return null;
-                            });
-                    });
-                    
-                    return Promise.all(promises);
-                })
-                .then((users) => {
-                    adminUsersList.innerHTML = '<h3>Active Chats</h3>';
-                    
-                    const validUsers = users.filter(user => user !== null);
-                    
-                    validUsers.forEach(user => {
-                        const userElement = document.createElement('div');
-                        userElement.className = 'user-chat-item';
-                        userElement.innerHTML = `
-                            <div class="user-email">${user.email}</div>
-                            <div class="last-message">Last order: ${user.lastOrder ? user.lastOrder.orderId.substring(0, 8) : 'N/A'}</div>
-                        `;
-                        userElement.addEventListener('click', () => {
-                            openAdminChat(user.userId, user.email, user.lastOrder.orderId);
-                        });
-                        adminUsersList.appendChild(userElement);
-                    });
-                })
-                .catch((error) => {
-                    console.error("Error loading admin users: ", error);
-                });
-        }
-        
-        function openAdminChat(userId, userEmail, orderId) {
-            if (!userId || !userEmail || !orderId) return;
-            
-            currentAdminChatUserId = userId;
-            currentAdminChatUser = userEmail;
-            currentAdminChatOrderId = orderId;
-            
-            adminChatUser.textContent = `Chat with ${userEmail}`;
-            noUserSelected.style.display = 'none';
-            
-            // Highlight selected user
-            document.querySelectorAll('.user-chat-item').forEach(item => {
-                item.classList.remove('active');
-            });
-            event.currentTarget.classList.add('active');
-            
-            // Load chat messages
-            loadAdminChatMessages();
-            
-            // Start auto-refreshing messages
-            clearInterval(adminChatInterval);
-            adminChatInterval = setInterval(() => {
-                if (currentAdminChatOrderId) {
-                    loadAdminChatMessages();
-                }
-            }, 1000);
-        }
-        
+                
+                
         function loadAdminChatMessages() {
             if (!currentAdminChatOrderId) return;
             
@@ -5101,111 +5223,8 @@
                 });
         }
         
-        function displayAdminChatMessage(message) {
-            const messageElement = document.createElement('div');
-            
-            let timestamp = 'Just now';
-            if (message.timestamp) {
-                try {
-                    if (message.timestamp.toDate) {
-                        timestamp = new Date(message.timestamp.toDate()).toLocaleString();
-                    }
-                } catch (e) {
-                    timestamp = 'Invalid date';
-                }
-            }
-            
-            if (message.type === 'system') {
-                messageElement.className = 'chat-message-item system';
-                messageElement.innerHTML = `
-                    <span>${message.content || ''}</span>
-                    <span class="timestamp">${timestamp}</span>
-                `;
-            } else if (message.type === 'image') {
-                messageElement.className = `chat-message-item ${message.senderId === currentAdminChatUserId ? 'user' : 'admin'}`;
-                messageElement.innerHTML = `
-                    <span class="sender">${message.senderName || 'User'}</span>
-                    <img src="${message.content || ''}" alt="Chat image" class="chat-image-preview" onerror="this.src='https://via.placeholder.com/200x200?text=Image+Not+Found'">
-                    <span class="timestamp">${timestamp}</span>
-                `;
-            } else if (message.type === 'order') {
-                const order = message.content || {};
-                messageElement.className = `chat-message-item ${message.senderId === currentAdminChatUserId ? 'user' : 'admin'}`;
-                messageElement.innerHTML = `
-                    <span class="sender">${message.senderName || 'User'}</span>
-                    <div class="chat-order-details">
-                        <h4>Order Details</h4>
-                        <p><strong>Order ID: </strong> ${order.id ? order.id.substring(0, 8) : 'N/A'}...</p>
-                        <p><strong>Item: </strong> ${order.itemName || 'Unknown'}</p>
-                        <p><strong>Quantity: </strong> ${order.quantity || 0}</p>
-                        <p><strong>Price: </strong> ${order.price || 0} each</p>
-                        <p><strong>Total: </strong> ${order.total || 0}</p>
-                        <p><strong>Status: </strong> <span class="status-${order.status || 'pending'}">${order.status ? order.status.charAt(0).toUpperCase() + order.status.slice(1) : 'Pending'}</span></p>
-                    </div>
-                    <span class="timestamp">${timestamp}</span>
-                `;
-            } else if (message.type === 'receipt') {
-                const receipt = message.content || {};
-                messageElement.className = `chat-message-item ${message.senderId === currentAdminChatUserId ? 'user' : 'admin'}`;
-                messageElement.innerHTML = `
-                    <span class="sender">${message.senderName || 'User'}</span>
-                    <div class="chat-receipt">
-                        <h4>Order Receipt</h4>
-                        <div class="receipt-details">
-                            <p><strong>Order ID: </strong> ${receipt.orderId ? receipt.orderId.substring(0, 8) : 'N/A'}...</p>
-                            <p><strong>Customer: </strong> ${receipt.customerName || 'N/A'}</p>
-                            <p><strong>Item: </strong> ${receipt.itemName || 'N/A'}</p>
-                            <p><strong>Quantity: </strong> ${receipt.quantity || 0}</p>
-                            <p><strong>Price: </strong> ${receipt.price || 0} each</p>
-                            <p><strong>Date: </strong> ${receipt.date || 'N/A'}</p>
-                        </div>
-                        <div class="receipt-total">Total: ${receipt.total || 0}</div>
-                    </div>
-                    <span class="timestamp">${timestamp}</span>
-                `;
-            } else {
-                messageElement.className = `chat-message-item ${message.senderId === currentAdminChatUserId ? 'user' : 'admin'}`;
-                messageElement.innerHTML = `
-                    <span class="sender">${message.senderName || 'User'}</span>
-                    <span>${message.content || ''}</span>
-                    <span class="timestamp">${timestamp}</span>
-                `;
-            }
-            
-            adminChatMessages.appendChild(messageElement);
-            adminChatMessages.scrollTop = adminChatMessages.scrollHeight;
-        }
-        
-        function sendAdminChatMessage() {
-            const messageContent = adminChatInput.value.trim();
-            if (!messageContent || !currentAdminChatOrderId) return;
-            
-            showLoading();
-            
-            const senderName = currentUser.email === OWNER_EMAIL ? 'Owner' : 'Admin';
-            
-            db.collection('chats')
-                .doc(currentAdminChatOrderId)
-                .collection('messages')
-                .add({
-                    senderId: currentUser.uid,     
-                    senderName: senderName,     
-                    content: messageContent,     
-                    type: 'text',     
-                    timestamp: firebase.firestore.FieldValue.serverTimestamp()
-                })
-                .then(() => {
-                    hideLoading();
-                    adminChatInput.value = '';
-                    loadAdminChatMessages();
-                })
-                .catch((error) => {
-                    hideLoading();
-                    console.error("Error sending admin message: ", error);
-                    showNotification('Error sending message: ' + error.message, true);
-                });
-        }
-        
+                
+                
         // Dashboard Functions
         function updateDashboardStats() {
             if (!currentUser || (currentUser.email !== OWNER_EMAIL && userRoleData !== 'Admin')) {
@@ -5364,6 +5383,817 @@
                 }
             });
         }
+
+        function escapeHtml(value) {
+            return String(value || '')
+                .replace(/&/g, '&amp;')
+                .replace(/</g, '&lt;')
+                .replace(/>/g, '&gt;')
+                .replace(/"/g, '&quot;')
+                .replace(/'/g, '&#39;');
+        }
+
+        function formatMessageTimestamp(timestamp) {
+            if (!timestamp) return 'Just now';
+            try {
+                if (timestamp.toDate) return new Date(timestamp.toDate()).toLocaleString();
+                if (timestamp instanceof Date) return timestamp.toLocaleString();
+                if (typeof timestamp === 'number') return new Date(timestamp).toLocaleString();
+            } catch (error) {
+                console.error('Timestamp parse error:', error);
+            }
+            return 'Just now';
+        }
+
+        function normalizeProfilePicture(url) {
+            return (typeof url === 'string' && url.trim())
+                ? url.trim()
+                : (defaultProfilePictureUrl || FALLBACK_PROFILE_PICTURE);
+        }
+
+        function getCurrentUserData() {
+            if (!currentUser) return Promise.resolve(null);
+            return rtdb.ref('users/' + currentUser.uid).once('value')
+                .then((snapshot) => snapshot.val() || null);
+        }
+
+        function applyCurrentUserProfile(profileData = null) {
+            const safeProfile = profileData || {};
+            currentUserProfileData = safeProfile;
+            const username = safeProfile.username || 'Player';
+            const email = safeProfile.email || (currentUser ? currentUser.email : '');
+            const profilePicture = normalizeProfilePicture(safeProfile.profilePicture);
+
+            if (userName) userName.textContent = username;
+            if (userEmail) userEmail.textContent = email;
+            if (userAvatar) userAvatar.src = profilePicture;
+            if (settingsCurrentUsername) settingsCurrentUsername.textContent = username;
+            if (settingsCurrentEmail) settingsCurrentEmail.textContent = email;
+            if (settingsCurrentAvatar) settingsCurrentAvatar.src = profilePicture;
+            if (settingsEmail) settingsEmail.value = email;
+            if (settingsProfilePicture) {
+                settingsProfilePicture.value = profilePicture;
+                if (!settingsProfilePicture.value && settingsProfilePicture.options.length > 0) {
+                    settingsProfilePicture.selectedIndex = 0;
+                }
+            }
+            updateSettingsProfilePreview();
+        }
+
+        function loadCurrentUserProfile() {
+            if (!currentUser) return Promise.resolve(null);
+            return getCurrentUserData()
+                .then((userData) => {
+                    applyCurrentUserProfile(userData);
+                    if (settingsEmail) {
+                        settingsEmail.value = (userData && userData.email) || (currentUser ? currentUser.email : '');
+                    }
+                    return userData;
+                })
+                .catch((error) => {
+                    console.error('Error loading user profile:', error);
+                    return null;
+                });
+        }
+
+        function bootstrapRouteFromLocation() {
+            const requestedPage = getPageFromPath();
+            showPage(requestedPage, false);
+            const activePage = document.querySelector('.page.active-page');
+            const activePageId = activePage ? activePage.id.replace('-page', '') : 'main';
+            pushPageRoute(activePageId, true);
+        }
+
+        function populateProfilePictureSelect(selectEl, selectedValue = '') {
+            if (!selectEl) return;
+
+            const currentValue = selectedValue || selectEl.value || '';
+            selectEl.innerHTML = '';
+
+            profileOptionsCache.forEach((option) => {
+                const optionEl = document.createElement('option');
+                optionEl.value = option.imageUrl;
+                optionEl.textContent = option.label + (option.imageUrl === defaultProfilePictureUrl ? ' (Default)' : '');
+                selectEl.appendChild(optionEl);
+            });
+
+            const fallbackValue = currentValue || defaultProfilePictureUrl || (profileOptionsCache[0] ? profileOptionsCache[0].imageUrl : FALLBACK_PROFILE_PICTURE);
+            selectEl.value = fallbackValue;
+
+            if (!selectEl.value && selectEl.options.length > 0) {
+                selectEl.selectedIndex = 0;
+            }
+        }
+
+        function updateSignupProfilePreview() {
+            if (!signupProfilePreview || !signupProfilePicture) return;
+            signupProfilePreview.src = normalizeProfilePicture(signupProfilePicture.value);
+        }
+
+        function updateSettingsProfilePreview() {
+            if (!settingsCurrentAvatar || !settingsProfilePicture) return;
+            settingsCurrentAvatar.src = normalizeProfilePicture(settingsProfilePicture.value);
+        }
+
+        function loadProfileOptions() {
+            return Promise.all([
+                db.collection('profileOptions').get(),
+                db.collection('appSettings').doc('profilePictures').get()
+            ])
+                .then(([optionsSnapshot, settingsDoc]) => {
+                    const options = [];
+                    optionsSnapshot.forEach((doc) => {
+                        const data = doc.data() || {};
+                        if (!data.imageUrl) return;
+                        options.push({
+                            id: doc.id,
+                            label: data.label || 'Profile Option',
+                            imageUrl: data.imageUrl
+                        });
+                    });
+
+                    const settingsData = settingsDoc.exists ? settingsDoc.data() : {};
+                    defaultProfilePictureUrl = normalizeProfilePicture(settingsData.defaultUrl || (options[0] && options[0].imageUrl) || FALLBACK_PROFILE_PICTURE);
+                    defaultProfilePictureLabel = settingsData.defaultLabel || (options[0] && options[0].label) || 'Default Dragon';
+
+                    if (!options.some((option) => option.imageUrl === defaultProfilePictureUrl)) {
+                        options.unshift({
+                            id: '__default__',
+                            label: defaultProfilePictureLabel,
+                            imageUrl: defaultProfilePictureUrl
+                        });
+                    }
+
+                    if (options.length === 0) {
+                        options.push({
+                            id: '__fallback__',
+                            label: 'Default Dragon',
+                            imageUrl: FALLBACK_PROFILE_PICTURE
+                        });
+                        defaultProfilePictureUrl = FALLBACK_PROFILE_PICTURE;
+                        defaultProfilePictureLabel = 'Default Dragon';
+                    }
+
+                    profileOptionsCache = options;
+
+                    populateProfilePictureSelect(signupProfilePicture);
+                    populateProfilePictureSelect(settingsProfilePicture, currentUserProfileData ? currentUserProfileData.profilePicture : '');
+                    updateSignupProfilePreview();
+                    updateSettingsProfilePreview();
+                    return options;
+                })
+                .catch((error) => {
+                    console.error('Error loading profile options:', error);
+                    profileOptionsCache = [{
+                        id: '__fallback__',
+                        label: 'Default Dragon',
+                        imageUrl: FALLBACK_PROFILE_PICTURE
+                    }];
+                    defaultProfilePictureUrl = FALLBACK_PROFILE_PICTURE;
+                    populateProfilePictureSelect(signupProfilePicture);
+                    populateProfilePictureSelect(settingsProfilePicture);
+                    updateSignupProfilePreview();
+                    updateSettingsProfilePreview();
+                    return profileOptionsCache;
+                });
+        }
+
+        function renderCommunityMessage(message, isMine = false) {
+            const row = document.createElement('div');
+            row.className = `community-message ${isMine ? 'mine' : ''}`;
+            const profilePicture = normalizeProfilePicture(message.profilePicture || message.senderAvatar);
+
+            row.innerHTML = `
+                <img class="avatar" src="${escapeHtml(profilePicture)}" alt="${escapeHtml(message.username || 'User')} avatar">
+                <div class="community-message-content">
+                    <div class="community-message-meta">
+                        <span class="username">${escapeHtml(message.username || 'Anonymous')}</span>
+                        <span class="timestamp">${escapeHtml(formatMessageTimestamp(message.timestamp))}</span>
+                    </div>
+                    <div class="community-message-text">${escapeHtml(message.content || '')}</div>
+                </div>
+            `;
+            return row;
+        }
+
+        function syncCommunityChatListener() {
+            if (communityChatUnsubscribe) {
+                communityChatUnsubscribe();
+                communityChatUnsubscribe = null;
+            }
+
+            if (!currentUser) {
+                communityPosts.innerHTML = '<p>Please sign in to join the live chat.</p>';
+                return;
+            }
+
+            communityPosts.innerHTML = '<p>Loading live chat...</p>';
+
+            communityChatUnsubscribe = db.collection('communityPosts')
+                .orderBy('timestamp', 'asc')
+                .limit(250)
+                .onSnapshot((querySnapshot) => {
+                    communityPosts.innerHTML = '';
+                    let hasMessages = false;
+
+                    querySnapshot.forEach((doc) => {
+                        if (doc.id === '_init_') return;
+                        const message = doc.data() || {};
+                        hasMessages = true;
+                        communityPosts.appendChild(renderCommunityMessage(message, message.userId === currentUser.uid));
+                    });
+
+                    if (!hasMessages) {
+                        communityPosts.innerHTML = '<p>No messages yet. Start the conversation.</p>';
+                        return;
+                    }
+
+                    communityPosts.scrollTop = communityPosts.scrollHeight;
+                }, (error) => {
+                    console.error('Live chat listener error:', error);
+                    communityPosts.innerHTML = '<p>Unable to load live chat right now.</p>';
+                });
+        }
+
+        function loadCommunityPosts() {
+            syncCommunityChatListener();
+        }
+
+        function submitCommunityPost() {
+            if (!currentUser) {
+                showNotification('Please log in to chat', true);
+                return;
+            }
+
+            const content = (postContent.value || '').trim();
+            if (!content) {
+                showNotification('Please enter a message', true);
+                return;
+            }
+
+            const username = (currentUserProfileData && currentUserProfileData.username) || 'Anonymous';
+            const profilePicture = normalizeProfilePicture(currentUserProfileData && currentUserProfileData.profilePicture);
+
+            db.collection('communityPosts').add({
+                userId: currentUser.uid,
+                username,
+                profilePicture,
+                content,
+                likes: 0,
+                timestamp: firebase.firestore.FieldValue.serverTimestamp()
+            })
+                .then(() => {
+                    postContent.value = '';
+                })
+                .catch((error) => {
+                    console.error('Error sending chat message:', error);
+                    showNotification('Error sending message: ' + error.message, true);
+                });
+        }
+
+        // Override signup with profile picture support
+        function signup(username, email, password, profilePicture) {
+            showLoading();
+            const safeProfilePicture = normalizeProfilePicture(profilePicture);
+
+            return auth.createUserWithEmailAndPassword(email, password)
+                .then((userCredential) => {
+                    const userId = generateUserId();
+                    const userRef = rtdb.ref('users/' + userCredential.user.uid);
+
+                    return userRef.set({
+                        userId: userId,
+                        username: username,
+                        email: email,
+                        role: 'Member',
+                        banned: false,
+                        credits: 0,
+                        profilePicture: safeProfilePicture,
+                        createdAt: firebase.database.ServerValue.TIMESTAMP,
+                        lastLogin: firebase.database.ServerValue.TIMESTAMP
+                    });
+                })
+                .then(() => {
+                    hideLoading();
+                    showNotification('Account created successfully!');
+                    pushPageRoute('main', true);
+                    showPage('main', false);
+                    return loadCurrentUserProfile();
+                })
+                .catch((error) => {
+                    hideLoading();
+                    showNotification('Signup failed: ' + error.message, true);
+                    throw error;
+                });
+        }
+
+        function saveSettingsProfile() {
+            if (!currentUser) return;
+            const profilePicture = normalizeProfilePicture(settingsProfilePicture.value);
+
+            showLoading();
+            rtdb.ref('users/' + currentUser.uid).update({ profilePicture })
+                .then(() => {
+                    hideLoading();
+                    showNotification('Profile picture updated successfully.');
+                    return loadCurrentUserProfile();
+                })
+                .catch((error) => {
+                    hideLoading();
+                    showNotification('Could not update profile picture: ' + error.message, true);
+                });
+        }
+
+        function updateUserEmail(newEmail) {
+            if (!currentUser) return Promise.resolve();
+            const trimmedEmail = (newEmail || '').trim();
+            if (!trimmedEmail) return Promise.reject(new Error('Please enter a valid email.'));
+
+            showLoading();
+            return currentUser.updateEmail(trimmedEmail)
+                .then(() => rtdb.ref('users/' + currentUser.uid).update({ email: trimmedEmail }))
+                .then(() => {
+                    hideLoading();
+                    showNotification('Email updated successfully.');
+                    settingsEmail.value = trimmedEmail;
+                    return loadCurrentUserProfile();
+                })
+                .catch((error) => {
+                    hideLoading();
+                    const message = error.code === 'auth/requires-recent-login'
+                        ? 'Please log out and log back in before changing your email.'
+                        : error.message;
+                    showNotification('Email update failed: ' + message, true);
+                    throw error;
+                });
+        }
+
+        function updateUserPassword(newPassword, confirmPassword) {
+            if (!currentUser) return Promise.resolve();
+            if (newPassword !== confirmPassword) {
+                showNotification('Passwords do not match.', true);
+                return Promise.reject(new Error('Passwords do not match.'));
+            }
+
+            showLoading();
+            return currentUser.updatePassword(newPassword)
+                .then(() => {
+                    hideLoading();
+                    showNotification('Password updated successfully.');
+                    settingsPassword.value = '';
+                    settingsConfirmPassword.value = '';
+                })
+                .catch((error) => {
+                    hideLoading();
+                    const message = error.code === 'auth/requires-recent-login'
+                        ? 'Please log out and log back in before changing your password.'
+                        : error.message;
+                    showNotification('Password update failed: ' + message, true);
+                    throw error;
+                });
+        }
+
+        function renderSenderHeader(message) {
+            const senderName = message.senderName || message.username || 'User';
+            const senderAvatar = normalizeProfilePicture(message.senderAvatar || message.profilePicture);
+            return `
+                <div class="message-sender-row">
+                    <img class="message-sender-avatar" src="${escapeHtml(senderAvatar)}" alt="${escapeHtml(senderName)} avatar">
+                    <span class="sender">${escapeHtml(senderName)}</span>
+                </div>
+            `;
+        }
+
+        // Override chat message renderers with avatar support
+        function displayChatMessage(message) {
+            if (!chatMessages) return;
+            const messageElement = document.createElement('div');
+            const timestamp = formatMessageTimestamp(message.timestamp);
+            const isSelf = message.senderId === (currentUser ? currentUser.uid : '');
+
+            if (message.type === 'system') {
+                messageElement.className = 'chat-message-item system';
+                messageElement.innerHTML = `
+                    <span>${escapeHtml(message.content || '')}</span>
+                    <span class="timestamp">${escapeHtml(timestamp)}</span>
+                `;
+            } else if (message.type === 'image') {
+                messageElement.className = `chat-message-item ${isSelf ? 'user' : 'admin'}`;
+                messageElement.innerHTML = `
+                    ${renderSenderHeader(message)}
+                    <img src="${escapeHtml(message.content || '')}" alt="Chat image" class="chat-image-preview" onerror="this.src='https://via.placeholder.com/200x200?text=Image+Not+Found'">
+                    <span class="timestamp">${escapeHtml(timestamp)}</span>
+                `;
+            } else if (message.type === 'order') {
+                const order = message.content || {};
+                messageElement.className = `chat-message-item ${isSelf ? 'user' : 'admin'}`;
+                messageElement.innerHTML = `
+                    ${renderSenderHeader(message)}
+                    <div class="chat-order-details">
+                        <h4>Order Details</h4>
+                        <p><strong>Order ID: </strong> ${escapeHtml(order.id ? order.id.substring(0, 8) : 'N/A')}...</p>
+                        <p><strong>Item: </strong> ${escapeHtml(order.itemName || 'Unknown')}</p>
+                        <p><strong>Quantity: </strong> ${escapeHtml(order.quantity || 0)}</p>
+                        <p><strong>Price: </strong> ${escapeHtml(order.price || 0)} each</p>
+                        <p><strong>Total: </strong> ${escapeHtml(order.total || 0)}</p>
+                        <p><strong>Status: </strong> <span class="status-${escapeHtml(order.status || 'pending')}">${escapeHtml(order.status ? order.status.charAt(0).toUpperCase() + order.status.slice(1) : 'Pending')}</span></p>
+                    </div>
+                    <span class="timestamp">${escapeHtml(timestamp)}</span>
+                `;
+            } else if (message.type === 'receipt') {
+                const receipt = message.content || {};
+                messageElement.className = `chat-message-item ${isSelf ? 'user' : 'admin'}`;
+                messageElement.innerHTML = `
+                    ${renderSenderHeader(message)}
+                    <div class="chat-receipt">
+                        <h4>Order Receipt</h4>
+                        <div class="receipt-details">
+                            <p><strong>Order ID: </strong> ${escapeHtml(receipt.orderId ? receipt.orderId.substring(0, 8) : 'N/A')}...</p>
+                            <p><strong>Customer: </strong> ${escapeHtml(receipt.customerName || 'N/A')}</p>
+                            <p><strong>Item: </strong> ${escapeHtml(receipt.itemName || 'N/A')}</p>
+                            <p><strong>Quantity: </strong> ${escapeHtml(receipt.quantity || 0)}</p>
+                            <p><strong>Price: </strong> ${escapeHtml(receipt.price || 0)} each</p>
+                            <p><strong>Date: </strong> ${escapeHtml(receipt.date || 'N/A')}</p>
+                        </div>
+                        <div class="receipt-total">Total: ${escapeHtml(receipt.total || 0)}</div>
+                    </div>
+                    <span class="timestamp">${escapeHtml(timestamp)}</span>
+                `;
+            } else {
+                messageElement.className = `chat-message-item ${isSelf ? 'user' : 'admin'}`;
+                messageElement.innerHTML = `
+                    ${renderSenderHeader(message)}
+                    <span>${escapeHtml(message.content || '')}</span>
+                    <span class="timestamp">${escapeHtml(timestamp)}</span>
+                `;
+            }
+
+            chatMessages.appendChild(messageElement);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+
+        function displayAdminChatMessage(message) {
+            const messageElement = document.createElement('div');
+            const timestamp = formatMessageTimestamp(message.timestamp);
+            const isCustomer = message.senderId === currentAdminChatUserId;
+
+            if (message.type === 'system') {
+                messageElement.className = 'chat-message-item system';
+                messageElement.innerHTML = `
+                    <span>${escapeHtml(message.content || '')}</span>
+                    <span class="timestamp">${escapeHtml(timestamp)}</span>
+                `;
+            } else if (message.type === 'image') {
+                messageElement.className = `chat-message-item ${isCustomer ? 'user' : 'admin'}`;
+                messageElement.innerHTML = `
+                    ${renderSenderHeader(message)}
+                    <img src="${escapeHtml(message.content || '')}" alt="Chat image" class="chat-image-preview" onerror="this.src='https://via.placeholder.com/200x200?text=Image+Not+Found'">
+                    <span class="timestamp">${escapeHtml(timestamp)}</span>
+                `;
+            } else if (message.type === 'order') {
+                const order = message.content || {};
+                messageElement.className = `chat-message-item ${isCustomer ? 'user' : 'admin'}`;
+                messageElement.innerHTML = `
+                    ${renderSenderHeader(message)}
+                    <div class="chat-order-details">
+                        <h4>Order Details</h4>
+                        <p><strong>Order ID: </strong> ${escapeHtml(order.id ? order.id.substring(0, 8) : 'N/A')}...</p>
+                        <p><strong>Item: </strong> ${escapeHtml(order.itemName || 'Unknown')}</p>
+                        <p><strong>Quantity: </strong> ${escapeHtml(order.quantity || 0)}</p>
+                        <p><strong>Price: </strong> ${escapeHtml(order.price || 0)} each</p>
+                        <p><strong>Total: </strong> ${escapeHtml(order.total || 0)}</p>
+                        <p><strong>Status: </strong> <span class="status-${escapeHtml(order.status || 'pending')}">${escapeHtml(order.status ? order.status.charAt(0).toUpperCase() + order.status.slice(1) : 'Pending')}</span></p>
+                    </div>
+                    <span class="timestamp">${escapeHtml(timestamp)}</span>
+                `;
+            } else if (message.type === 'receipt') {
+                const receipt = message.content || {};
+                messageElement.className = `chat-message-item ${isCustomer ? 'user' : 'admin'}`;
+                messageElement.innerHTML = `
+                    ${renderSenderHeader(message)}
+                    <div class="chat-receipt">
+                        <h4>Order Receipt</h4>
+                        <div class="receipt-details">
+                            <p><strong>Order ID: </strong> ${escapeHtml(receipt.orderId ? receipt.orderId.substring(0, 8) : 'N/A')}...</p>
+                            <p><strong>Customer: </strong> ${escapeHtml(receipt.customerName || 'N/A')}</p>
+                            <p><strong>Item: </strong> ${escapeHtml(receipt.itemName || 'N/A')}</p>
+                            <p><strong>Quantity: </strong> ${escapeHtml(receipt.quantity || 0)}</p>
+                            <p><strong>Price: </strong> ${escapeHtml(receipt.price || 0)} each</p>
+                            <p><strong>Date: </strong> ${escapeHtml(receipt.date || 'N/A')}</p>
+                        </div>
+                        <div class="receipt-total">Total: ${escapeHtml(receipt.total || 0)}</div>
+                    </div>
+                    <span class="timestamp">${escapeHtml(timestamp)}</span>
+                `;
+            } else {
+                messageElement.className = `chat-message-item ${isCustomer ? 'user' : 'admin'}`;
+                messageElement.innerHTML = `
+                    ${renderSenderHeader(message)}
+                    <span>${escapeHtml(message.content || '')}</span>
+                    <span class="timestamp">${escapeHtml(timestamp)}</span>
+                `;
+            }
+
+            adminChatMessages.appendChild(messageElement);
+            adminChatMessages.scrollTop = adminChatMessages.scrollHeight;
+        }
+
+        function sendChatMessage() {
+            const messageContent = chatMessageInput.value.trim();
+            if (!messageContent || !currentChatOrderId) return;
+
+            showLoading();
+            getCurrentUserData()
+                .then((userData) => {
+                    const senderName = userData ? userData.username : 'User';
+                    const senderAvatar = normalizeProfilePicture(userData && userData.profilePicture);
+                    return db.collection('chats')
+                        .doc(currentChatOrderId)
+                        .collection('messages')
+                        .add({
+                            senderId: currentUser.uid,
+                            senderName,
+                            senderAvatar,
+                            content: messageContent,
+                            type: 'text',
+                            timestamp: firebase.firestore.FieldValue.serverTimestamp()
+                        });
+                })
+                .then(() => {
+                    hideLoading();
+                    chatMessageInput.value = '';
+                    loadChatMessages();
+                })
+                .catch((error) => {
+                    hideLoading();
+                    console.error('Error sending message:', error);
+                    showNotification('Error sending message: ' + error.message, true);
+                });
+        }
+
+        function sendAdminChatMessage() {
+            const messageContent = adminChatInput.value.trim();
+            if (!messageContent || !currentAdminChatOrderId) return;
+
+            showLoading();
+            getCurrentUserData()
+                .then((userData) => {
+                    const senderName = currentUser.email === OWNER_EMAIL ? 'Owner' : (userData && userData.username) || 'Admin';
+                    const senderAvatar = normalizeProfilePicture(userData && userData.profilePicture);
+                    return db.collection('chats')
+                        .doc(currentAdminChatOrderId)
+                        .collection('messages')
+                        .add({
+                            senderId: currentUser.uid,
+                            senderName,
+                            senderAvatar,
+                            content: messageContent,
+                            type: 'text',
+                            timestamp: firebase.firestore.FieldValue.serverTimestamp()
+                        });
+                })
+                .then(() => {
+                    hideLoading();
+                    adminChatInput.value = '';
+                    loadAdminChatMessages();
+                })
+                .catch((error) => {
+                    hideLoading();
+                    console.error('Error sending admin message:', error);
+                    showNotification('Error sending message: ' + error.message, true);
+                });
+        }
+
+        function openAdminChat(userId, userEmail, orderId, triggerElement = null) {
+            if (!userId || !userEmail || !orderId) return;
+
+            currentAdminChatUserId = userId;
+            currentAdminChatUser = userEmail;
+            currentAdminChatOrderId = orderId;
+            adminChatUser.textContent = `Chat with ${userEmail}`;
+            noUserSelected.style.display = 'none';
+
+            document.querySelectorAll('.user-chat-item').forEach(item => {
+                item.classList.remove('active');
+            });
+            if (triggerElement) {
+                triggerElement.classList.add('active');
+            }
+
+            loadAdminChatMessages();
+            clearInterval(adminChatInterval);
+            adminChatInterval = setInterval(() => {
+                if (currentAdminChatOrderId) loadAdminChatMessages();
+            }, 1000);
+        }
+
+        function loadAdminUsers() {
+            if (!currentUser || (currentUser.email !== OWNER_EMAIL && userRoleData !== 'Admin')) {
+                return;
+            }
+
+            return db.collection('orders')
+                .orderBy('timestamp', 'desc')
+                .limit(80)
+                .get()
+                .then((querySnapshot) => {
+                    const userIds = new Set();
+                    const userOrders = {};
+
+                    querySnapshot.forEach((doc) => {
+                        const order = doc.data() || {};
+                        if (!order.userId) return;
+                        userIds.add(order.userId);
+                        if (!userOrders[order.userId]) {
+                            userOrders[order.userId] = {
+                                orderId: doc.id,
+                                userEmail: order.userEmail || '',
+                                timestamp: order.timestamp
+                            };
+                        }
+                    });
+
+                    const promises = Array.from(userIds).map((userId) => {
+                        return rtdb.ref('users/' + userId).once('value')
+                            .then((snapshot) => {
+                                if (!snapshot.exists()) return null;
+                                const user = snapshot.val() || {};
+                                return {
+                                    userId,
+                                    email: user.email,
+                                    username: user.username || 'User',
+                                    profilePicture: normalizeProfilePicture(user.profilePicture),
+                                    lastOrder: userOrders[userId]
+                                };
+                            });
+                    });
+
+                    return Promise.all(promises);
+                })
+                .then((users) => {
+                    adminUsersList.innerHTML = '<h3>Active Chats</h3>';
+                    const validUsers = users.filter(Boolean);
+
+                    validUsers.forEach((user) => {
+                        const userElement = document.createElement('div');
+                        userElement.className = 'user-chat-item';
+                        userElement.innerHTML = `
+                            <div class="message-sender-row">
+                                <img class="message-sender-avatar" src="${escapeHtml(user.profilePicture)}" alt="${escapeHtml(user.username)} avatar">
+                                <span class="sender">${escapeHtml(user.username)}</span>
+                            </div>
+                            <div class="user-email">${escapeHtml(user.email || '')}</div>
+                            <div class="last-message">Last order: ${user.lastOrder ? user.lastOrder.orderId.substring(0, 8) : 'N/A'}</div>
+                        `;
+
+                        userElement.addEventListener('click', () => {
+                            openAdminChat(user.userId, user.email, user.lastOrder.orderId, userElement);
+                        });
+                        adminUsersList.appendChild(userElement);
+                    });
+
+                    if (validUsers.length === 0) {
+                        adminUsersList.innerHTML += '<p>No active chats yet.</p>';
+                    }
+                })
+                .catch((error) => {
+                    console.error('Error loading admin users: ', error);
+                });
+        }
+
+        function addProfileOption() {
+            if (!currentUser || (currentUser.email !== OWNER_EMAIL && userRoleData !== 'Admin')) {
+                showNotification('Access denied', true);
+                return;
+            }
+
+            const label = (profileOptionLabel.value || '').trim();
+            const imageUrl = (profileOptionUrl.value || '').trim();
+
+            if (!label || !imageUrl) {
+                showNotification('Please enter both label and image URL.', true);
+                return;
+            }
+
+            showLoading();
+            db.collection('profileOptions').add({
+                label,
+                imageUrl,
+                createdBy: currentUser.uid,
+                createdAt: firebase.firestore.FieldValue.serverTimestamp()
+            })
+                .then(() => {
+                    hideLoading();
+                    profileOptionLabel.value = '';
+                    profileOptionUrl.value = '';
+                    showNotification('Profile option added.');
+                    return Promise.all([loadProfileOptions(), loadProfileOptionsForAdmin()]);
+                })
+                .catch((error) => {
+                    hideLoading();
+                    showNotification('Could not add profile option: ' + error.message, true);
+                });
+        }
+
+        function removeProfileOption(optionId) {
+            if (!optionId || optionId.startsWith('__')) return;
+            if (!currentUser || (currentUser.email !== OWNER_EMAIL && userRoleData !== 'Admin')) {
+                showNotification('Access denied', true);
+                return;
+            }
+
+            showLoading();
+            db.collection('profileOptions').doc(optionId).delete()
+                .then(() => Promise.all([loadProfileOptions(), loadProfileOptionsForAdmin()]))
+                .then(() => {
+                    hideLoading();
+                    showNotification('Profile option removed.');
+                })
+                .catch((error) => {
+                    hideLoading();
+                    showNotification('Could not remove profile option: ' + error.message, true);
+                });
+        }
+
+        function saveDefaultProfileOption() {
+            if (!currentUser || (currentUser.email !== OWNER_EMAIL && userRoleData !== 'Admin')) {
+                showNotification('Access denied', true);
+                return;
+            }
+
+            const selectedUrl = (defaultProfileSelect.value || '').trim();
+            if (!selectedUrl) {
+                showNotification('Please select a default profile picture.', true);
+                return;
+            }
+
+            const selectedOption = profileOptionsCache.find((option) => option.imageUrl === selectedUrl);
+            const defaultLabel = selectedOption ? selectedOption.label : 'Default Dragon';
+
+            showLoading();
+            db.collection('appSettings').doc('profilePictures').set({
+                defaultUrl: selectedUrl,
+                defaultLabel: defaultLabel,
+                updatedAt: firebase.firestore.FieldValue.serverTimestamp()
+            }, { merge: true })
+                .then(() => Promise.all([loadProfileOptions(), loadProfileOptionsForAdmin()]))
+                .then(() => {
+                    hideLoading();
+                    showNotification('Default profile picture updated.');
+                })
+                .catch((error) => {
+                    hideLoading();
+                    showNotification('Could not update default profile: ' + error.message, true);
+                });
+        }
+
+        function loadProfileOptionsForAdmin() {
+            if (!profileOptionsList || !defaultProfileSelect) return Promise.resolve();
+            if (!currentUser || (currentUser.email !== OWNER_EMAIL && userRoleData !== 'Admin')) {
+                return Promise.resolve();
+            }
+
+            return loadProfileOptions().then(() => {
+                defaultProfileSelect.innerHTML = '<option value="">Select an option</option>';
+                profileOptionsCache.forEach((option) => {
+                    const optionEl = document.createElement('option');
+                    optionEl.value = option.imageUrl;
+                    optionEl.textContent = option.label;
+                    defaultProfileSelect.appendChild(optionEl);
+                });
+                defaultProfileSelect.value = defaultProfilePictureUrl;
+
+                profileOptionsList.innerHTML = '';
+                profileOptionsCache.forEach((option) => {
+                    const card = document.createElement('div');
+                    card.className = 'profile-option-item';
+                    const isDefault = option.imageUrl === defaultProfilePictureUrl;
+                    card.innerHTML = `
+                        <div class="profile-option-item-main">
+                            <img src="${escapeHtml(option.imageUrl)}" alt="${escapeHtml(option.label)}">
+                            <span class="label">${escapeHtml(option.label)}${isDefault ? ' (Default)' : ''}</span>
+                        </div>
+                        <div class="profile-option-actions">
+                            <button class="tiny-btn set-default-btn" data-url="${escapeHtml(option.imageUrl)}">Default</button>
+                            <button class="tiny-btn remove-profile-option-btn" data-id="${escapeHtml(option.id)}">Remove</button>
+                        </div>
+                    `;
+                    profileOptionsList.appendChild(card);
+                });
+
+                profileOptionsList.querySelectorAll('.set-default-btn').forEach((btn) => {
+                    btn.addEventListener('click', () => {
+                        defaultProfileSelect.value = btn.getAttribute('data-url');
+                        saveDefaultProfileOption();
+                    });
+                });
+                profileOptionsList.querySelectorAll('.remove-profile-option-btn').forEach((btn) => {
+                    btn.addEventListener('click', () => {
+                        removeProfileOption(btn.getAttribute('data-id'));
+                    });
+                });
+            });
+        }
         
         // Event Listeners
         document.addEventListener('DOMContentLoaded', () => {
@@ -5375,39 +6205,51 @@
                     showPage(pageId);
                 });
             });
-            
+
+            // Browser back/forward URL navigation
+            window.addEventListener('popstate', () => {
+                showPage(getPageFromPath(), false);
+            });
+
+            // Profile picture selectors
+            signupProfilePicture.addEventListener('change', updateSignupProfilePreview);
+            settingsProfilePicture.addEventListener('change', updateSettingsProfilePreview);
+
             // Admin menu navigation
             adminMenuItems.forEach(item => {
                 item.addEventListener('click', (e) => {
                     e.preventDefault();
                     const sectionId = item.getAttribute('data-section');
                     showAdminSection(sectionId);
-                    
+
                     // Load data for the section
                     switch(sectionId) {
-                        case 'users':      
+                        case 'users':
                             loadUsers();
                             loadUsersForTopup();
                             break;
-                        case 'roles':      
+                        case 'roles':
                             loadUsersForRoleManagement();
                             break;
-                        case 'shop':      
+                        case 'shop':
                             loadAdminShopItems();
                             break;
-                        case 'orders':      
+                        case 'orders':
                             loadAdminOrders();
                             break;
-                        case 'chats':      
+                        case 'chats':
                             loadAdminUsers();
                             break;
-                        case 'dashboard':      
+                        case 'profiles':
+                            loadProfileOptionsForAdmin();
+                            break;
+                        case 'dashboard':
                             updateDashboardStats();
                             break;
                     }
                 });
             });
-            
+
             // Form submissions
             loginForm.addEventListener('submit', (e) => {
                 e.preventDefault();
@@ -5415,38 +6257,63 @@
                 const password = document.getElementById('loginPassword').value;
                 login(email, password);
             });
-            
+
             signupForm.addEventListener('submit', (e) => {
                 e.preventDefault();
-                const username = document.getElementById('signupUsername').value;
-                const email = document.getElementById('signupEmail').value;
+                const username = document.getElementById('signupUsername').value.trim();
+                const email = document.getElementById('signupEmail').value.trim();
                 const password = document.getElementById('signupPassword').value;
                 const confirmPassword = document.getElementById('confirmPassword').value;
-                
+                const selectedProfilePicture = signupProfilePicture.value || defaultProfilePictureUrl;
+
+                if (!username) {
+                    showNotification('Please choose a username.', true);
+                    return;
+                }
                 if (password !== confirmPassword) {
                     showNotification('Passwords do not match!', true);
                     return;
                 }
-                
-                signup(username, email, password);
+
+                signup(username, email, password, selectedProfilePicture);
             });
-            
+
+            updateEmailForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                updateUserEmail(settingsEmail.value);
+            });
+
+            updatePasswordForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                updateUserPassword(settingsPassword.value, settingsConfirmPassword.value);
+            });
+
+            saveSettingsProfileBtn.addEventListener('click', saveSettingsProfile);
+
             // Community functions
             submitPost.addEventListener('click', submitCommunityPost);
-            
+            postContent.addEventListener('keydown', (event) => {
+                if (event.key === 'Enter' && !event.shiftKey) {
+                    event.preventDefault();
+                    submitCommunityPost();
+                }
+            });
+
             // Shop functions
             searchBtn.addEventListener('click', () => {
                 loadShopItems(searchInput.value);
             });
-            
+
             // Admin functions
             changeRoleBtn.addEventListener('click', changeUserRole);
             addItemBtn.addEventListener('click', addShopItem);
-            
+            addProfileOptionBtn.addEventListener('click', addProfileOption);
+            saveDefaultProfileBtn.addEventListener('click', saveDefaultProfileOption);
+
             // Top-up functions
             topupBtn.addEventListener('click', topupUserAccount);
             changeCreditsBtn.addEventListener('click', changeUserCredits);
-            
+
             // Chat functions
             sendMessageBtn.addEventListener('click', sendChatMessage);
             sendPictureBtn.addEventListener('click', sendPictureToChat);
@@ -5456,12 +6323,12 @@
                     sendReceiptToChat(currentChatOrderId);
                 }
             });
-            
+
             // Close buttons
             closeChatPanel.addEventListener('click', () => {
                 noChatSelected.style.display = 'flex';
             });
-            
+
             closeAdminChat.addEventListener('click', () => {
                 noUserSelected.style.display = 'flex';
                 currentAdminChatUserId = null;
@@ -5469,7 +6336,7 @@
                 currentAdminChatOrderId = null;
                 clearInterval(adminChatInterval);
             });
-            
+
             // Auth buttons
             loginBtn.addEventListener('click', () => showPage('login'));
             signupBtn.addEventListener('click', () => showPage('signup'));
@@ -5483,59 +6350,74 @@
                 showPage('login');
             });
             heroSignupBtn.addEventListener('click', () => showPage('signup'));
-            
+
+            // Load profile choices before user interacts with auth/settings
+            loadProfileOptions().then(() => {
+                const initialPage = getPageFromPath();
+                showPage(initialPage, false);
+                pushPageRoute(initialPage, true);
+            });
+
             // Update the auth state listener
             auth.onAuthStateChanged((user) => {
                 if (user) {
                     currentUser = user;
-                    userEmail.textContent = user.email;
                     userInfo.style.display = 'flex';
-                    
+
                     // Hide login/signup buttons and links
                     loginBtn.style.display = 'none';
                     signupBtn.style.display = 'none';
                     loginLink.style.display = 'none';
-                    
+
                     // Show user navigation links
                     communityLink.style.display = 'block';
                     shopLink.style.display = 'block';
                     ordersLink.style.display = 'block';
-                    
-                    // Check admin status
+                    settingsLink.style.display = 'block';
+
                     checkAdminStatus(user).then(() => {
-                        // Load user data
+                        loadCurrentUserProfile();
                         updateUserCreditsDisplay();
-                        
-                        // Load initial data
                         loadCommunityPosts();
                         loadShopItems();
                         loadUserOrders();
-                        
-                        // If admin, update dashboard stats
+
                         if (userRoleData === 'Admin' || userRoleData === 'Owner') {
                             updateDashboardStats();
+                            loadProfileOptionsForAdmin();
                         }
+
+                        const requestedPage = getPageFromPath();
+                        showPage(requestedPage, false);
+                        pushPageRoute(requestedPage, true);
                     });
-                    
-                    // If user somehow lands on login/signup page, redirect to main
-                    const currentPage = document.querySelector('.page.active-page');
-                    if (currentPage && (currentPage.id === 'login-page' || currentPage.id === 'signup-page')) {
-                        showPage('main');
-                    }
                 } else {
                     currentUser = null;
+                    currentUserProfileData = null;
+                    userRoleData = null;
                     userInfo.style.display = 'none';
-                    
+
+                    if (communityChatUnsubscribe) {
+                        communityChatUnsubscribe();
+                        communityChatUnsubscribe = null;
+                    }
+
                     // Show login/signup buttons and links
                     loginBtn.style.display = 'block';
                     signupBtn.style.display = 'block';
                     loginLink.style.display = 'block';
-                    
+
                     // Hide user navigation links
                     communityLink.style.display = 'none';
                     shopLink.style.display = 'none';
                     ordersLink.style.display = 'none';
+                    settingsLink.style.display = 'none';
                     adminLink.style.display = 'none';
+
+                    const requestedPage = getPageFromPath();
+                    const publicPage = ['main', 'login', 'signup'].includes(requestedPage) ? requestedPage : 'login';
+                    showPage(publicPage, false);
+                    pushPageRoute(publicPage, true);
                 }
             });
 
