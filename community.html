@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Sora:wght@600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
     <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-auth-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-firestore-compat.js"></script>
@@ -34,7 +34,7 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            font-family: "Manrope", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
         }
 
         body {
@@ -1514,7 +1514,7 @@
         }
 
         * {
-            font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            font-family: "Manrope", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
         }
 
         body {
@@ -1567,7 +1567,7 @@
             background: none;
             text-shadow: none;
             -webkit-text-fill-color: #152238;
-            font-family: "Sora", "Inter", sans-serif;
+            font-family: "Space Grotesk", "Manrope", sans-serif;
         }
 
         .logo-text p {
@@ -1614,9 +1614,9 @@
 
         .nav-link.active {
             color: #ffffff;
-            background: linear-gradient(135deg, #0f766e, #0e7490);
-            border-color: #0e7490;
-            box-shadow: 0 8px 16px rgba(15, 118, 110, 0.25);
+            background: linear-gradient(135deg, #2563eb, #1d4ed8);
+            border-color: #1d4ed8;
+            box-shadow: 0 8px 16px rgba(29, 78, 216, 0.32);
         }
 
         .auth-buttons {
@@ -1739,7 +1739,7 @@
             font-size: clamp(2rem, 5vw, 3.1rem);
             line-height: 1.2;
             max-width: 15ch;
-            font-family: "Sora", "Inter", sans-serif;
+            font-family: "Space Grotesk", "Manrope", sans-serif;
         }
 
         .hero p {
@@ -1761,7 +1761,7 @@
         }
 
         .features-intro h3 {
-            font-family: "Sora", "Inter", sans-serif;
+            font-family: "Space Grotesk", "Manrope", sans-serif;
             font-size: 1.5rem;
             color: #182538;
             margin-bottom: 8px;
@@ -1813,7 +1813,7 @@
         #settings-page h2 {
             color: #152238;
             text-shadow: none;
-            font-family: "Sora", "Inter", sans-serif;
+            font-family: "Space Grotesk", "Manrope", sans-serif;
         }
 
         .feature-card p,
@@ -2081,9 +2081,9 @@
 
         .admin-menu a:hover,
         .admin-menu a.active {
-            background: linear-gradient(135deg, #dff7f3, #d9eff9);
-            color: #0f4f5f;
-            border: 1px solid #7ccdd1;
+            background: linear-gradient(135deg, #eff6ff, #dbeafe);
+            color: #1e3a8a;
+            border: 1px solid #93c5fd;
         }
 
         .stats-container,
@@ -2143,7 +2143,7 @@
         }
     </style>
 </head>
-<body>
+<body data-page="community">
     <!-- Decorative Elements -->
     <div class="dragon-animation">
         <i class="fas fa-dragon"></i>
@@ -2175,9 +2175,9 @@
         </div>
         <div class="nav-container">
             <div class="nav-links">
-                <a href="/index.html" class="nav-link active" data-page="main">Home</a>
+                <a href="/index.html" class="nav-link" data-page="main">Home</a>
                 <a href="/login.html" class="nav-link" data-page="login" id="loginLink">Login</a>
-                <a href="/community.html" class="nav-link" data-page="community" id="communityLink" style="display: none;">Community</a>
+                <a href="/community.html" class="nav-link active" data-page="community" id="communityLink" style="display: none;">Community</a>
                 <a href="/settings.html" class="nav-link" data-page="settings" id="settingsLink" style="display: none;">Settings</a>
                 <a href="/admin.html" class="nav-link" data-page="admin" id="adminLink" style="display: none;">Admin</a>
             </div>
@@ -2201,7 +2201,7 @@
 
 
         <!-- Main Page -->
-        <div id="main-page" class="page active-page">
+        <div id="main-page" class="page">
             <div class="hero">
                 <span class="hero-kicker">Player Community</span>
                 <h2>Welcome to Dragon City Enjoyer</h2>
@@ -2301,7 +2301,7 @@
         </div>
 
         <!-- Community Page -->
-        <div id="community-page" class="page">
+        <div id="community-page" class="page active-page">
             <div class="community-section">
                 <h2>Dragon City Live Chat</h2>
                 <p class="chat-subtitle">Chat in real time with players, share tips, and coordinate strategies instantly.</p>
@@ -2614,6 +2614,7 @@
             acc[path] = page;
             return acc;
         }, {});
+        const CURRENT_PAGE = document.body.getAttribute('data-page') || "main";
 
         // Current user
         let currentUser = null;
@@ -2655,28 +2656,12 @@
             loadingSpinner.style.display = 'none';
         }
 
-        function getPageFromPath(pathname = window.location.pathname) {
-            const normalized = (pathname || '/').replace(/\/+$/, '') || '/';
-            if (normalized === '/' || normalized === '/index' || normalized === '/index.html') return 'main';
-            if (PATH_TO_PAGE[normalized]) return PATH_TO_PAGE[normalized];
-
-            const fileName = normalized.split('/').pop() || '';
-            const cleanFile = fileName.replace(/\.html?$/, '');
-            if (Object.prototype.hasOwnProperty.call(PAGE_TO_PATH, cleanFile)) {
-                return cleanFile;
-            }
-
-            return 'main';
+        function getPageFromPath() {
+            return CURRENT_PAGE;
         }
 
-        function pushPageRoute(pageId, replace = false) {
-            const path = PAGE_TO_PATH[pageId] || PAGE_TO_PATH.main;
-            const state = { pageId };
-            if (replace) {
-                window.history.replaceState(state, '', path);
-            } else {
-                window.history.pushState(state, '', path);
-            }
+        function pushPageRoute() {
+            // Intentionally disabled in MPA mode.
         }
 
         function navigateToPage(pageId, replace = false) {
@@ -3608,11 +3593,6 @@
         // Event Listeners
         document.addEventListener('DOMContentLoaded', () => {
 
-            // Browser back/forward URL navigation
-            window.addEventListener('popstate', () => {
-                showPage(getPageFromPath(), false);
-            });
-
             // Profile picture selectors
             signupProfilePicture.addEventListener('change', updateSignupProfilePreview);
             settingsProfilePicture.addEventListener('change', updateSettingsProfilePreview);
@@ -3712,9 +3692,7 @@
 
             // Load profile choices before user interacts with auth/settings
             loadProfileOptions().then(() => {
-                const initialPage = getPageFromPath();
-                showPage(initialPage, false);
-                pushPageRoute(initialPage, true);
+                showPage(CURRENT_PAGE, false);
             });
 
             // Update the auth state listener
@@ -3741,9 +3719,16 @@
                             loadProfileOptionsForAdmin();
                         }
 
-                        const requestedPage = getPageFromPath();
+                        const requestedPage = CURRENT_PAGE;
+                        if (requestedPage === 'login' || requestedPage === 'signup') {
+                            navigateToPage('main', true);
+                            return;
+                        }
+                        if (requestedPage === 'admin' && !(userRoleData === 'Admin' || userRoleData === 'Owner')) {
+                            navigateToPage('main', true);
+                            return;
+                        }
                         showPage(requestedPage, false);
-                        pushPageRoute(requestedPage, true);
                     });
                 } else {
                     currentUser = null;
@@ -3762,10 +3747,13 @@
                     settingsLink.style.display = 'none';
                     adminLink.style.display = 'none';
 
-                    const requestedPage = getPageFromPath();
-                    const publicPage = ['main', 'login', 'signup'].includes(requestedPage) ? requestedPage : 'login';
-                    showPage(publicPage, false);
-                    pushPageRoute(publicPage, true);
+                    const requestedPage = CURRENT_PAGE;
+                    const protectedPages = ['community', 'settings', 'admin'];
+                    if (protectedPages.includes(requestedPage)) {
+                        navigateToPage('login', true);
+                        return;
+                    }
+                    showPage(requestedPage, false);
                 }
             });
 
