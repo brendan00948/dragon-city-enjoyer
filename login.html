@@ -731,6 +731,161 @@
             color: #aaa;
         }
 
+
+        .ditlep-section {
+            margin-top: 18px;
+            padding: 18px;
+            border-radius: var(--radius-lg);
+            border: 1px solid rgba(90, 116, 165, 0.46);
+            background: linear-gradient(160deg, rgba(20, 30, 56, 0.9), rgba(12, 20, 38, 0.92));
+            box-shadow: var(--shadow-md);
+        }
+
+        .section-heading {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 10px;
+            margin-bottom: 14px;
+        }
+
+        .section-heading h3 {
+            margin: 0;
+            color: #f3f8ff;
+            font-family: "Space Grotesk", "Manrope", sans-serif;
+            font-size: 1.2rem;
+        }
+
+        .section-heading span {
+            color: var(--text-muted);
+            font-size: 0.82rem;
+            font-weight: 700;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+        }
+
+        .ditlep-highlight-card {
+            display: grid;
+            grid-template-columns: 96px 1fr;
+            gap: 14px;
+            align-items: start;
+            border-radius: 14px;
+            border: 1px solid rgba(98, 126, 181, 0.5);
+            background: rgba(13, 22, 44, 0.9);
+            padding: 14px;
+        }
+
+        .highlight-media img {
+            width: 92px;
+            height: 92px;
+            border-radius: 14px;
+            border: 1px solid rgba(106, 136, 194, 0.58);
+            background: #1a2a4b;
+        }
+
+        .highlight-content h4 {
+            margin: 0 0 8px;
+            color: #f4f8ff;
+            font-size: 1.05rem;
+        }
+
+        .highlight-content p {
+            margin: 0;
+            color: var(--text-muted);
+        }
+
+        .highlight-meta {
+            margin-top: 12px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .highlight-meta span {
+            border-radius: 999px;
+            border: 1px solid rgba(98, 128, 183, 0.5);
+            background: rgba(21, 35, 65, 0.85);
+            color: #d8e5ff;
+            padding: 4px 10px;
+            font-size: 0.78rem;
+            font-weight: 700;
+        }
+
+        .ditlep-grid {
+            display: grid;
+            gap: 12px;
+        }
+
+        .ditlep-grid-2 {
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        }
+
+        .ditlep-grid-3 {
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        }
+
+        .ditlep-card {
+            border-radius: 14px;
+            border: 1px solid rgba(92, 118, 172, 0.5);
+            background: rgba(13, 22, 44, 0.88);
+            padding: 14px;
+            display: grid;
+            gap: 10px;
+        }
+
+        .ditlep-card h4 {
+            margin: 0;
+            color: #f2f7ff;
+            font-size: 1rem;
+            font-family: "Space Grotesk", "Manrope", sans-serif;
+        }
+
+        .ditlep-card p,
+        .ditlep-card li {
+            color: var(--text-muted);
+            line-height: 1.45;
+        }
+
+        .ditlep-card ul,
+        .ditlep-card ol {
+            margin: 0;
+            padding-left: 18px;
+            display: grid;
+            gap: 6px;
+        }
+
+        .ditlep-card a {
+            color: #92baff;
+            font-weight: 700;
+            text-decoration: none;
+        }
+
+        .ditlep-card a:hover {
+            text-decoration: underline;
+        }
+
+        .category-chip-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .category-chip {
+            border-radius: 999px;
+            border: 1px solid rgba(96, 127, 183, 0.52);
+            background: rgba(19, 31, 57, 0.9);
+            color: #dce9ff;
+            padding: 6px 12px;
+            font-size: 0.82rem;
+            font-weight: 700;
+        }
+
+        .disclaimer-section {
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
         .notification {
             position: fixed;
             top: 25px;
@@ -2238,6 +2393,15 @@
                 max-width: none;
             }
 
+            .ditlep-highlight-card {
+                grid-template-columns: 1fr;
+            }
+
+            .highlight-media img {
+                width: 76px;
+                height: 76px;
+            }
+
             .user-info-display {
                 width: 100%;
             }
@@ -2284,9 +2448,9 @@
             <div class="nav-links">
                 <a href="/index.html" class="nav-link" data-page="main">Home</a>
                 <a href="/login.html" class="nav-link active" data-page="login" id="loginLink">Login</a>
-                <a href="/community.html" class="nav-link" data-page="community" id="communityLink" style="display: none;">Community</a>
-                <a href="/settings.html" class="nav-link" data-page="settings" id="settingsLink" style="display: none;">Settings</a>
-                <a href="/admin.html" class="nav-link" data-page="admin" id="adminLink" style="display: none;">Admin</a>
+                <a href="/community.html" class="nav-link" data-page="community" id="communityLink">Trading Hub</a>
+                <a href="/settings.html" class="nav-link" data-page="settings" id="settingsLink">Tools</a>
+                <a href="/admin.html" class="nav-link" data-page="admin" id="adminLink">Rankings</a>
             </div>
             <div class="auth-buttons">
                 <button class="btn btn-login" id="loginBtn">Login</button>
@@ -2307,48 +2471,132 @@
     </header>
 
 
-        <!-- Main Page -->
+                <!-- Main Page -->
         <div id="main-page" class="page">
-            <div class="hero">
-                <span class="hero-kicker">Player Community</span>
-                <h2>Dragon City Command Center</h2>
-                <p>Your ultimate destination for all things Dragon City! Connect with fellow dragon trainers, discover new strategies, and enhance your gameplay experience.</p>
+            <section class="hero ditlep-hero">
+                <span class="hero-kicker">Dragon City Tool Guide and Information</span>
+                <h2>Dragon City Tool Guide and Information</h2>
+                <p>Follow every major Dragon City event, compare top dragons, and plan your next move with a page structure inspired by modern Dragon City guide portals.</p>
                 <div class="hero-actions">
-                    <button class="btn btn-signup" id="heroSignupBtn">Join Our Community</button>
+                    <a href="/community.html" class="btn btn-signup">Open Trading Hub</a>
+                    <button class="btn btn-login" id="heroSignupBtn">Create Free Account</button>
                 </div>
-            </div>
+            </section>
 
-            <div class="features-intro">
-                <h3>Everything you need in one place</h3>
-                <p>Explore proven guides, talk with active players, and coordinate your progress from one place.</p>
-            </div>
+            <section class="ditlep-section">
+                <div class="section-heading">
+                    <h3>Highlight Dragon</h3>
+                    <span>Updated daily</span>
+                </div>
+                <div class="ditlep-highlight-card">
+                    <div class="highlight-media">
+                        <img src="https://api.dicebear.com/9.x/thumbs/svg?seed=dragon-city-highlight" alt="Highlight Dragon">
+                    </div>
+                    <div class="highlight-content">
+                        <h4>Arcane Titan Dragon</h4>
+                        <p>Heroic rarity with strong arena value and great support in event-based battles. Review counters, skills, and breeding path before investing resources.</p>
+                        <div class="highlight-meta">
+                            <span>Rarity: Heroic</span>
+                            <span>Elements: Pure • War • Light</span>
+                            <span>Rating: 9.4/10</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
 
-            <div class="features">
-                <div class="feature-card">
-                    <div class="item-image">
-                        <img src="https://m.media-amazon.com/images/I/81b5KqSPhqL.png" alt="Dragon Breeding">
-                    </div>
-                    <h3>Dragon Breeding</h3>
-                    <p>Learn the secrets of breeding rare and powerful dragons. Our expert guides will help you create the ultimate dragon collection.</p>
+            <section class="ditlep-section">
+                <div class="section-heading">
+                    <h3>Events Overview</h3>
+                    <span>Live timeline</span>
                 </div>
-                <div class="feature-card">
-                    <div class="item-image">
-                        <img src="https://dci-static-s1.socialpointgames.com/static/dragoncity/mobile/ui/pvp_arenas/HD/ic-arena-dream.png" alt="Arena Battles">
-                    </div>
-                    <h3>Arena Battles</h3>
-                    <p>Master combat strategies and dominate the arena. Discover the best dragon combinations for victory.</p>
+                <div class="ditlep-grid ditlep-grid-2">
+                    <article class="ditlep-card">
+                        <h4>Current events</h4>
+                        <ul>
+                            <li>Heroic Race — 2d 14h left</li>
+                            <li>Puzzle Island — 18h left</li>
+                            <li>Fog Island — Ends today</li>
+                        </ul>
+                        <a href="/settings.html">View full current events</a>
+                    </article>
+                    <article class="ditlep-card">
+                        <h4>Upcoming Events</h4>
+                        <ul>
+                            <li>Grid Island — Starts in 7h</li>
+                            <li>Runner Island — Starts in 1d 2h</li>
+                            <li>Maze Coin Boost — This weekend</li>
+                        </ul>
+                        <a href="/settings.html">See upcoming schedule</a>
+                    </article>
                 </div>
-                <div class="feature-card">
-                    <div class="item-image">
-                        <img src="https://aicdn.picsart.com/f4514513-fe50-4ceb-867d-21385e82f298.png" alt="Resource Management">
-                    </div>
-                    <h3>Resource Management</h3>
-                    <p>Optimize your resource production and maximize your island's potential with our proven strategies.</p>
+            </section>
+
+            <section class="ditlep-section">
+                <div class="section-heading">
+                    <h3>Core Tools</h3>
+                    <span>Gameplay assistants</span>
                 </div>
-            </div>
+                <div class="ditlep-grid ditlep-grid-3">
+                    <article class="ditlep-card"><h4>Trading Hub</h4><p>Coordinate orb exchanges and secure fair trades.</p><a href="/community.html">Open tool</a></article>
+                    <article class="ditlep-card"><h4>Wizard Hollow</h4><p>Compare chest probabilities and route outcomes.</p><a href="/settings.html">Open guide</a></article>
+                    <article class="ditlep-card"><h4>Arena Session</h4><p>Track bans, boosts, and recommended teams.</p><a href="/settings.html">Open guide</a></article>
+                    <article class="ditlep-card"><h4>Current Collectible Quests</h4><p>Know quest rewards and quest-stage requirements.</p><a href="/settings.html">View quests</a></article>
+                    <article class="ditlep-card"><h4>Alliance Chest</h4><p>Plan points and optimize alliance contribution.</p><a href="/community.html">Open tracker</a></article>
+                    <article class="ditlep-card"><h4>Newest Dragons</h4><p>Discover recently released dragons and skills.</p><a href="/admin.html">View list</a></article>
+                </div>
+            </section>
+
+            <section class="ditlep-section">
+                <div class="section-heading">
+                    <h3>Top Dragon Rankings</h3>
+                    <span>Top 10 snapshots</span>
+                </div>
+                <div class="ditlep-grid ditlep-grid-2">
+                    <article class="ditlep-card">
+                        <h4>Top 10 strongest Heroic Dragons</h4>
+                        <ol><li>Arcane Titan</li><li>Quantum Rampage</li><li>High Ascended Supreme</li><li>High Corrupted Time</li><li>High Master Karma</li></ol>
+                        <a href="/admin.html">View all heroic rankings</a>
+                    </article>
+                    <article class="ditlep-card">
+                        <h4>Top 10 strongest Mythical Dragons</h4>
+                        <ol><li>Dual Parliament</li><li>Redemption Conquest</li><li>Ravenous Extractor</li><li>Perception Dragon</li><li>Detonation Dragon</li></ol>
+                        <a href="/admin.html">View all mythical rankings</a>
+                    </article>
+                    <article class="ditlep-card">
+                        <h4>Top 10 strongest Legendary Dragons</h4>
+                        <ol><li>Bicephalous Eternal</li><li>Hexed Vampire</li><li>Sinful Vampire</li><li>Prideful Vampire</li><li>Corrupted Primal</li></ol>
+                        <a href="/admin.html">View all legendary rankings</a>
+                    </article>
+                    <article class="ditlep-card">
+                        <h4>Top 10 strongest Common to Epic Dragons</h4>
+                        <ol><li>Flame Knight</li><li>Aurora</li><li>Electrostatic</li><li>Armadillo</li><li>Mojito</li></ol>
+                        <a href="/admin.html">View all rarity rankings</a>
+                    </article>
+                </div>
+            </section>
+
+            <section class="ditlep-section">
+                <div class="section-heading">
+                    <h3>Dragon Category</h3>
+                    <span>Quick filter tags</span>
+                </div>
+                <div class="category-chip-row">
+                    <span class="category-chip">Heroic</span>
+                    <span class="category-chip">Mythical</span>
+                    <span class="category-chip">Legendary</span>
+                    <span class="category-chip">Epic</span>
+                    <span class="category-chip">Very Rare</span>
+                    <span class="category-chip">Rare</span>
+                    <span class="category-chip">Common</span>
+                </div>
+            </section>
+
+            <section class="ditlep-section disclaimer-section">
+                <p>This page is not affiliated with Dragon City or SocialPoint. Copyrights belong to their respective owners.</p>
+            </section>
         </div>
 
-              <!-- Login Page -->
+        <!-- Login Page -->
         <div id="login-page" class="page active-page">
             <div class="login-container">
                 <h2>Dragon City Login</h2>
@@ -2789,16 +3037,10 @@
                 targetPage = 'main';
             }
 
-            // Keep protected pages auth-only
-            const authOnlyPages = ['community', 'settings', 'admin'];
+            // Public page access
+            const authOnlyPages = [];
             if (!currentUser && authOnlyPages.includes(targetPage)) {
                 targetPage = 'login';
-            }
-
-            // Prevent non-admin from opening admin page
-            const isAdminUser = currentUser && (userRoleData === 'Admin' || userRoleData === 'Owner');
-            if (targetPage === 'admin' && !isAdminUser) {
-                targetPage = currentUser ? 'main' : 'login';
             }
 
             const targetPageElement = document.getElementById(`${targetPage}-page`);
@@ -3831,10 +4073,6 @@
                             navigateToPage('main', true);
                             return;
                         }
-                        if (requestedPage === 'admin' && !(userRoleData === 'Admin' || userRoleData === 'Owner')) {
-                            navigateToPage('main', true);
-                            return;
-                        }
                         showPage(requestedPage, false);
                     });
                 } else {
@@ -3849,17 +4087,12 @@
                     signupBtn.style.display = 'block';
                     loginLink.style.display = 'block';
 
-                    // Hide user navigation links
-                    communityLink.style.display = 'none';
-                    settingsLink.style.display = 'none';
-                    adminLink.style.display = 'none';
+                    // Keep public navigation links visible
+                    communityLink.style.display = 'block';
+                    settingsLink.style.display = 'block';
+                    adminLink.style.display = 'block';
 
                     const requestedPage = CURRENT_PAGE;
-                    const protectedPages = ['community', 'settings', 'admin'];
-                    if (protectedPages.includes(requestedPage)) {
-                        navigateToPage('login', true);
-                        return;
-                    }
                     showPage(requestedPage, false);
                 }
             });
