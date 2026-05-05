@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en" data-page="admin">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin - Dragon City Enjoyer</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&family=Sora:wght@600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/site.css">
+    <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-firestore-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-database-compat.js"></script>
+</head>
+<body>
+    <div class="dragon-animation">
+        <i class="fas fa-dragon"></i>
+    </div>
+    <div class="glowing-dragon">
+        <i class="fas fa-dragon"></i>
+    </div>
+    <div class="fire"></div>
+
+    <div class="spinner" id="loadingSpinner">
+        <div class="spinner-border text-primary" role="status">
+            <span class="sr-only">Loading...</span>
+        </div>
+    </div>
+
+   <div class="container">
+    <header>
+        <div class="logo">
+            <a href="index.html" data-page="main">
+                <img src="https://i.postimg.cc/8zHr1txn/Screenshot-2026-03-01-at-13-46-24-removebg-preview.png"
+                     alt="Dragon City Logo"
+                     class="logo-image">
+            </a>
+            <div class="logo-text">
+                <h1>Dragon City Enjoyer</h1>
+                <p>Community hub built for strategy-first players</p>
+            </div>
+        </div>
+        <div class="nav-container">
+            <div class="nav-links">
+                <a href="index.html" class="nav-link" data-page="main">Home</a>
+                <a href="login.html" class="nav-link" data-page="login" id="loginLink">Login</a>
+                <a href="community.html" class="nav-link" data-page="community" id="communityLink" style="display: none;">Community</a>
+                <a href="settings.html" class="nav-link" data-page="settings" id="settingsLink" style="display: none;">Settings</a>
+                <a href="admin.html" class="nav-link active" data-page="admin" id="adminLink" style="display: none;">Admin</a>
+            </div>
+            <div class="auth-buttons">
+                <button class="btn btn-login" id="loginBtn">Login</button>
+                <button class="btn btn-signup" id="signupBtn">Sign Up</button>
+                <div class="user-info-display" id="userInfo" style="display: none;">
+                    <div class="user-identity">
+                        <img id="userAvatar" class="user-avatar" src="https://api.dicebear.com/9.x/thumbs/svg?seed=dragon-city-default" alt="Profile picture">
+                        <div class="user-identity-meta">
+                            <span id="userName">Player</span>
+                            <span id="userEmail"></span>
+                        </div>
+                    </div>
+                    <span id="userRole" class="role-badge"></span>
+                    <button class="btn btn-login" id="logoutBtn">Logout</button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+            <div class="container">
+                <h2>Admin Panel</h2>
+
+                <div class="admin-container">
+                    <div class="admin-sidebar">
+                        <h3>Navigation</h3>
+                        <ul class="admin-menu">
+                            <li><a href="#" class="admin-menu-item active" data-section="dashboard">
+                                <i class="fas fa-home"></i> <span>Dashboard</span>
+                            </a></li>
+                            <li><a href="#" class="admin-menu-item" data-section="users">
+                                <i class="fas fa-users"></i> <span>User Management</span>
+                            </a></li>
+                            <li><a href="#" class="admin-menu-item" data-section="roles">
+                                <i class="fas fa-id-badge"></i> <span>Role Management</span>
+                            </a></li>
+                            <li><a href="#" class="admin-menu-item" data-section="profiles">
+                                <i class="fas fa-user-circle"></i> <span>Profile Pictures</span>
+                            </a></li>
+                        </ul>
+                    </div>
+
+                    <div class="admin-content">
+                        <div id="dashboard-section" class="admin-section active">
+                            <h2>Dashboard Overview</h2>
+
+                            <div class="stats-container">
+                                <div class="stat-card">
+                                    <i class="fas fa-users"></i>
+                                    <div class="value" id="totalUsersStat">0</div>
+                                    <div class="label">Total Users</div>
+                                </div>
+                            </div>
+
+                            <div class="admin-grid">
+                                <div class="admin-card">
+                                    <h3>Recent Activity</h3>
+                                    <div id="recentActivity">
+                                        <p>No recent activity</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div id="users-section" class="admin-section">
+                            <h2>User Management</h2>
+
+                            <div class="admin-card">
+                                <h3>User List</h3>
+                                <div class="user-list" id="userList">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div id="roles-section" class="admin-section">
+                            <h2>Role Management</h2>
+
+                            <div class="admin-form">
+                                <h3>Change User Role</h3>
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <select id="userSelect" class="role-select">
+                                            <option value="">Select User</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <select id="roleSelect" class="role-select">
+                                            <option value="">Select Role</option>
+                                            <option value="Owner">Owner</option>
+                                            <option value="Admin">Admin</option>
+                                            <option value="Moderator">Moderator</option>
+                                            <option value="Staff">Staff</option>
+                                            <option value="Elite">Elite</option>
+                                            <option value="Premium">Premium</option>
+                                            <option value="Member">Member</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <button class="admin-btn" id="changeRoleBtn">Change Role</button>
+                            </div>
+                        </div>
+
+                        <div id="profiles-section" class="admin-section">
+                            <h2>Profile Picture Management</h2>
+
+                            <div class="admin-form">
+                                <h3>Add Profile Picture Option</h3>
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="profileOptionLabel">Label</label>
+                                        <input type="text" id="profileOptionLabel" placeholder="e.g. Ember Dragon">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="profileOptionUrl">Image URL</label>
+                                        <input type="text" id="profileOptionUrl" placeholder="https://...">
+                                    </div>
+                                </div>
+                                <button class="admin-btn" id="addProfileOptionBtn">Add Profile Option</button>
+                            </div>
+
+                            <div class="admin-form">
+                                <h3>Default Profile Picture</h3>
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="defaultProfileSelect">Select default profile picture</label>
+                                        <select id="defaultProfileSelect" class="role-select">
+                                            <option value="">Select an option</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <button class="admin-btn" id="saveDefaultProfileBtn">Save Default Profile</button>
+                            </div>
+
+                            <div class="admin-card">
+                                <h3>Available Profile Pictures</h3>
+                                <div id="profileOptionsList" class="profile-options-list">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+    </div>
+
+    <div class="notification" id="notification">
+        <i class="fas fa-info-circle"></i>
+        <span>Notification</span>
+    </div>
+
+    <footer>
+        <div class="container">
+            <p>© 2026 Dragon City Enjoyer. All rights reserved. This site is not affiliated with Social Point or any of its partners.</p>
+        </div>
+    </footer>
+
+    <script src="assets/app.js"></script>
+</body>
+</html>

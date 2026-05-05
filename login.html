@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en" data-page="index">
+<html lang="en" data-page="login">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dragon City Enjoyer - Community</title>
+    <title>Login - Dragon City Enjoyer</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -44,8 +44,8 @@
         </div>
         <div class="nav-container">
             <div class="nav-links">
-                <a href="index.html" class="nav-link active" data-page="main">Home</a>
-                <a href="login.html" class="nav-link" data-page="login" id="loginLink">Login</a>
+                <a href="index.html" class="nav-link" data-page="main">Home</a>
+                <a href="login.html" class="nav-link active" data-page="login" id="loginLink">Login</a>
                 <a href="community.html" class="nav-link" data-page="community" id="communityLink" style="display: none;">Community</a>
                 <a href="settings.html" class="nav-link" data-page="settings" id="settingsLink" style="display: none;">Settings</a>
                 <a href="admin.html" class="nav-link" data-page="admin" id="adminLink" style="display: none;">Admin</a>
@@ -68,41 +68,21 @@
         </div>
     </header>
 
-            <div class="hero">
-                <span class="hero-kicker">Player Community</span>
-                <h2>Welcome to Dragon City Enjoyer</h2>
-                <p>Your ultimate destination for all things Dragon City! Connect with fellow dragon trainers, discover new strategies, and enhance your gameplay experience.</p>
-                <div class="hero-actions">
-                    <button class="btn btn-signup" id="heroSignupBtn">Join Our Community</button>
-                </div>
-            </div>
-
-            <div class="features-intro">
-                <h3>What you can do here</h3>
-                <p>Explore proven guides, talk with active players, and coordinate your progress from one place.</p>
-            </div>
-
-            <div class="features">
-                <div class="feature-card">
-                    <div class="item-image">
-                        <img src="https://m.media-amazon.com/images/I/81b5KqSPhqL.png" alt="Dragon Breeding">
+            <div class="login-container">
+                <h2>Dragon City Login</h2>
+                <form id="loginForm">
+                    <div class="form-group">
+                        <label for="loginEmail">Email</label>
+                        <input type="email" id="loginEmail" placeholder="Enter your email" required>
                     </div>
-                    <h3>Dragon Breeding</h3>
-                    <p>Learn the secrets of breeding rare and powerful dragons. Our expert guides will help you create the ultimate dragon collection.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="item-image">
-                        <img src="https://dci-static-s1.socialpointgames.com/static/dragoncity/mobile/ui/pvp_arenas/HD/ic-arena-dream.png" alt="Arena Battles">
+                    <div class="form-group">
+                        <label for="loginPassword">Password</label>
+                        <input type="password" id="loginPassword" placeholder="Enter your password" required>
                     </div>
-                    <h3>Arena Battles</h3>
-                    <p>Master combat strategies and dominate the arena. Discover the best dragon combinations for victory.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="item-image">
-                        <img src="https://aicdn.picsart.com/f4514513-fe50-4ceb-867d-21385e82f298.png" alt="Resource Management">
-                    </div>
-                    <h3>Resource Management</h3>
-                    <p>Optimize your resource production and maximize your island's potential with our proven strategies.</p>
+                    <button type="submit" class="login-btn">Login to Your Account</button>
+                </form>
+                <div class="signup-link">
+                    <p>Don't have an account? <a href="signup.html" id="showSignup">Sign Up</a></p>
                 </div>
             </div>
 

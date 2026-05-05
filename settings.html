@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en" data-page="index">
+<html lang="en" data-page="settings">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dragon City Enjoyer - Community</title>
+    <title>Settings - Dragon City Enjoyer</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -44,10 +44,10 @@
         </div>
         <div class="nav-container">
             <div class="nav-links">
-                <a href="index.html" class="nav-link active" data-page="main">Home</a>
+                <a href="index.html" class="nav-link" data-page="main">Home</a>
                 <a href="login.html" class="nav-link" data-page="login" id="loginLink">Login</a>
                 <a href="community.html" class="nav-link" data-page="community" id="communityLink" style="display: none;">Community</a>
-                <a href="settings.html" class="nav-link" data-page="settings" id="settingsLink" style="display: none;">Settings</a>
+                <a href="settings.html" class="nav-link active" data-page="settings" id="settingsLink" style="display: none;">Settings</a>
                 <a href="admin.html" class="nav-link" data-page="admin" id="adminLink" style="display: none;">Admin</a>
             </div>
             <div class="auth-buttons">
@@ -68,41 +68,54 @@
         </div>
     </header>
 
-            <div class="hero">
-                <span class="hero-kicker">Player Community</span>
-                <h2>Welcome to Dragon City Enjoyer</h2>
-                <p>Your ultimate destination for all things Dragon City! Connect with fellow dragon trainers, discover new strategies, and enhance your gameplay experience.</p>
-                <div class="hero-actions">
-                    <button class="btn btn-signup" id="heroSignupBtn">Join Our Community</button>
-                </div>
-            </div>
+            <div class="container">
+                <h2>Account Settings</h2>
+                <div class="settings-layout">
+                    <div class="settings-card">
+                        <h3>Profile</h3>
+                        <div class="settings-current-profile">
+                            <img id="settingsCurrentAvatar" class="settings-avatar" src="https://api.dicebear.com/9.x/thumbs/svg?seed=dragon-city-default" alt="Current profile picture">
+                            <div>
+                                <div id="settingsCurrentUsername" class="settings-current-username">Player</div>
+                                <div id="settingsCurrentEmail" class="settings-current-email">email@example.com</div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="settingsProfilePicture">Profile Picture</label>
+                            <select id="settingsProfilePicture">
+                                <option value="">Loading profile pictures...</option>
+                            </select>
+                        </div>
+                        <button class="admin-btn" id="saveSettingsProfileBtn">Save Profile Picture</button>
+                    </div>
 
-            <div class="features-intro">
-                <h3>What you can do here</h3>
-                <p>Explore proven guides, talk with active players, and coordinate your progress from one place.</p>
-            </div>
+                    <div class="settings-card">
+                        <h3>Update Email</h3>
+                        <p class="settings-help">Security note: changing your email may require a recent sign-in.</p>
+                        <form id="updateEmailForm">
+                            <div class="form-group">
+                                <label for="settingsEmail">New Email</label>
+                                <input type="email" id="settingsEmail" placeholder="Enter new email" required>
+                            </div>
+                            <button type="submit" class="admin-btn">Update Email</button>
+                        </form>
+                    </div>
 
-            <div class="features">
-                <div class="feature-card">
-                    <div class="item-image">
-                        <img src="https://m.media-amazon.com/images/I/81b5KqSPhqL.png" alt="Dragon Breeding">
+                    <div class="settings-card">
+                        <h3>Change Password</h3>
+                        <p class="settings-help">Security note: changing your password may require a recent sign-in.</p>
+                        <form id="updatePasswordForm">
+                            <div class="form-group">
+                                <label for="settingsPassword">New Password</label>
+                                <input type="password" id="settingsPassword" placeholder="Enter new password" minlength="6" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="settingsConfirmPassword">Confirm New Password</label>
+                                <input type="password" id="settingsConfirmPassword" placeholder="Confirm new password" minlength="6" required>
+                            </div>
+                            <button type="submit" class="admin-btn">Update Password</button>
+                        </form>
                     </div>
-                    <h3>Dragon Breeding</h3>
-                    <p>Learn the secrets of breeding rare and powerful dragons. Our expert guides will help you create the ultimate dragon collection.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="item-image">
-                        <img src="https://dci-static-s1.socialpointgames.com/static/dragoncity/mobile/ui/pvp_arenas/HD/ic-arena-dream.png" alt="Arena Battles">
-                    </div>
-                    <h3>Arena Battles</h3>
-                    <p>Master combat strategies and dominate the arena. Discover the best dragon combinations for victory.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="item-image">
-                        <img src="https://aicdn.picsart.com/f4514513-fe50-4ceb-867d-21385e82f298.png" alt="Resource Management">
-                    </div>
-                    <h3>Resource Management</h3>
-                    <p>Optimize your resource production and maximize your island's potential with our proven strategies.</p>
                 </div>
             </div>
 
