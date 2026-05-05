@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dragon City Enjoyer - Community</title>
+    <title>Dragon City Tool Guide | Dragon City Enjoyer</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -2448,6 +2448,7 @@
             <div class="nav-links">
                 <a href="/index.html" class="nav-link active" data-page="main">Home</a>
                 <a href="/login.html" class="nav-link" data-page="login" id="loginLink">Login</a>
+                <a href="/signup.html" class="nav-link" data-page="signup" id="signupNavLink">Sign Up</a>
                 <a href="/community.html" class="nav-link" data-page="community" id="communityLink">Trading Hub</a>
                 <a href="/settings.html" class="nav-link" data-page="settings" id="settingsLink">Tools</a>
                 <a href="/admin.html" class="nav-link" data-page="admin" id="adminLink">Rankings</a>
@@ -3032,11 +3033,6 @@
         function showPage(pageId, updateHistory = true) {
             let targetPage = pageId;
 
-            // Don't allow access to login/signup pages if user is logged in
-            if (currentUser && (targetPage === 'login' || targetPage === 'signup')) {
-                targetPage = 'main';
-            }
-
             // Public page access
             const authOnlyPages = [];
             if (!currentUser && authOnlyPages.includes(targetPage)) {
@@ -3051,12 +3047,11 @@
             pages.forEach(page => page.classList.remove('active-page'));
             document.getElementById(`${targetPage}-page`).classList.add('active-page');
 
-            // Update active nav link
+            // Update active nav link consistently across pages
             navLinks.forEach(link => {
-                link.classList.remove('active');
-                if (link.getAttribute('data-page') === targetPage) {
-                    link.classList.add('active');
-                }
+                const isCurrent = link.getAttribute('data-page') === targetPage;
+                link.classList.toggle('active', isCurrent);
+                link.setAttribute('aria-current', isCurrent ? 'page' : 'false');
             });
 
             if (updateHistory) {
@@ -3362,7 +3357,6 @@
                 userRoleData = 'Owner';
                 userRole.textContent = 'Owner';
                 userRole.className = 'role-badge role-owner';
-                adminLink.style.display = 'block';
                 return Promise.resolve();
             }
             
@@ -3375,8 +3369,7 @@
                         userRoleData = 'Admin';
                         userRole.textContent = 'Admin';
                         userRole.className = 'role-badge role-admin';
-                        adminLink.style.display = 'block';
-                    } else {
+                        } else {
                         // Check regular user role
                         const userRef = rtdb.ref('users/' + user.uid);
                         return userRef.once('value').then((snapshot) => {
@@ -3388,7 +3381,6 @@
                                 
                                 // Check if user is admin or owner
                                 const isAdmin = userRoleData === 'Admin' || userRoleData === 'Owner';
-                                adminLink.style.display = isAdmin ? 'block' : 'none';
                             }
                         });
                     }
@@ -4050,14 +4042,11 @@
                     currentUser = user;
                     userInfo.style.display = 'flex';
 
-                    // Hide login/signup buttons and links
+                    // Hide login/signup buttons
                     loginBtn.style.display = 'none';
                     signupBtn.style.display = 'none';
-                    loginLink.style.display = 'none';
 
                     // Show user navigation links
-                    communityLink.style.display = 'block';
-                    settingsLink.style.display = 'block';
 
                     checkAdminStatus(user).then(() => {
                         loadCurrentUserProfile();
@@ -4069,10 +4058,6 @@
                         }
 
                         const requestedPage = CURRENT_PAGE;
-                        if (requestedPage === 'login' || requestedPage === 'signup') {
-                            navigateToPage('main', true);
-                            return;
-                        }
                         showPage(requestedPage, false);
                     });
                 } else {
@@ -4082,15 +4067,11 @@
                     userInfo.style.display = 'none';
 
 
-                    // Show login/signup buttons and links
+                    // Show login/signup buttons
                     loginBtn.style.display = 'block';
                     signupBtn.style.display = 'block';
-                    loginLink.style.display = 'block';
 
                     // Keep public navigation links visible
-                    communityLink.style.display = 'block';
-                    settingsLink.style.display = 'block';
-                    adminLink.style.display = 'block';
 
                     const requestedPage = CURRENT_PAGE;
                     showPage(requestedPage, false);
