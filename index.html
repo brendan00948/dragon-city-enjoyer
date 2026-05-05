@@ -34,7 +34,7 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: "Manrope", "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            font-family: "Manrope", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
         }
 
         body {
@@ -729,6 +729,161 @@
         footer p {
             font-size: 1.1rem;
             color: #aaa;
+        }
+
+
+        .ditlep-section {
+            margin-top: 18px;
+            padding: 18px;
+            border-radius: var(--radius-lg);
+            border: 1px solid rgba(90, 116, 165, 0.46);
+            background: linear-gradient(160deg, rgba(20, 30, 56, 0.9), rgba(12, 20, 38, 0.92));
+            box-shadow: var(--shadow-md);
+        }
+
+        .section-heading {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 10px;
+            margin-bottom: 14px;
+        }
+
+        .section-heading h3 {
+            margin: 0;
+            color: #f3f8ff;
+            font-family: "Space Grotesk", "Manrope", sans-serif;
+            font-size: 1.2rem;
+        }
+
+        .section-heading span {
+            color: var(--text-muted);
+            font-size: 0.82rem;
+            font-weight: 700;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+        }
+
+        .ditlep-highlight-card {
+            display: grid;
+            grid-template-columns: 96px 1fr;
+            gap: 14px;
+            align-items: start;
+            border-radius: 14px;
+            border: 1px solid rgba(98, 126, 181, 0.5);
+            background: rgba(13, 22, 44, 0.9);
+            padding: 14px;
+        }
+
+        .highlight-media img {
+            width: 92px;
+            height: 92px;
+            border-radius: 14px;
+            border: 1px solid rgba(106, 136, 194, 0.58);
+            background: #1a2a4b;
+        }
+
+        .highlight-content h4 {
+            margin: 0 0 8px;
+            color: #f4f8ff;
+            font-size: 1.05rem;
+        }
+
+        .highlight-content p {
+            margin: 0;
+            color: var(--text-muted);
+        }
+
+        .highlight-meta {
+            margin-top: 12px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .highlight-meta span {
+            border-radius: 999px;
+            border: 1px solid rgba(98, 128, 183, 0.5);
+            background: rgba(21, 35, 65, 0.85);
+            color: #d8e5ff;
+            padding: 4px 10px;
+            font-size: 0.78rem;
+            font-weight: 700;
+        }
+
+        .ditlep-grid {
+            display: grid;
+            gap: 12px;
+        }
+
+        .ditlep-grid-2 {
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        }
+
+        .ditlep-grid-3 {
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        }
+
+        .ditlep-card {
+            border-radius: 14px;
+            border: 1px solid rgba(92, 118, 172, 0.5);
+            background: rgba(13, 22, 44, 0.88);
+            padding: 14px;
+            display: grid;
+            gap: 10px;
+        }
+
+        .ditlep-card h4 {
+            margin: 0;
+            color: #f2f7ff;
+            font-size: 1rem;
+            font-family: "Space Grotesk", "Manrope", sans-serif;
+        }
+
+        .ditlep-card p,
+        .ditlep-card li {
+            color: var(--text-muted);
+            line-height: 1.45;
+        }
+
+        .ditlep-card ul,
+        .ditlep-card ol {
+            margin: 0;
+            padding-left: 18px;
+            display: grid;
+            gap: 6px;
+        }
+
+        .ditlep-card a {
+            color: #92baff;
+            font-weight: 700;
+            text-decoration: none;
+        }
+
+        .ditlep-card a:hover {
+            text-decoration: underline;
+        }
+
+        .category-chip-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .category-chip {
+            border-radius: 999px;
+            border: 1px solid rgba(96, 127, 183, 0.52);
+            background: rgba(19, 31, 57, 0.9);
+            color: #dce9ff;
+            padding: 6px 12px;
+            font-size: 0.82rem;
+            font-weight: 700;
+        }
+
+        .disclaimer-section {
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.9rem;
         }
 
         .notification {
@@ -1495,32 +1650,42 @@
         }
     </style>
     <style>
-        /* Hand-crafted visual refresh */
+        /* Full redesign layer */
         :root {
-            --primary: #1f3a5f;
-            --primary-dark: #152a46;
-            --secondary: #315e91;
-            --accent: #13315c;
-            --dark: #f4f6fb;
-            --darker: #eef2f7;
-            --light: #1c2532;
-            --card-bg: #ffffff;
-            --card-border: #dde4ef;
-            --admin-bg: #ffffff;
-            --success: #197c42;
-            --warning: #9a6700;
-            --danger: #b42318;
-            --info: #175cd3;
+            --bg: #090f1e;
+            --bg-soft: #0f1730;
+            --surface: #121d36;
+            --surface-soft: #172341;
+            --surface-elevated: #1b2b4b;
+            --border: #2f436c;
+            --border-strong: #405989;
+            --text: #ecf2ff;
+            --text-muted: #9fb1d1;
+            --heading: #f8fbff;
+            --primary: #4f8cff;
+            --primary-strong: #3b82f6;
+            --accent: #5ce4c3;
+            --danger: #ff6b7c;
+            --success: #4ade80;
+            --warning: #f8c15a;
+            --shadow-lg: 0 24px 48px rgba(3, 8, 23, 0.45);
+            --shadow-md: 0 14px 30px rgba(3, 8, 23, 0.35);
+            --radius-xl: 22px;
+            --radius-lg: 16px;
+            --radius-md: 12px;
         }
 
         * {
-            font-family: "Manrope", "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            font-family: "Manrope", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
         }
 
         body {
-            background: linear-gradient(180deg, #f7f9fc 0%, #eef2f8 100%);
-            background-image: none;
-            color: #1c2532;
+            min-height: 100vh;
+            background:
+                radial-gradient(circle at 10% 0%, rgba(92, 228, 195, 0.2), transparent 32%),
+                radial-gradient(circle at 90% 10%, rgba(79, 140, 255, 0.2), transparent 28%),
+                linear-gradient(160deg, #060b17 0%, #0a1327 42%, #0d1730 100%);
+            color: var(--text);
             background-attachment: fixed;
         }
 
@@ -1532,48 +1697,51 @@
         }
 
         .container {
-            max-width: 1120px;
+            max-width: 1160px;
+            margin: 0 auto;
             padding: 0 24px;
         }
 
         header {
-            margin: 24px 0 34px;
-            padding: 18px 22px;
-            border-radius: 18px;
-            border: 1px solid #d9e2ef;
-            background: rgba(255, 255, 255, 0.94);
-            box-shadow: 0 12px 35px rgba(15, 23, 42, 0.08);
+            margin: 24px 0 30px;
+            padding: 20px 24px;
+            border-radius: var(--radius-xl);
+            border: 1px solid rgba(103, 127, 177, 0.42);
+            background: linear-gradient(140deg, rgba(20, 30, 56, 0.94), rgba(12, 20, 38, 0.94));
+            box-shadow: var(--shadow-lg);
             display: grid;
             grid-template-columns: auto 1fr;
-            gap: 16px 24px;
+            gap: 18px 24px;
+            backdrop-filter: blur(8px);
         }
 
         .logo {
-            gap: 12px;
+            display: flex;
             align-items: center;
+            gap: 14px;
         }
 
         .logo-image {
+            height: 60px;
             width: auto;
-            height: 58px;
-            display: block;
+            filter: drop-shadow(0 10px 18px rgba(0, 0, 0, 0.35));
         }
 
         .logo h1 {
             margin: 0;
+            font-family: "Space Grotesk", "Manrope", sans-serif;
             font-size: 1.7rem;
-            letter-spacing: 0;
-            color: #152238;
+            color: var(--heading);
+            letter-spacing: 0.02em;
+            -webkit-text-fill-color: var(--heading);
             background: none;
             text-shadow: none;
-            -webkit-text-fill-color: #152238;
-            font-family: "Space Grotesk", "Manrope", sans-serif;
         }
 
         .logo-text p {
             margin-top: 4px;
-            color: #5a6b82;
-            font-size: 0.9rem;
+            color: var(--text-muted);
+            font-size: 0.92rem;
         }
 
         .nav-container {
@@ -1586,19 +1754,23 @@
 
         .nav-links {
             display: flex;
-            gap: 8px;
             flex-wrap: wrap;
+            gap: 8px;
         }
 
         .nav-link {
-            text-decoration: none;
-            color: #34495e;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 9px 15px;
             border-radius: 999px;
+            text-decoration: none;
+            color: var(--text-muted);
             border: 1px solid transparent;
-            padding: 9px 14px;
-            font-size: 0.95rem;
-            font-weight: 600;
-            transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+            transition: all 0.2s ease;
+            font-weight: 700;
+            font-size: 0.9rem;
+            letter-spacing: 0.01em;
         }
 
         .nav-link::before {
@@ -1607,65 +1779,76 @@
 
         .nav-link:hover,
         .nav-link:focus-visible {
-            color: #17345c;
-            background: #edf3fc;
-            border-color: #d6e0ee;
+            color: #ffffff;
+            background: rgba(89, 116, 169, 0.28);
+            border-color: rgba(114, 146, 208, 0.55);
         }
 
         .nav-link.active,
         .nav-link.active:visited {
             color: #ffffff !important;
-            background: linear-gradient(135deg, #2563eb, #1d4ed8) !important;
-            border-color: #1d4ed8 !important;
-            box-shadow: 0 8px 16px rgba(29, 78, 216, 0.32);
+            background: linear-gradient(135deg, #4f8cff, #3b82f6) !important;
+            border-color: #3b82f6 !important;
+            box-shadow: 0 10px 18px rgba(79, 140, 255, 0.35);
         }
 
         .auth-buttons {
+            display: flex;
+            align-items: center;
             gap: 10px;
+            flex-wrap: wrap;
         }
 
-        .btn {
+        .btn,
+        .login-btn,
+        .admin-btn,
+        .post-btn {
             border-radius: 10px;
-            padding: 10px 16px;
-            font-size: 0.93rem;
-            line-height: 1.1;
-            box-shadow: none;
+            border: 1px solid transparent;
+            padding: 10px 14px;
+            font-size: 0.9rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease, border-color 0.2s ease;
         }
 
         .btn::before {
-            display: none;
+            display: none !important;
         }
 
         .btn-login {
-            background: #ffffff;
-            border: 1px solid #cad6e6;
-            color: #1f345a;
+            background: rgba(16, 28, 54, 0.92);
+            border: 1px solid rgba(109, 132, 177, 0.48);
+            color: #d8e6ff;
         }
 
         .btn-login:hover {
-            background: #f7f9fc;
+            background: rgba(27, 43, 77, 0.95);
+            border-color: rgba(131, 161, 219, 0.65);
         }
 
         .btn-signup,
         .login-btn,
+        .admin-btn,
         .post-btn {
-            background: #1f3a5f;
+            background: linear-gradient(135deg, #4f8cff, #3b82f6);
             color: #ffffff;
-            border: 1px solid #1f3a5f;
+            border-color: #3b82f6;
+            box-shadow: 0 10px 22px rgba(59, 130, 246, 0.32);
         }
 
         .btn-signup:hover,
         .login-btn:hover,
+        .admin-btn:hover,
         .post-btn:hover {
-            background: #162d4a;
-            border-color: #162d4a;
-            transform: none;
-            box-shadow: none;
+            transform: translateY(-1px);
+            background: linear-gradient(135deg, #66a0ff, #4f8cff);
+            border-color: #66a0ff;
         }
 
         .user-info-display {
-            background: #f6f8fc;
-            border: 1px solid #dce4ef;
+            background: rgba(13, 22, 44, 0.9);
+            border: 1px solid rgba(90, 116, 164, 0.46);
             border-radius: 12px;
             padding: 8px 10px;
             display: flex;
@@ -1677,323 +1860,414 @@
         .user-identity {
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 9px;
         }
 
         .user-identity-meta {
             display: flex;
             flex-direction: column;
-            line-height: 1.15;
+            line-height: 1.18;
         }
 
         .user-identity-meta #userName {
+            color: #f3f8ff;
             font-weight: 700;
-            color: #1b2f4b;
         }
 
         .user-identity-meta #userEmail {
-            font-size: 0.82rem;
-            color: #5f7087;
+            color: var(--text-muted);
+            font-size: 0.8rem;
         }
 
         .user-avatar {
             width: 34px;
             height: 34px;
             border-radius: 50%;
-            border: 2px solid #d5deeb;
+            border: 2px solid rgba(110, 140, 194, 0.62);
+            background: #182540;
             object-fit: cover;
-            background: #eef3f9;
+        }
+
+        .page {
+            margin-bottom: 28px;
         }
 
         .hero {
-            text-align: left;
-            background: #ffffff;
-            border: 1px solid #d9e2ef;
-            border-radius: 20px;
-            box-shadow: 0 16px 36px rgba(15, 23, 42, 0.08);
+            position: relative;
+            overflow: hidden;
             padding: 56px 44px;
+            border-radius: var(--radius-xl);
+            border: 1px solid rgba(92, 116, 165, 0.44);
+            background: linear-gradient(145deg, rgba(16, 26, 50, 0.96), rgba(11, 18, 36, 0.92));
+            box-shadow: var(--shadow-lg);
+            text-align: left;
         }
 
-        .hero-kicker {
-            display: inline-block;
-            margin-bottom: 14px;
-            padding: 5px 11px;
-            border-radius: 999px;
-            background: #eaf1fb;
-            color: #24436e;
-            font-size: 0.78rem;
-            font-weight: 700;
-            letter-spacing: 0.08em;
-            text-transform: uppercase;
+        .hero::after {
+            content: "";
+            position: absolute;
+            right: -80px;
+            top: -80px;
+            width: 220px;
+            height: 220px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(92, 228, 195, 0.2) 0%, rgba(92, 228, 195, 0) 72%);
+            pointer-events: none;
         }
 
         .hero::before {
-            display: none;
+            display: none !important;
+        }
+
+        .hero-kicker {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            margin-bottom: 14px;
+            padding: 6px 12px;
+            border-radius: 999px;
+            font-size: 0.74rem;
+            letter-spacing: 0.09em;
+            text-transform: uppercase;
+            font-weight: 700;
+            color: #d6f7ed;
+            background: rgba(22, 153, 123, 0.26);
+            border: 1px solid rgba(76, 190, 158, 0.45);
         }
 
         .hero h2 {
-            margin-bottom: 14px;
-            color: #152238;
+            margin: 0 0 14px;
+            color: #f7fbff;
+            -webkit-text-fill-color: #f7fbff;
             background: none;
             text-shadow: none;
-            -webkit-text-fill-color: #152238;
-            font-size: clamp(2rem, 5vw, 3.1rem);
-            line-height: 1.2;
-            max-width: 15ch;
             font-family: "Space Grotesk", "Manrope", sans-serif;
+            font-size: clamp(2rem, 5vw, 3.15rem);
+            line-height: 1.16;
+            max-width: 17ch;
         }
 
         .hero p {
-            color: #4c5f75;
-            font-size: 1.06rem;
-            max-width: 66ch;
             margin: 0 0 28px;
+            color: #b6c8e9;
+            font-size: 1.02rem;
+            line-height: 1.6;
+            max-width: 70ch;
         }
 
         .hero-actions {
             display: flex;
-            gap: 12px;
-            align-items: center;
             flex-wrap: wrap;
+            gap: 12px;
         }
 
         .features-intro {
-            margin: 26px 0 4px;
+            margin: 24px 0 10px;
         }
 
         .features-intro h3 {
+            margin: 0 0 8px;
+            color: #f1f6ff;
             font-family: "Space Grotesk", "Manrope", sans-serif;
-            font-size: 1.5rem;
-            color: #182538;
-            margin-bottom: 8px;
+            font-size: 1.45rem;
         }
 
         .features-intro p {
-            color: #5d6e84;
+            color: var(--text-muted);
+            max-width: 65ch;
         }
 
-        .features,
-        .community-container {
-            gap: 18px;
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 16px;
         }
 
         .feature-card,
         .login-container,
         .post-form,
-        .post,
-        .community-card,
-        .admin-item,
+        .community-chat-shell,
+        .settings-card,
+        .admin-sidebar,
+        .admin-content,
         .admin-card,
         .admin-form,
         .stat-card,
-        .admin-sidebar,
-        .admin-content,
-        .user-item {
-            background: #ffffff !important;
-            border: 1px solid #dce4ef !important;
-            border-radius: 16px;
-            box-shadow: 0 10px 24px rgba(15, 23, 42, 0.06) !important;
-            backdrop-filter: none;
+        .user-item,
+        .profile-option-item {
+            border-radius: var(--radius-lg);
+            border: 1px solid rgba(90, 116, 165, 0.46) !important;
+            background: linear-gradient(160deg, rgba(20, 30, 56, 0.92), rgba(12, 20, 38, 0.92)) !important;
+            box-shadow: var(--shadow-md) !important;
+            backdrop-filter: blur(8px);
         }
 
-        .feature-card::before,
-        .login-container::before {
-            display: none;
+        .feature-card {
+            padding: 20px;
+            transition: transform 0.2s ease, border-color 0.2s ease;
         }
 
-        .feature-card:hover,
-        .community-card:hover {
-            transform: translateY(-3px);
-            border-color: #bfd0e5 !important;
+        .feature-card:hover {
+            transform: translateY(-4px);
+            border-color: rgba(118, 156, 227, 0.72) !important;
         }
 
         .feature-card h3,
         .login-container h2,
         .community-section h2,
+        #settings-page h2,
         #admin-page h2,
-        #settings-page h2 {
-            color: #152238;
-            text-shadow: none;
+        .settings-card h3,
+        .admin-card h3,
+        .admin-form h3 {
+            color: #f1f6ff;
             font-family: "Space Grotesk", "Manrope", sans-serif;
+            text-shadow: none;
         }
 
         .feature-card p,
-        .post-content,
-        .post p,
-        .item-description {
-            color: #4c5f75;
+        .item-description,
+        .chat-subtitle,
+        .settings-help,
+        .settings-current-email,
+        .community-message-text,
+        .community-message-meta .timestamp,
+        .profile-option-item .label,
+        .item-position {
+            color: var(--text-muted);
         }
 
-        .chat-subtitle {
-            margin: 2px 0 16px;
-            color: #5d6e84;
+        .feature-card .item-image {
+            width: 72px;
+            height: 72px;
+            display: grid;
+            place-items: center;
+            border-radius: 14px;
+            background: rgba(23, 37, 66, 0.95);
+            border: 1px solid rgba(99, 128, 183, 0.5);
+            margin-bottom: 14px;
+        }
+
+        .feature-card .item-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            padding: 10px;
+        }
+
+        .login-container {
+            max-width: 520px;
+            margin: 0 auto;
+            padding: 28px;
+        }
+
+        .signup-link {
+            margin-top: 14px;
+            color: var(--text-muted);
+        }
+
+        .signup-link a {
+            color: #8eb8ff;
+            font-weight: 700;
+        }
+
+        .community-section {
+            display: grid;
+            gap: 14px;
         }
 
         .community-chat-shell {
-            border: 1px solid #dce4ef;
-            border-radius: 16px;
-            background: #ffffff;
-            box-shadow: 0 10px 24px rgba(15, 23, 42, 0.06);
+            padding: 0;
             overflow: hidden;
         }
 
         .community-chat-list {
             min-height: 320px;
-            max-height: 500px;
+            max-height: 520px;
             overflow-y: auto;
             padding: 16px;
             display: flex;
             flex-direction: column;
             gap: 10px;
-            background: linear-gradient(180deg, #fbfcff 0%, #f4f7fd 100%);
+            background: linear-gradient(180deg, rgba(10, 19, 37, 0.9), rgba(12, 22, 42, 0.9));
         }
 
         .community-message {
             display: flex;
             gap: 10px;
             align-items: flex-start;
-            background: #ffffff;
-            border: 1px solid #dce4ef;
+            border: 1px solid rgba(95, 124, 181, 0.45);
             border-radius: 12px;
+            background: rgba(17, 28, 52, 0.92);
             padding: 10px 12px;
         }
 
         .community-message.mine {
-            border-color: #c6d8ee;
-            background: #eef5ff;
+            border-color: rgba(92, 228, 195, 0.55);
+            background: rgba(12, 50, 58, 0.55);
+        }
+
+        .community-message .avatar,
+        .settings-avatar,
+        .signup-avatar-preview img,
+        .profile-option-item img {
+            border-radius: 50%;
+            border: 2px solid rgba(103, 128, 179, 0.6);
+            background: #1b2948;
         }
 
         .community-message .avatar {
             width: 36px;
             height: 36px;
-            border-radius: 50%;
             object-fit: cover;
-            border: 2px solid #d6e0ec;
-            background: #eff4fb;
             flex-shrink: 0;
         }
 
         .community-message-meta {
             display: flex;
-            gap: 8px;
             align-items: center;
+            gap: 8px;
             margin-bottom: 4px;
         }
 
-        .community-message-meta .username {
+        .community-message-meta .username,
+        .settings-current-username,
+        .user-name,
+        .label {
+            color: #e8f0ff;
             font-weight: 700;
-            color: #1a2f4b;
         }
 
-        .community-message-meta .timestamp {
-            color: #6f8096;
-            font-size: 0.78rem;
-        }
-
-        .community-message-text {
-            color: #2d3f58;
-            line-height: 1.5;
-            white-space: pre-wrap;
-            word-break: break-word;
-        }
-
-        .signup-avatar-preview,
-        .settings-current-profile {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            margin-bottom: 16px;
-        }
-
-        .signup-avatar-preview img,
-        .settings-avatar {
-            width: 56px;
-            height: 56px;
-            border-radius: 50%;
-            border: 2px solid #cfd9e8;
-            object-fit: cover;
-            background: #eff4fb;
+        .post-form {
+            padding: 16px;
         }
 
         .settings-layout {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 14px;
-            margin-top: 16px;
+            margin-top: 12px;
         }
 
         .settings-card {
-            background: #ffffff;
-            border: 1px solid #dce4ef;
-            border-radius: 16px;
-            box-shadow: 0 10px 24px rgba(15, 23, 42, 0.06);
             padding: 18px;
         }
 
-        .settings-card h3 {
-            color: #1a2f49;
-            margin-bottom: 14px;
-        }
-
-        .settings-current-username {
-            font-size: 1.05rem;
-            color: #172a44;
-            font-weight: 700;
-        }
-
-        .settings-current-email {
-            color: #5f7087;
-            font-size: 0.9rem;
-        }
-
-        .settings-help {
-            margin-top: -4px;
-            margin-bottom: 12px;
-            color: #5f7087;
-            font-size: 0.85rem;
-            line-height: 1.45;
-        }
-
-        .profile-options-list {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        .settings-current-profile,
+        .signup-avatar-preview,
+        .profile-option-item-main,
+        .message-sender-row,
+        .user-identity {
+            display: flex;
+            align-items: center;
             gap: 10px;
         }
 
-        .profile-option-item {
-            border: 1px solid #dce4ef;
-            border-radius: 12px;
-            padding: 10px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 8px;
-            background: #f9fbff;
+        .settings-avatar,
+        .signup-avatar-preview img {
+            width: 56px;
+            height: 56px;
+            object-fit: cover;
         }
 
-        .profile-option-item-main {
-            display: flex;
+        .admin-container {
+            display: grid;
+            grid-template-columns: 260px minmax(0, 1fr);
+            gap: 16px;
+            align-items: start;
+        }
+
+        .admin-sidebar {
+            padding: 18px;
+        }
+
+        .admin-menu {
+            display: grid;
             gap: 8px;
+            padding: 0;
+            margin: 12px 0 0;
+            list-style: none;
+        }
+
+        .admin-menu a {
+            display: flex;
             align-items: center;
-            min-width: 0;
+            gap: 10px;
+            padding: 10px 12px;
+            border-radius: 10px;
+            text-decoration: none;
+            color: var(--text-muted);
+            border: 1px solid transparent;
+            transition: all 0.2s ease;
+        }
+
+        .admin-menu a:hover {
+            color: #ffffff;
+            background: rgba(79, 140, 255, 0.22);
+            border-color: rgba(122, 164, 237, 0.65);
+        }
+
+        .admin-menu a.active,
+        .admin-menu a.active:visited {
+            color: #ffffff !important;
+            background: linear-gradient(135deg, #4f8cff, #3b82f6) !important;
+            border-color: #3b82f6 !important;
+            box-shadow: 0 8px 16px rgba(79, 140, 255, 0.35);
+        }
+
+        .admin-content {
+            padding: 18px;
+        }
+
+        .admin-section {
+            display: none;
+        }
+
+        .admin-section.active {
+            display: block;
+        }
+
+        .stats-container,
+        .admin-grid,
+        .profile-options-list {
+            display: grid;
+            gap: 12px;
+        }
+
+        .stats-container,
+        .admin-grid {
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        }
+
+        .profile-options-list {
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        }
+
+        .stat-card,
+        .admin-card,
+        .admin-form,
+        .user-item {
+            padding: 16px;
+        }
+
+        .stat-card .value {
+            color: #8eb8ff;
+            font-size: 1.8rem;
+            font-weight: 800;
+        }
+
+        .profile-option-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 8px;
+            padding: 10px;
         }
 
         .profile-option-item img {
             width: 36px;
             height: 36px;
-            border-radius: 50%;
             object-fit: cover;
-            border: 1px solid #d2ddec;
-            flex-shrink: 0;
-            background: #eff3fa;
-        }
-
-        .profile-option-item .label {
-            color: #2a3f5c;
-            font-size: 0.9rem;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            white-space: nowrap;
         }
 
         .profile-option-actions {
@@ -2002,132 +2276,99 @@
         }
 
         .tiny-btn {
-            border: 1px solid #cad6e6;
-            background: #ffffff;
-            color: #284567;
             border-radius: 8px;
-            padding: 5px 8px;
+            border: 1px solid rgba(108, 139, 196, 0.56);
+            background: rgba(13, 22, 44, 0.85);
+            color: #d9e8ff;
+            padding: 6px 8px;
             font-size: 0.76rem;
+            font-weight: 700;
             cursor: pointer;
         }
 
         .tiny-btn:hover {
-            background: #edf3fc;
-        }
-
-        .message-sender-row {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            margin-bottom: 4px;
-        }
-
-        .message-sender-avatar {
-            width: 20px;
-            height: 20px;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 1px solid #cad6e6;
-            background: #eff3fa;
-        }
-
-        .feature-card .item-image {
-            background: #f4f7fb;
-            border: 1px solid #dce4ef;
-            box-shadow: none;
-        }
-
-        .feature-card .item-image img {
-            object-fit: contain;
-            padding: 8px;
-        }
-
-        .stat-card .value {
-            color: #17345c;
-            font-weight: 700;
-        }
-
-        .form-group input,
-        .form-group textarea,
-        .form-group select,
-        .role-select {
-            background: #ffffff;
-            color: #1c2532;
-            border: 1px solid #c7d5e7;
-            border-radius: 10px;
-            box-shadow: none;
-        }
-
-        .form-group input:focus,
-        .form-group textarea:focus,
-        .form-group select:focus {
-            border-color: #3b6ca1;
-            box-shadow: 0 0 0 3px rgba(23, 92, 211, 0.14);
-            outline: none;
-        }
-
-        .admin-container {
-            grid-template-columns: 260px 1fr;
-            gap: 16px;
-        }
-
-        .admin-menu {
-            gap: 6px;
-        }
-
-        .admin-menu a {
-            border-radius: 10px;
-            color: #3d4f66;
-        }
-
-        .admin-menu a:hover {
-            background: linear-gradient(135deg, #eff6ff, #dbeafe);
-            color: #1e3a8a;
-            border: 1px solid #93c5fd;
-        }
-
-        .admin-menu a.active,
-        .admin-menu a.active:visited {
-            background: linear-gradient(135deg, #2563eb, #1d4ed8) !important;
-            color: #ffffff !important;
-            border: 1px solid #1d4ed8 !important;
-        }
-
-        .stats-container,
-        .admin-grid {
-            gap: 14px;
+            background: rgba(22, 36, 66, 0.95);
         }
 
         .role-badge {
             border-radius: 999px;
             padding: 4px 10px;
-            font-size: 0.78rem;
-            font-weight: 700;
+            font-size: 0.75rem;
+            font-weight: 800;
+            border: 1px solid rgba(107, 135, 191, 0.5);
+            color: #d9e8ff;
+            background: rgba(20, 32, 60, 0.86);
         }
 
-        .spinner {
-            background: rgba(244, 247, 252, 0.65);
+        .form-group label {
+            color: #dbe8ff;
+            font-weight: 600;
+            margin-bottom: 6px;
+            display: block;
         }
 
-        .spinner-border {
-            border-top-color: #1f3a5f;
-            border-right-color: #1f3a5f;
+        .form-group input,
+        .form-group textarea,
+        .form-group select,
+        .role-select,
+        .position-input {
+            width: 100%;
+            border-radius: 10px;
+            border: 1px solid rgba(99, 126, 179, 0.58);
+            background: rgba(11, 20, 38, 0.86);
+            color: #e8f1ff;
+            padding: 10px 12px;
+            box-shadow: none;
+        }
+
+        .form-group textarea {
+            min-height: 110px;
+            resize: vertical;
+        }
+
+        .form-group input::placeholder,
+        .form-group textarea::placeholder {
+            color: #8ea3c9;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus,
+        .position-input:focus {
+            outline: none;
+            border-color: #5ce4c3;
+            box-shadow: 0 0 0 3px rgba(92, 228, 195, 0.2);
         }
 
         .notification {
-            background: #1f3a5f !important;
-            color: #ffffff !important;
-            border: 1px solid #1f3a5f !important;
-            box-shadow: 0 12px 24px rgba(15, 23, 42, 0.15) !important;
+            background: #102249 !important;
+            border: 1px solid rgba(104, 132, 189, 0.7) !important;
+            color: #f4f8ff !important;
+            box-shadow: var(--shadow-md) !important;
         }
 
-        @media (max-width: 1000px) {
+        .spinner {
+            background: rgba(7, 12, 25, 0.5);
+        }
+
+        .spinner-border {
+            border-top-color: #4f8cff;
+            border-right-color: #4f8cff;
+        }
+
+        footer {
+            margin: 28px 0 18px;
+            color: var(--text-muted);
+        }
+
+        footer p {
+            text-align: center;
+            font-size: 0.88rem;
+        }
+
+        @media (max-width: 1040px) {
             header {
                 grid-template-columns: 1fr;
-            }
-
-            .nav-container {
-                align-items: flex-start;
             }
 
             .admin-container {
@@ -2137,15 +2378,38 @@
 
         @media (max-width: 760px) {
             .container {
-                padding: 0 16px;
+                padding: 0 15px;
+            }
+
+            header {
+                padding: 16px;
             }
 
             .hero {
-                padding: 40px 24px;
+                padding: 38px 22px;
+            }
+
+            .hero h2 {
+                max-width: none;
+            }
+
+            .ditlep-highlight-card {
+                grid-template-columns: 1fr;
+            }
+
+            .highlight-media img {
+                width: 76px;
+                height: 76px;
             }
 
             .user-info-display {
                 width: 100%;
+            }
+
+            .login-container,
+            .admin-content,
+            .admin-sidebar {
+                padding: 15px;
             }
         }
     </style>
@@ -2177,16 +2441,16 @@
             </a>
             <div class="logo-text">
                 <h1>Dragon City Enjoyer</h1>
-                <p>Community hub built for strategy-first players</p>
+                <p>A complete, modern command center for Dragon City players</p>
             </div>
         </div>
         <div class="nav-container">
             <div class="nav-links">
                 <a href="/index.html" class="nav-link active" data-page="main">Home</a>
                 <a href="/login.html" class="nav-link" data-page="login" id="loginLink">Login</a>
-                <a href="/community.html" class="nav-link" data-page="community" id="communityLink" style="display: none;">Community</a>
-                <a href="/settings.html" class="nav-link" data-page="settings" id="settingsLink" style="display: none;">Settings</a>
-                <a href="/admin.html" class="nav-link" data-page="admin" id="adminLink" style="display: none;">Admin</a>
+                <a href="/community.html" class="nav-link" data-page="community" id="communityLink">Trading Hub</a>
+                <a href="/settings.html" class="nav-link" data-page="settings" id="settingsLink">Tools</a>
+                <a href="/admin.html" class="nav-link" data-page="admin" id="adminLink">Rankings</a>
             </div>
             <div class="auth-buttons">
                 <button class="btn btn-login" id="loginBtn">Login</button>
@@ -2207,48 +2471,132 @@
     </header>
 
 
-        <!-- Main Page -->
+                <!-- Main Page -->
         <div id="main-page" class="page active-page">
-            <div class="hero">
-                <span class="hero-kicker">Player Community</span>
-                <h2>Welcome to Dragon City Enjoyer</h2>
-                <p>Your ultimate destination for all things Dragon City! Connect with fellow dragon trainers, discover new strategies, and enhance your gameplay experience.</p>
+            <section class="hero ditlep-hero">
+                <span class="hero-kicker">Dragon City Tool Guide and Information</span>
+                <h2>Dragon City Tool Guide and Information</h2>
+                <p>Follow every major Dragon City event, compare top dragons, and plan your next move with a page structure inspired by modern Dragon City guide portals.</p>
                 <div class="hero-actions">
-                    <button class="btn btn-signup" id="heroSignupBtn">Join Our Community</button>
+                    <a href="/community.html" class="btn btn-signup">Open Trading Hub</a>
+                    <button class="btn btn-login" id="heroSignupBtn">Create Free Account</button>
                 </div>
-            </div>
+            </section>
 
-            <div class="features-intro">
-                <h3>What you can do here</h3>
-                <p>Explore proven guides, talk with active players, and coordinate your progress from one place.</p>
-            </div>
+            <section class="ditlep-section">
+                <div class="section-heading">
+                    <h3>Highlight Dragon</h3>
+                    <span>Updated daily</span>
+                </div>
+                <div class="ditlep-highlight-card">
+                    <div class="highlight-media">
+                        <img src="https://api.dicebear.com/9.x/thumbs/svg?seed=dragon-city-highlight" alt="Highlight Dragon">
+                    </div>
+                    <div class="highlight-content">
+                        <h4>Arcane Titan Dragon</h4>
+                        <p>Heroic rarity with strong arena value and great support in event-based battles. Review counters, skills, and breeding path before investing resources.</p>
+                        <div class="highlight-meta">
+                            <span>Rarity: Heroic</span>
+                            <span>Elements: Pure • War • Light</span>
+                            <span>Rating: 9.4/10</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
 
-            <div class="features">
-                <div class="feature-card">
-                    <div class="item-image">
-                        <img src="https://m.media-amazon.com/images/I/81b5KqSPhqL.png" alt="Dragon Breeding">
-                    </div>
-                    <h3>Dragon Breeding</h3>
-                    <p>Learn the secrets of breeding rare and powerful dragons. Our expert guides will help you create the ultimate dragon collection.</p>
+            <section class="ditlep-section">
+                <div class="section-heading">
+                    <h3>Events Overview</h3>
+                    <span>Live timeline</span>
                 </div>
-                <div class="feature-card">
-                    <div class="item-image">
-                        <img src="https://dci-static-s1.socialpointgames.com/static/dragoncity/mobile/ui/pvp_arenas/HD/ic-arena-dream.png" alt="Arena Battles">
-                    </div>
-                    <h3>Arena Battles</h3>
-                    <p>Master combat strategies and dominate the arena. Discover the best dragon combinations for victory.</p>
+                <div class="ditlep-grid ditlep-grid-2">
+                    <article class="ditlep-card">
+                        <h4>Current events</h4>
+                        <ul>
+                            <li>Heroic Race — 2d 14h left</li>
+                            <li>Puzzle Island — 18h left</li>
+                            <li>Fog Island — Ends today</li>
+                        </ul>
+                        <a href="/settings.html">View full current events</a>
+                    </article>
+                    <article class="ditlep-card">
+                        <h4>Upcoming Events</h4>
+                        <ul>
+                            <li>Grid Island — Starts in 7h</li>
+                            <li>Runner Island — Starts in 1d 2h</li>
+                            <li>Maze Coin Boost — This weekend</li>
+                        </ul>
+                        <a href="/settings.html">See upcoming schedule</a>
+                    </article>
                 </div>
-                <div class="feature-card">
-                    <div class="item-image">
-                        <img src="https://aicdn.picsart.com/f4514513-fe50-4ceb-867d-21385e82f298.png" alt="Resource Management">
-                    </div>
-                    <h3>Resource Management</h3>
-                    <p>Optimize your resource production and maximize your island's potential with our proven strategies.</p>
+            </section>
+
+            <section class="ditlep-section">
+                <div class="section-heading">
+                    <h3>Core Tools</h3>
+                    <span>Gameplay assistants</span>
                 </div>
-            </div>
+                <div class="ditlep-grid ditlep-grid-3">
+                    <article class="ditlep-card"><h4>Trading Hub</h4><p>Coordinate orb exchanges and secure fair trades.</p><a href="/community.html">Open tool</a></article>
+                    <article class="ditlep-card"><h4>Wizard Hollow</h4><p>Compare chest probabilities and route outcomes.</p><a href="/settings.html">Open guide</a></article>
+                    <article class="ditlep-card"><h4>Arena Session</h4><p>Track bans, boosts, and recommended teams.</p><a href="/settings.html">Open guide</a></article>
+                    <article class="ditlep-card"><h4>Current Collectible Quests</h4><p>Know quest rewards and quest-stage requirements.</p><a href="/settings.html">View quests</a></article>
+                    <article class="ditlep-card"><h4>Alliance Chest</h4><p>Plan points and optimize alliance contribution.</p><a href="/community.html">Open tracker</a></article>
+                    <article class="ditlep-card"><h4>Newest Dragons</h4><p>Discover recently released dragons and skills.</p><a href="/admin.html">View list</a></article>
+                </div>
+            </section>
+
+            <section class="ditlep-section">
+                <div class="section-heading">
+                    <h3>Top Dragon Rankings</h3>
+                    <span>Top 10 snapshots</span>
+                </div>
+                <div class="ditlep-grid ditlep-grid-2">
+                    <article class="ditlep-card">
+                        <h4>Top 10 strongest Heroic Dragons</h4>
+                        <ol><li>Arcane Titan</li><li>Quantum Rampage</li><li>High Ascended Supreme</li><li>High Corrupted Time</li><li>High Master Karma</li></ol>
+                        <a href="/admin.html">View all heroic rankings</a>
+                    </article>
+                    <article class="ditlep-card">
+                        <h4>Top 10 strongest Mythical Dragons</h4>
+                        <ol><li>Dual Parliament</li><li>Redemption Conquest</li><li>Ravenous Extractor</li><li>Perception Dragon</li><li>Detonation Dragon</li></ol>
+                        <a href="/admin.html">View all mythical rankings</a>
+                    </article>
+                    <article class="ditlep-card">
+                        <h4>Top 10 strongest Legendary Dragons</h4>
+                        <ol><li>Bicephalous Eternal</li><li>Hexed Vampire</li><li>Sinful Vampire</li><li>Prideful Vampire</li><li>Corrupted Primal</li></ol>
+                        <a href="/admin.html">View all legendary rankings</a>
+                    </article>
+                    <article class="ditlep-card">
+                        <h4>Top 10 strongest Common to Epic Dragons</h4>
+                        <ol><li>Flame Knight</li><li>Aurora</li><li>Electrostatic</li><li>Armadillo</li><li>Mojito</li></ol>
+                        <a href="/admin.html">View all rarity rankings</a>
+                    </article>
+                </div>
+            </section>
+
+            <section class="ditlep-section">
+                <div class="section-heading">
+                    <h3>Dragon Category</h3>
+                    <span>Quick filter tags</span>
+                </div>
+                <div class="category-chip-row">
+                    <span class="category-chip">Heroic</span>
+                    <span class="category-chip">Mythical</span>
+                    <span class="category-chip">Legendary</span>
+                    <span class="category-chip">Epic</span>
+                    <span class="category-chip">Very Rare</span>
+                    <span class="category-chip">Rare</span>
+                    <span class="category-chip">Common</span>
+                </div>
+            </section>
+
+            <section class="ditlep-section disclaimer-section">
+                <p>This page is not affiliated with Dragon City or SocialPoint. Copyrights belong to their respective owners.</p>
+            </section>
         </div>
 
-              <!-- Login Page -->
+        <!-- Login Page -->
         <div id="login-page" class="page">
             <div class="login-container">
                 <h2>Dragon City Login</h2>
@@ -2310,7 +2658,7 @@
         <!-- Community Page -->
         <div id="community-page" class="page">
             <div class="community-section">
-                <h2>Dragon City Live Chat</h2>
+                <h2>Community War Room</h2>
                 <p class="chat-subtitle">Chat in real time with players, share tips, and coordinate strategies instantly.</p>
 
                 <div class="community-chat-shell">
@@ -2689,16 +3037,10 @@
                 targetPage = 'main';
             }
 
-            // Keep protected pages auth-only
-            const authOnlyPages = ['community', 'settings', 'admin'];
+            // Public page access
+            const authOnlyPages = [];
             if (!currentUser && authOnlyPages.includes(targetPage)) {
                 targetPage = 'login';
-            }
-
-            // Prevent non-admin from opening admin page
-            const isAdminUser = currentUser && (userRoleData === 'Admin' || userRoleData === 'Owner');
-            if (targetPage === 'admin' && !isAdminUser) {
-                targetPage = currentUser ? 'main' : 'login';
             }
 
             const targetPageElement = document.getElementById(`${targetPage}-page`);
@@ -3731,10 +4073,6 @@
                             navigateToPage('main', true);
                             return;
                         }
-                        if (requestedPage === 'admin' && !(userRoleData === 'Admin' || userRoleData === 'Owner')) {
-                            navigateToPage('main', true);
-                            return;
-                        }
                         showPage(requestedPage, false);
                     });
                 } else {
@@ -3749,17 +4087,12 @@
                     signupBtn.style.display = 'block';
                     loginLink.style.display = 'block';
 
-                    // Hide user navigation links
-                    communityLink.style.display = 'none';
-                    settingsLink.style.display = 'none';
-                    adminLink.style.display = 'none';
+                    // Keep public navigation links visible
+                    communityLink.style.display = 'block';
+                    settingsLink.style.display = 'block';
+                    adminLink.style.display = 'block';
 
                     const requestedPage = CURRENT_PAGE;
-                    const protectedPages = ['community', 'settings', 'admin'];
-                    if (protectedPages.includes(requestedPage)) {
-                        navigateToPage('login', true);
-                        return;
-                    }
                     showPage(requestedPage, false);
                 }
             });
