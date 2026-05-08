@@ -2,7 +2,7 @@ cat > index.js <<'EOF'
 const { Client, GatewayIntentBits } = require("discord.js");
 
 if (!process.env.DISCORD_TOKEN) {
-  console.error('Missing DISCORD_TOKEN. Run token prompt command first.');
+  console.error("Missing DISCORD_TOKEN");
   process.exit(1);
 }
 
