@@ -9,7 +9,7 @@ const { Client, GatewayIntentBits } = require("discord.js");
  */
 const TOKEN = "PASTE_NEW_BOT_TOKEN_HERE";
 
-if (!TOKEN || TOKEN.includes("PASTE_NEW_BOT_TOKEN_HERE")) {
+if (!TOKEN || TOKEN.includes("MTQ1NTQ0MzE1MDA4MzQ1NzA5MA.GjDqDS.2kxCiUIspw1SsPPYVlAs8w6cXXwrDuzgiKYnck")) {
   console.error("Please paste your real bot token into TOKEN first.");
   process.exit(1);
 }
